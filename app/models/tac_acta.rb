@@ -1,0 +1,3 @@
+class TacActa < ApplicationRecord
+	
+end

@@ -1,0 +1,21 @@
+<h2>Crear acta</h2>
+<%= form_with scope: :acta, url: actas_path, local: true do |acta| %>
+<div class="form-row"> 
+  <div class="form-group">
+    <%= acta.select :sede, options_from_collection_for_select(@tinsedes,
+            :direccion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+  </div>
+</div>
+
+<%= acta.label :Firmante %><br>
+<div class="form-row"> 
+  <div class="form-group">
+    <%= acta.select :id_firmante, options_from_collection_for_select(@tacfirmantes,
+            :id, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+  </div>
+</div>
+
+<div class="form-row" style="margin-top: 30px;">
+    <%= acta.submit "Guardar", :class => "btn btn-success col-md-2 offset-md-3" %>
+</div>
+<% end %>

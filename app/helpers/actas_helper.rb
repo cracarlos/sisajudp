@@ -1,0 +1,2 @@
+module ActasHelper
+end

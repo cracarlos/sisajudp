@@ -1,0 +1,3 @@
+class TacCargo < ApplicationRecord
+
+end

@@ -1,0 +1,3 @@
+class TacJuramentado  < ApplicationRecord
+
+end

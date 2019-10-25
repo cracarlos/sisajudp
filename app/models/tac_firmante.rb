@@ -1,0 +1,3 @@
+class TacFirmante < ApplicationRecord
+
+end

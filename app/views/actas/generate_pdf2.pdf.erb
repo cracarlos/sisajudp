@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+      <style>
+    .justify {
+      text-align:justify;
+      font-size:20px;
+    }
+    .center{
+      text-align:center;
+      font-size:25px;
+    }
+    h2 {
+      text-align:center;
+    }
+    .tamanio{
+        font-size:20px;
+    }
+    img {
+      width:250px;
+    }
+    p{
+      line-height: 35px;
+    }
+
+  </style>
+  <img src="<%= wicked_pdf_asset_path 'logo.png' %>">
+  </head>
+
+  <body>
+    <h2> ACTA N° <mark>001-2019</mark> </h2>
+<p class="justify">
+
+En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve <%= @t.year %></mark>,
+siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,<mark> 
+<% @tacprejuramentados.each do |direccion|%>
+  <%=direccion.sede.titleize  %>
+<% end %>
+ ubicada
+en el Boulevard Panteón, entre esquinas de Jesuitas y Tienda Honda, Parroquia
+Altagracia, Municipio Libertador, del Distrito Capital</mark>, en razón a la convocatoria
+realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
+Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
+de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
+Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
+ciudadanos (a): 
+<% @tacprejuramentados.each do |datos|%>
+
+<mark> <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b> <b><%=datos.primer_apellido %> </b> <b><%=datos.segundo_apellido%></b> </mark>,
+titular de la cédula de identidad N° <mark><b><%=datos.cedula %></b></mark>, a los fines de ser juramentado como 
+<mark><b><%=datos.cargo %></b></mark> extensión <%=datos.sede.capitalize %>
+Segundo con competencia en materia <mark> <b><%=datos.competencia %></b> </mark>, según lo establecido en <mark> <b><%=datos.resolucion %></b></mark>
+de fecha <mark>03/06/19</mark>;
+
+<% end %>
+ Seguidamente, la máxima autoridad de
+la Institución de conformidad con lo dispuesto en el Artículo 1 de la Ley de Juramentos y Artículo 22
+de la Ley de Reforma Parcial de la Ley Orgánica de la Defensa Pública, en concordancia con la atribución
+conferida en el Artículo 14, numeral 16 ejusdem, procede a tomar juramento en este acto, a los
+ciudadanos antes mencionados, de la siguiente manera: ¿Juran ustedes sostener y defender la Constitución
+de la República Bolivariana de Venezuela y demás leyes de la Nación, así como, cumplir con los deberes
+inherentes al cargo?. Acto seguido, los funcionarios designados, contestaron: Si lo juramos. La Defensora
+Pública General, a su vez, respondió: Si así lo hicieren que Dios y la Patria os lo premien y si no os lo
+demanden. Es todo, terminó, leyó y conformen firman.
+</p>
+<br><br><br><br><br>
+
+<p class="center " >
+<b>Dra. Carmen Marisela Castro Gilly</b>
+<br>
+Defensora Pública General
+</p>
+
+
+<p class="tamanio">
+  <% @tacprejuramentados.each do |datos2|%>
+    <mark>
+      <b>Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> </b><br>
+   </mark>
+    <%= datos2.cargo%> Segundo con <%= datos2.competencia %> <%= datos2.sede.titleize %>
+    <br><br>
+  <% end %>
+</p>
+  </body>
+</html>

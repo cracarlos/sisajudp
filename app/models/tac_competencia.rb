@@ -1,0 +1,3 @@
+class TacCompetencia < ApplicationRecord
+
+end

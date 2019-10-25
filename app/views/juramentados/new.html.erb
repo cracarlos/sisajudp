@@ -1,0 +1,79 @@
+<section class = 'offset-md-1'> 
+  <h1 class="">Registro</h1>
+  <%= form_with scope: :acta, url: juramentados_path, local: true do |form| %>
+
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.label :Acta %><br> 
+      <%= form.select :id_numero_acta, options_from_collection_for_select(@tacactas,
+            :numero_acta, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+    </div>
+  </div>
+ 
+
+  <div class = "form-row">
+    <%= form.label :Nombres %>
+  </div>
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.text_field :primer_nombre, :class => "form-control", placeholder: "Primer nombre" %>
+    </div>
+    <div class="form-group">
+      <%= form.text_field :segundo_nombre, :class => "form-control offset-md-1", placeholder: "Segundo nombre" %>
+    </div>
+
+  </div>
+
+  <div class = "form-row">
+    <%= form.label :Apellidos %>
+  </div>
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido" %>
+    </div>
+    <div class="form-group">
+      <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido" %>
+    </div>
+  </div>
+
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.text_field :cedula, :class => "form-control col-md-5", placeholder: "Cedula" %>
+    </div>
+  </div>
+  
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.label :cargo %><br> 
+      <%= form.select :cargo, options_from_collection_for_select(@taccargos,
+            :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.label :sede %><br> 
+      <%= form.select :sede, options_from_collection_for_select(@tinsedes,
+            :descripcion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.label :competencia %><br> 
+      <%= form.select :competencia, options_from_collection_for_select(@taccompetencias,
+            :nombre_completo, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class = "form-row">
+    <div class="form-group">
+      <%= form.label :resolucion %><br>
+      <%= form.text_field :resolucion, :class => "form-control" %>
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+    <%= form.submit "Guardar", :class => "btn btn-success col-md-2 offset-md-3 " %>
+  </div>
+  <% end %>
+</section>
