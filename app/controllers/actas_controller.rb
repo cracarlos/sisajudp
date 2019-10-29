@@ -1,7 +1,7 @@
 class ActasController < ApplicationController
 	def index
 		@tacactas = TacActa.all
-		@probando = TacActa.find_by(numero_acta:2)
+		#@probando = TacActa.find_by(numero_acta:2)
 		
 	end
 	def new
@@ -46,7 +46,7 @@ class ActasController < ApplicationController
       redirect_to acta_path
     end
 
-    def generate_pdf
+	def generate_pdf
     @t = Time.now
     @tacprejuramentados = TacPreJuramentado.all
     @tacactas = TacActa.all
