@@ -1,5 +1,5 @@
 class JuramentadosController < ApplicationController
-
+  before_action :authenticate_usuario!
   def new
     @tinsedes = TinSede.all
     @taccargos = TacCargo.all

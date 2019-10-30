@@ -1,4 +1,5 @@
 class ActasController < ApplicationController
+	before_action :authenticate_usuario!
 	def index
 		@tacactas = TacActa.all
 		#@probando = TacActa.find_by(numero_acta:2)
