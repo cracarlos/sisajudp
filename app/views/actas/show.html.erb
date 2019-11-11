@@ -11,11 +11,11 @@
     </tr>
   </thead>
   <tbody>
-     <% @tacactas.each do |acta| %>
+     <% @tacactasFirmantes.each do |acta| %>
     <tr>
       <td><%= acta.numero_acta%></td>
       <td><%= acta.sede%></td>
-      <td><%= acta.id_firmante%></td>
+      <td><%= acta.nombre_completo%></td>
       <td>
         <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
         <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>

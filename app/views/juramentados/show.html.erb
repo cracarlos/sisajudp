@@ -1,8 +1,8 @@
 <p>
-  <h2>Juramentados:</h2>  
+  <h2>Juramentados</h2>  
 </p>
 <table class="table">
-  <thead class="thead-dark">
+  <thead class="tabla-color" >
     <tr>
       <th scope="col">Acta</th>
       <th scope="col">Nombre</th>
@@ -22,14 +22,17 @@
       <td><%= juramentados.sede%></td>
       <td><%= juramentados.competencia%></td>
       <td><%= juramentados.resolucion%></td>
-      <td><%= link_to 'Editar', edit_juramentado_path(juramentados), :class => "btn btn-warning"%></td>
-      <td><%= link_to 'Eliminar', juramentado_path, method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-success col-md-3" %> </td>
+      <td>
+        <%= link_to '', edit_juramentado_path(juramentados), :class => "btn btn-warning fa fa-edit"%>
+        <%= link_to '', juramentado_path, method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash"%> 
+      </td>
+
     </tr>
      <% end %>
   </tbody> 
 </table>
 
-<div class="offset-md-3">
-   <%= link_to 'Agregar', new_juramentado_path, :class => "btn btn-success col-md-3" %> 
+<div class="offset-md-5 ">
+   <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2" %> 
 
 </div>

@@ -10,7 +10,7 @@
 <%= acta.label :Firmante %><br>
 <div class="form-row"> 
   <div class="form-group">
-    <%= acta.select :id_firmante, options_from_collection_for_select(@tacfirmantes,
+    <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
             :id, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
   </div>
 </div>

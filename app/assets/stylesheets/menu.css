@@ -3,6 +3,7 @@
   font-family: sans-serif;
   font-size: 22px;
   font-weight: 200;
+  /* COLOR DEL CUERPO */
   background: rgba(169,3,41,1);
   background: -moz-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(111,32,35,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(169,3,41,1)), color-stop(44%, rgba(143,2,34,1)), color-stop(100%, rgba(111,32,35,1)));
@@ -10,6 +11,7 @@
   background: -o-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(111,32,35,1) 100%);
   background: -ms-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(111,32,35,1) 100%);
   background: linear-gradient(to right, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(111,32,35,1) 100%);
+  /* FIN DEL COLOR DEL CUERPO */
   position: fixed;
   top: 0px;
   width: 300px;

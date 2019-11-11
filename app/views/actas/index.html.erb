@@ -11,15 +11,15 @@
     </tr>
   </thead>
   <tbody>
-     <% @tacactas.each do |acta| %>
+     <% @tacactasFirmantes.each do |acta| %>
     <tr>
       <td><%= acta.numero_acta%></td>
       <td><%= acta.sede%></td>
-      <td><%= acta.id_firmante%></td>
+      <td><%= acta.nombre_completo%></td>
       <td>
         <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
         <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
-        <%= link_to "", generate_pdf_path(format: :pdf), :class => "btn btn-info col-md-3 offset-md-1 fa fa-print" %>
+        <%= link_to "", generate_pdf_path(:generar => acta.numero_acta, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %>
           
       </td>
     </tr>
@@ -27,6 +27,6 @@
   </tbody> 
 </table>
 
-<div class="offset-md-3">
-   <%= link_to 'Agregar', new_acta_path, :class => "btn btn-success col-md-3" %> 
+<div class="offset-md-5" style="margin-top: 5%;">
+   <%= link_to 'Agregar', new_acta_path, :class => "btn tabla-color col-md-2" %> 
 </div>
