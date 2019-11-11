@@ -5,8 +5,8 @@
   <div class = "form-row">
     <div class="form-group">
       <%= form.label :Acta %><br> 
-      <%= form.select :id_numero_acta, options_from_collection_for_select(@tacactas,
-            :numero_acta, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= form.select :tac_acta_id, options_from_collection_for_select(@tacactas,
+            :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
  

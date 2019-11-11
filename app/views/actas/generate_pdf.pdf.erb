@@ -29,7 +29,12 @@
   </head>
 
   <body>
-    <h2> ACTA N° <mark>001-2019</mark> </h2>
+    <h2> ACTA N° 
+      <% @tacactas.each do |correlativo|%>
+        <%=correlativo.numero_acta%>
+      <% end %>
+      <%= @t.year("%B")%>  
+     </h2>
 <p class="justify">
 
 En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve <%= @t.year %></mark>,
@@ -37,9 +42,7 @@ siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa P�
 <% @tacactas.each do |direccion|%>
   <%=direccion.sede.titleize  %>
 <% end %>
- ubicada
-en el Boulevard Panteón, entre esquinas de Jesuitas y Tienda Honda, Parroquia
-Altagracia, Municipio Libertador, del Distrito Capital</mark>, en razón a la convocatoria
+ </mark>, en razón a la convocatoria
 realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
 Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
 de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República

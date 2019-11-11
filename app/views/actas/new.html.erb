@@ -15,6 +15,13 @@
   </div>
 </div>
 
+<%= acta.label :Fecha %><br>
+<div class="form-row"> 
+  <div class="form-group">
+    <%= acta.datetime_select( :para, start_year: 2019) %>
+  </div>
+</div>
+
 <div class="form-row" style="margin-top: 30px;">
     <%= acta.submit "Guardar", :class => "btn btn-success col-md-2 offset-md-3" %>
 </div>

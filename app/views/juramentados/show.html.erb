@@ -14,16 +14,16 @@
     </tr>
   </thead>
   <tbody>
-     <% @tacprejuramentados.each do |juramentados| %>
+     <% @tacjuramentados.each do |juramentados| %>
     <tr>
-      <td><%= juramentados.id_numero_acta%></td>
+      <td><%= juramentados.numero_acta%></td>
       <td><%= juramentados.primer_nombre%> <%= juramentados.primer_apellido%> </td>
       <td><%= juramentados.cedula%></td>
       <td><%= juramentados.sede%></td>
       <td><%= juramentados.competencia%></td>
       <td><%= juramentados.resolucion%></td>
       <td>
-        <%= link_to '', edit_juramentado_path(juramentados), :class => "btn btn-warning fa fa-edit"%>
+        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "btn btn-warning fa fa-edit"%>
         <%= link_to '', juramentado_path, method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash"%> 
       </td>
 

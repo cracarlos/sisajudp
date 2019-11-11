@@ -6,9 +6,8 @@ class ActasController < ApplicationController
 
   def new
     @tacactas = TacActa.all
-	  @tacfirmantes = TacFirmante.all
-	  @tinsedes = TinSede.all
-    @TiempoHora = Time.now 
+	@tacfirmantes = TacFirmante.all
+	@tinsedes = TinSede.all
   end
 
   def create
@@ -22,8 +21,8 @@ class ActasController < ApplicationController
 
   def edit
     @tacactas = TacActa.find(params[:id])
-	  @tacfirmantes = TacFirmante.all
-	  @tinsedes = TinSede.all
+	@tacfirmantes = TacFirmante.all
+	@tinsedes = TinSede.all
   end
 
   def update		
@@ -57,7 +56,7 @@ class ActasController < ApplicationController
 
   private
     def acta
-	  params.require(:acta).permit(:sede, :tac_firmante_id, :para)
+	  params.require(:acta).permit(:sede, :tac_firmante_id)
 	end
 
 	def acta_edit

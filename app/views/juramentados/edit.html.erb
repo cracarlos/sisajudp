@@ -1,15 +1,15 @@
 <div class="">
   <h3>Editar</h3>
 
-<%= form_for @tacprejuramentados, url: {action: "update"}  do |juramentados| %>
+<%= form_for @tacjuramentados, url: {action: "update"}  do |juramentados| %>
 
-  <% if @tacprejuramentados.errors.any? %>
+  <% if @tacjuramentados.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@tacprejuramentados.errors.count, "error") %> han impedido que el artículo sea grabado:
+        <%= pluralize(@tacjuramentados.errors.count, "error") %> han impedido que el artículo sea grabado:
       </h2>
       <ul>
-        <% @tacprejuramentados.errors.full_messages.each do |msg| %>
+        <% @tacjuramentados.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -19,8 +19,8 @@
     <div class = "form-row">
     <div class="form-group">
       <%= juramentados.label :Acta %><br> 
-      <%= juramentados.select :id_numero_acta, options_from_collection_for_select(@tacactas,
-            :numero_acta, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= juramentados.select :tac_acta_id, options_from_collection_for_select(@tacactas,
+            :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 
