@@ -17,6 +17,15 @@ development:
   username: sisdesa
   password: 12qwaszx
 
+production:
+  <<: *default
+  host:     huachamacare
+  port:     5433
+  database: actas
+  username: sisdesa
+  password: 12qwaszx
+
+
 #development:
 #  <<: *default
 #  host:     huachamacare
@@ -33,7 +42,23 @@ cedulados_development:
   username: sisdesa
   password:
 
+cedulados_production:
+  <<: *default
+  host:     huachamacare
+  port:     5434
+  database: cedulados
+  username: sisdesa
+  password:
+
 intranet_development:
+  <<: *default
+  host:     huachamacare
+  port:     5432
+  database: intranet
+  username: sisdesa
+  password: 12qwaszx
+
+intranet_production:
   <<: *default
   host:     huachamacare
   port:     5432
@@ -50,6 +75,4 @@ intranet_development:
 #  <<: *default
 #  database: actas_test
 
-#production:
-#  <<: *defaultc
-#  database: actas_production
+

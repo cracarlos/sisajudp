@@ -19,6 +19,7 @@
     }
     img {
       width:250px;
+      height:100px;
     }
     p{
       line-height: 35px;
@@ -33,7 +34,7 @@
       <% @tacactas.each do |correlativo|%>
         <%=correlativo.numero_acta%>
       <% end %>
-      <%= @t.year("%B")%>  
+      - <%= @t.year%>  
      </h2>
 <p class="justify">
 
@@ -70,17 +71,24 @@ demanden. Es todo, terminó, leyó y conformen firman.
 <br><br><br><br><br>
 
 <p class="center " >
-<b>Dra. Carmen Marisela Castro Gilly</b>
+<b>
+<% @tacactas.each do |firma|%>
+  <%=firma.nombre_completo%>
+<% end %>
+</b>
 <br>
-Defensora Pública General
+<% @tacactas.each do |cargo|%>
+  <%=cargo.cargo%>
+<% end %>
 </p>
 
 
 <p class="tamanio">
   <% @tacactas.each do |datos2|%>
-    <mark>
-      <b>Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> </b><br>
-   </mark>
+    
+      <b>Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> 
+      </b>
+      <br>
     <%= datos2.cargo%> Segundo con <%= datos2.competencia %> <%= datos2.sede.titleize %>
     <br><br>
   <% end %>
