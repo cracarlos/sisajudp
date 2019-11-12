@@ -33,6 +33,9 @@ gem 'devise'
 # FrameWork de CSS
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+
+# DataTables
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
