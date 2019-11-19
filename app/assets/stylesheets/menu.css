@@ -14,7 +14,7 @@
   /* FIN DEL COLOR DEL CUERPO */
   position: fixed;
   top: 0px;
-  width: 300px;
+  width: 250px;
   height: 100%;
   color: #e1ffff;
 }
@@ -58,7 +58,7 @@
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
   font-family: FontAwesome;
-  content: "\f078";
+  content: "";
   display: inline-block;
   padding-left: 10px;
   padding-right: 10px;

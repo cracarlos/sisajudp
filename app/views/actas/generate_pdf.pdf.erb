@@ -39,11 +39,11 @@
 <p class="justify">
 
 En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve <%= @t.year %></mark>,
-siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,<mark> 
+siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,
 <% @tacactas.each do |direccion|%>
   <%=direccion.sede.titleize  %>
 <% end %>
- </mark>, en razón a la convocatoria
+ , en razón a la convocatoria
 realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
 Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
 de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
@@ -51,10 +51,10 @@ Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
 ciudadanos (a): 
 <% @tacactas.each do |datos|%>
 
-<mark> <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b> <b><%=datos.primer_apellido %> </b> <b><%=datos.segundo_apellido%></b> </mark>,
-titular de la cédula de identidad N° <mark><b><%=datos.cedula %></b></mark>, a los fines de ser juramentado como 
-<mark><b><%=datos.cargo %></b></mark> extensión <%=datos.sede.capitalize %>
-Segundo con competencia en materia <mark> <b><%=datos.competencia %></b> </mark>, según lo establecido en <mark> <b><%=datos.resolucion %></b></mark>
+ <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b> <b><%=datos.primer_apellido %> </b> <b><%=datos.segundo_apellido%></b> ,
+titular de la cédula de identidad N° <b><%=datos.cedula %></b>, a los fines de ser juramentado como 
+<b><%=datos.cargo %></b> extensión <%=datos.sede.capitalize %>
+Segundo con competencia en materia <b><%=datos.competencia %></b>, según lo establecido en <b><%=datos.resolucion %></b>
 de fecha <mark>03/06/19</mark>;
 
 <% end %>

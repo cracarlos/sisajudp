@@ -2,10 +2,18 @@ class TacActa < ApplicationRecord
   belongs_to :tac_firmante
   has_many :tac_juramentados
   
-  def self.firmante_nombre
+  def self.acta_abiertas
 	select('numero_acta,sede,nombre_completo, tac_actas.id').
 	  #joins('INNER JOIN tac_firmantes ON tac_actas.id_firmante = tac_firmantes.id')
-	  joins(:tac_firmante)
+	  joins(:tac_firmante).
+	  where(:estatus => "TRUE")
+  end
+
+  def self.acta_cerradas
+	select('numero_acta,sede,nombre_completo, tac_actas.id').
+	  #joins('INNER JOIN tac_firmantes ON tac_actas.id_firmante = tac_firmantes.id')
+	  joins(:tac_firmante).
+	  where(:estatus => "FALSE")
   end
 
   def self.generar(generar)

@@ -16,17 +16,13 @@
       <td><%= acta.numero_acta%></td>
       <td><%= acta.sede%></td>
       <td><%= acta.nombre_completo%></td>
-      <td>
-        <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
-        <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
-        <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %>
-          
-      </td>
+      <td><%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> </td>
+      
     </tr>
      <% end %>
   </tbody> 
 </table>
 
-<div class="offset-md-5" style="margin-top: 5%;">
-   <%= link_to 'Agregar', new_acta_path, :class => "btn tabla-color col-md-2" %> 
-</div>
+<script>
+  $('#tacactasFirmantes').dataTable();
+</script>

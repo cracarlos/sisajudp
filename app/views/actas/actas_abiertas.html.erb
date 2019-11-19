@@ -19,8 +19,6 @@
       <td>
         <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
         <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
-        <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> 
-        <%= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
           
       </td>
     </tr>
@@ -28,13 +26,7 @@
   </tbody> 
 </table>
 
-<div class="offset-md-4">
-   
-   <%= link_to 'Agregar Acta', new_acta_path, :class => "btn tabla-color col-md-2" %> 
-   <%= link_to 'Agregar Defensores', new_juramentado_path, :class => "btn btn-warning col-md-2 offset-md-1" %>
-
+<div class="offset-md-3">
+   <%= link_to 'Agregar', new_acta_path, :class => "btn btn-success col-md-3" %> 
+   <%= link_to 'Agregar Defensores', new_juramentado_path, :class => "btn btn-warning col-md-3 offset-md-1" %> 
 </div>
-<script>
-  $('#tacactasFirmantes').dataTable();
-
-</script>

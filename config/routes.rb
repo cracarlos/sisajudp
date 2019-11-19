@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :juramentados
   resources :actas
   get :generate_pdf, to: "actas#generate_pdf"
+  get :cerrar_acta, to: 'actas#cerrar_acta'
+  get 'actas/abiertas'
   
 end

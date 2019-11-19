@@ -15,11 +15,11 @@
 <% if signed_in? %>
 <div class="nav-side-menu">
     <div class="brand"> <%= image_tag("logo.png", size: "180x70")%></div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <i class="fa fa-bars fa-2x fa-toggle-down toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                  <span class="fa fa-home" style="margin-left: 10px;"></span> <a style="margin-left: 7px;"> Inicio</a>
+                  <span class="fa fa-home" style="margin-left: 10px; "></span> <%= link_to "Inicio", actas_path, :class => "btn", :style=>"color:white; font-size: 20px;" %>
                 </li>
 
                 <li  data-toggle="collapse" data-target="#products" class="collapsed ">
@@ -27,7 +27,7 @@
                 </li>
                 <ul class="sub-menu collapse" id="products">
                     <li class="active"><%= link_to "Crear", new_acta_path, :class => "btn", :style=>"color:white" %></li>
-                    <li><%= link_to "Listado", actas_path, :class => "btn", :style=>"color:white" %></li>
+                    <li><%= link_to "Actas Abiertas", actas_abiertas_path, :class => "btn", :style=>"color:white" %></li>
 
                 </ul>
                  <li>
@@ -45,7 +45,7 @@
      </div>
 </div>
 <% end %>
-<div class="offset-lg-2 offset-md-4 " >
+<div class="offset-lg-2 offset-md-4  " style="padding: 10px;">
   <div >
     <%= yield %>
   </div>

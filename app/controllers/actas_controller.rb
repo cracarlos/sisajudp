@@ -1,7 +1,7 @@
 class ActasController < ApplicationController
   before_action :authenticate_usuario!
   def index
-    @tacactasFirmantes = TacActa.firmante_nombre
+    @tacactasFirmantes = TacActa.acta_cerradas
   end
 
   def new
@@ -34,7 +34,7 @@ class ActasController < ApplicationController
   end
 	
   def show
-    @tacactasFirmantes = TacActa.firmante_nombre
+    @tacactasFirmantes = TacActa.acta_abiertas
   end
 
   def destroy
@@ -54,6 +54,23 @@ class ActasController < ApplicationController
          end
        end
   end
+################################################################################
+  def cerrar_acta
+    @tacactas = TacActa.find(params[:id])
+    if @tacactas.update(acta_cerrar)
+      redirect_to action: 'index'
+    else 
+      redirect_to action: 'new'
+    end
+  end
+
+  def actas_abiertas
+    @tacactasFirmantes = TacActa.acta_abiertas
+  end
+
+
+
+
 
   private
     def acta
@@ -66,5 +83,10 @@ class ActasController < ApplicationController
 
   def generar_pdf
     params.require(:generar)
+  end
+################################################################################
+
+  def acta_cerrar
+    params.require(:tac_acta).permit(:estatus)
   end
 end
