@@ -2,18 +2,21 @@
 
 <style type="text/css">
   body{
-    /*background-image: url("/assets/fondo.jpg");*/
-     background-repeat: no-repeat;
-     background-position: center;
-     background-size: cover;
+    background: url("/assets/fondoLogin.jpg");
+    
+    
   }
   .caja{
-    width: 350px; margin-top: 15%; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px 5px rgb(165, 161, 161)
+    width: 350px; margin-top: 15%; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px 5px rgb(165, 161, 161) background:white;
+  }
+
+  .caja2{
+    width: 370px; height: 350px; margin-top: 17%; padding: 20px; border-radius: 10px; background:white; margin-left:30%; border-style: solid; border-color: #A90329;
   }
 
 </style>
 <body>
-<div class="caja  " style="margin-left: 30%; ">
+<div class="container caja2">
 <h2>Iniciar Sesión</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -29,8 +32,8 @@
     <%= f.password_field :password, autocomplete: "current-password", :class => "form-control col-md-10" %>
   
   </div>
-  <div class="actions" style="margin-bottom: 20px;">
-    <%= f.submit "Entrar", :class => "btn btn-success" %>
+  <div class="actions " style="margin-bottom: 20px;">
+    <%= f.submit "Entrar", :class => "btn btn-success tabla-color" %>
   </div>
 <% end %>
 </div>

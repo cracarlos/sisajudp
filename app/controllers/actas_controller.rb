@@ -54,10 +54,10 @@ class ActasController < ApplicationController
          end
        end
   end
-################################################################################
+
   def cerrar_acta
     @tacactas = TacActa.find(params[:id])
-    if @tacactas.update(acta_cerrar)
+    if @tacactas.update_attribute(:estatus, false)
       redirect_to action: 'index'
     else 
       redirect_to action: 'new'
@@ -67,10 +67,6 @@ class ActasController < ApplicationController
   def actas_abiertas
     @tacactasFirmantes = TacActa.acta_abiertas
   end
-
-
-
-
 
   private
     def acta
@@ -83,10 +79,5 @@ class ActasController < ApplicationController
 
   def generar_pdf
     params.require(:generar)
-  end
-################################################################################
-
-  def acta_cerrar
-    params.require(:tac_acta).permit(:estatus)
   end
 end

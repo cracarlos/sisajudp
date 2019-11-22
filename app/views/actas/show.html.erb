@@ -1,7 +1,7 @@
 <p>
-  <h2>Actas</h2>  
+  <h2>Actas abiertas</h2>  
 </p>
-<table class="table" id="tacactasFirmantes">
+<table class="table tablaBasica" id="tacactasFirmantes">
   <thead class="tabla-color">
     <tr>
       <th scope="col">Acta</th>
@@ -18,9 +18,12 @@
       <td><%= acta.nombre_completo%></td>
       <td>
         <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
-        <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
         <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> 
-        <%= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
+        <%#= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
+
+        <%= link_to "", cerrar_acta_path(acta), :class => "btn btn-success fa fa-check", :title => "Cerrar Acta" %>
+        <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
+
           
       </td>
     </tr>
@@ -35,6 +38,7 @@
 
 </div>
 <script>
-  $('#tacactasFirmantes').dataTable();
-
+$('#tacactasFirmantes').dataTable({
+    language: traduceDataTable()
+  });
 </script>
