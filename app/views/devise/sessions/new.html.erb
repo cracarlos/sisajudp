@@ -14,8 +14,162 @@
     width: 370px; height: 350px; margin-top: 17%; padding: 20px; border-radius: 10px; background:white; margin-left:30%; border-style: solid; border-color: #A90329;
   }
 
+ 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+
+.text--transparent {
+  fill: transparent;
+}
+
+.anim-shape {
+  -webkit-transform-origin: 0x 150px;
+  -ms-transform-origin: 0x 150px;
+  transform-origin: 0x 150px;
+  -webkit-transform: scale(0, 1) translate(0, 0);
+  -ms-transform: scale(0, 1) translate(0, 0);
+  transform: scale(0, 1) translate(0, 0);
+  -webkit-animation: moving-panel 3s infinite alternate;
+  animation: moving-panel 3s infinite alternate;
+}
+
+.colortext .anim-shape:nth-child(1) {
+  fill: #0E1826;
+}
+
+.colortext .anim-shape:nth-child(2) {
+  fill: #166973;
+}
+
+.colortext .anim-shape:nth-child(3) {
+  fill: #65BFA6;
+}
+
+.colortext .anim-shape:nth-child(4) {
+  fill: #F2CD5C;
+}
+
+.colortext .anim-shape:nth-child(5) {
+  fill: #F26444;
+}
+
+.shadow {
+  -webkit-transform: translate(10px, 10px);
+  -ms-transform: translate(10px, 10px);
+  transform: translate(10px, 10px);
+}
+
+.anim-shape--shadow {
+  fill: #000;
+  fill-opacity: .2;
+}
+
+@-webkit-keyframes moving-panel {
+  100% {
+    -webkit-transform: scale(1, 1) translate(20px, 0);
+    transform: scale(1, 1) translate(20px, 0);
+  }
+}
+
+@keyframes moving-panel {
+  100% {
+    -webkit-transform: scale(1, 1) translate(20px, 0);
+    transform: scale(1, 1) translate(20px, 0);
+  }
+}
+
+
+
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
 </style>
 <body>
+  
+
+
+<svg viewBox="0 0 800 300">
+
+  <!-- Symbol with text -->
+  <symbol id="s-text">
+    <text text-anchor="middle"
+          x="50%"
+          y="50%"
+          dy=".35em"
+          class="text--line"
+          >
+      SISAJUDP
+    </text>    
+  </symbol>
+
+  <!-- Clippath  with text -->
+  <clippath id="cp-text">
+    <text text-anchor="middle"
+          x="50%"
+          y="50%"
+          dy=".35em"
+          class="text--line"
+          >
+      SISAJUDP 
+    </text>
+  </clippath>
+
+  <!-- Group for shadow -->
+  <g clip-path="url(#cp-text)" class="shadow">
+    <rect
+          width="100%"
+          height="100%"         
+          class="anim-shape anim-shape--shadow"
+          ></rect>
+  </g>
+
+  <!-- Group with clippath for text-->
+  <g clip-path="url(#cp-text)" class="colortext">
+    <!-- Animated shapes inside text -->
+    <rect
+          width="100%"
+          height="100%"         
+          class="anim-shape"
+          ></rect>
+    <rect
+          width="80%"
+          height="100%"         
+          class="anim-shape"
+          ></rect>
+    <rect
+          width="60%"
+          height="100%"         
+          class="anim-shape"
+          ></rect>
+    <rect
+          width="40%"
+          height="100%"         
+          class="anim-shape"
+          ></rect>
+    <rect
+          width="20%"
+          height="100%"         
+          class="anim-shape"
+          ></rect>
+  </g>
+
+  <!-- Transparent copy of text to keep
+         patterned text selectable -->
+  <use xlink:href="#s-text"
+       class="text--transparent"></use>
+
+</svg>
+
+
+
+
+
+
+
+
 <div class="container caja2">
 <h2>Iniciar Sesión</h2>
 

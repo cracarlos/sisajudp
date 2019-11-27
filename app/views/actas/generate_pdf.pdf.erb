@@ -2,96 +2,87 @@
 <html>
   <head>
     <meta charset='utf-8' />
-      <style>
-    .justify {
-      text-align:justify;
-      font-size:20px;
-    }
-    .center{
-      text-align:center;
-      font-size:25px;
-    }
-    h2 {
-      text-align:center;
-    }
-    .tamanio{
+    <style>
+      .justify {
+        text-align:justify;
         font-size:20px;
-    }
-    img {
-      width:250px;
-      height:100px;
-    }
-    p{
-      line-height: 35px;
-    }
+                }
+      .center{
+        text-align:center;
+        font-size:25px;
+              }
+      h2 {
+        text-align:center;
+          }
+      .tamanio{
+        font-size:15px;
+              }
+      img {
+        width:250px;
+        height:100px;
+          }
+      p {
+        line-height: 35px;
+        }
 
-  </style>
-  <img src="<%= wicked_pdf_asset_path 'logo.png' %>">
+    </style>
+    <img src="<%= wicked_pdf_asset_path 'logo.png' %>">
   </head>
 
   <body>
-    <h2> ACTA N° 
-      <% @tacactas.each do |correlativo|%>
-        <%=correlativo.numero_acta%>
+    <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
+    <p class="justify">
+      En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve<%= @t.year %></mark>,
+      siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,
+      <%=@tacactas[0].sede.titleize  %>
+      ,en razón a la convocatoria
+      realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
+      Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
+      de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
+      Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
+      ciudadanos (a): 
+      <% @tacactas.each do |datos|%>
+
+        <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b>
+        <b><%=datos.primer_apellido %></b> <b><%=datos.segundo_apellido%></b>,
+        titular de la cédula de identidad N° <b><%=datos.cedula %></b>, a los fines de ser juramentado como 
+        <b><%=datos.cargo_j %></b> extensión <%=datos.sede.capitalize %>
+        Segundo con competencia en materia <b><%=datos.competencia %></b>, según lo establecido en <b><%=datos.resolucion %></b>
+        de fecha <mark>03/06/19</mark>;
+
       <% end %>
-      - <%= @t.year%>  
-     </h2>
-<p class="justify">
-
-En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve <%= @t.year %></mark>,
-siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,
-<% @tacactas.each do |direccion|%>
-  <%=direccion.sede.titleize  %>
-<% end %>
- , en razón a la convocatoria
-realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
-Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
-de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
-Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
-ciudadanos (a): 
-<% @tacactas.each do |datos|%>
-
- <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b> <b><%=datos.primer_apellido %> </b> <b><%=datos.segundo_apellido%></b> ,
-titular de la cédula de identidad N° <b><%=datos.cedula %></b>, a los fines de ser juramentado como 
-<b><%=datos.cargo %></b> extensión <%=datos.sede.capitalize %>
-Segundo con competencia en materia <b><%=datos.competencia %></b>, según lo establecido en <b><%=datos.resolucion %></b>
-de fecha <mark>03/06/19</mark>;
-
-<% end %>
- Seguidamente, la máxima autoridad de
-la Institución de conformidad con lo dispuesto en el Artículo 1 de la Ley de Juramentos y Artículo 22
-de la Ley de Reforma Parcial de la Ley Orgánica de la Defensa Pública, en concordancia con la atribución
-conferida en el Artículo 14, numeral 16 ejusdem, procede a tomar juramento en este acto, a los
-ciudadanos antes mencionados, de la siguiente manera: ¿Juran ustedes sostener y defender la Constitución
-de la República Bolivariana de Venezuela y demás leyes de la Nación, así como, cumplir con los deberes
-inherentes al cargo?. Acto seguido, los funcionarios designados, contestaron: Si lo juramos. La Defensora
-Pública General, a su vez, respondió: Si así lo hicieren que Dios y la Patria os lo premien y si no os lo
-demanden. Es todo, terminó, leyó y conformen firman.
-</p>
-<br><br><br><br><br>
-
-<p class="center " >
-<b>
-<% @tacactas.each do |firma|%>
-  <%=firma.nombre_completo%>
-<% end %>
-</b>
-<br>
-<% @tacactas.each do |cargo|%>
-  <%=cargo.cargo%>
-<% end %>
-</p>
-
-
-<p class="tamanio">
-  <% @tacactas.each do |datos2|%>
-    
-      <b>Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> <%= datos2.cargo%>
-      </b>
+      Seguidamente, la máxima autoridad de
+      la Institución de conformidad con lo dispuesto en el Artículo 1 de la Ley de Juramentos y Artículo 22
+      de la Ley de Reforma Parcial de la Ley Orgánica de la Defensa Pública, en concordancia con la atribución
+      conferida en el Artículo 14, numeral 16 ejusdem, procede a tomar juramento en este acto, a los
+      ciudadanos antes mencionados, de la siguiente manera: ¿Juran ustedes sostener y defender la Constitución
+      de la República Bolivariana de Venezuela y demás leyes de la Nación, así como, cumplir con los deberes
+      inherentes al cargo?. Acto seguido, los funcionarios designados, contestaron: Si lo juramos. La Defensora
+      Pública General, a su vez, respondió: Si así lo hicieren que Dios y la Patria os lo premien y si no os lo
+      demanden. Es todo, terminó, leyó y conformen firman.
+    </p>
+    <br><br><br><br><br><br><br><br><br>
+    <p class="center">
+      ____________________________
       <br>
-    <%= datos2.cargo%> Segundo con <%= datos2.competencia %> <%= datos2.sede.titleize %>
-    <br><br>
-  <% end %>
-</p>
+      <p class="center" style="line-height:2px;">
+        <b><%=@tacactas[0].titulo%>. <%=@tacactas[0].nombre_completo%></b>
+        <br>
+        <div class="center" style="font-size: 20px;"><%=@tacactas[0].cargo_f%></div>
+      </p>
+      <p class="center tamanio"><%=@tacactas[0].tac_firmante.nombramiento %></p>
+    </p>
+    <br>
+    <% @tacactas.each do |datos2|%>
+      <b style="">
+        <div style="margin-bottom:25px; margin-top: 100px;">__________________________________________________________________</div>
+        Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> 
+      </b>
+      
+      <p class="tamanio"> 
+        <%= datos2.cargo_j%> Segundo con <%= datos2.competencia %> <%= datos2.sede.titleize %>
+        <br><br>
+    <% end %>
+      </p>
   </body>
 </html>
