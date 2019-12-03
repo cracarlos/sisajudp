@@ -32,10 +32,10 @@
   <body>
     <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
     <p class="justify">
-      En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= @t.strftime("%B")%> del año dos mil diecinueve<%= @t.year %></mark>,
-      siendo las <mark>tres (03) horas de la tarde</mark>, en la sede de la Defensa Pública,
+      En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= l(@t, format: '%B')%> del año <%= @anio_letras %> <%=@t.year%>, </mark>
+      siendo las <mark>tres (03) horas de la tarde</mark>,<%= @tacactas[0].para %> en la sede de la Defensa Pública,
       <%=@tacactas[0].sede.titleize  %>
-      ,en razón a la convocatoria
+      ,en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>
       realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
       Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
       de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República

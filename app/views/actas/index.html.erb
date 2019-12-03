@@ -15,7 +15,7 @@
     <tr>
       <td><%= acta.numero_acta%></td>
       <td><%= acta.sede%></td>
-      <td><%= acta.nombre_completo%></td>
+      <td> <%= acta.titulo %>. <%= acta.nombre_completo%></td>
       <td><%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> </td>
       
     </tr>
