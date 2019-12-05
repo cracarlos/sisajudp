@@ -32,7 +32,7 @@
   <body>
     <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
     <p class="justify">
-      En el día de hoy, <mark>viernes siete (<%= @t.day %>) de <%= l(@t, format: '%B')%> del año <%= @anio_letras %> <%=@t.year%>, </mark>
+      En el día de hoy, <mark>viernes siete <%= @dia_letras %>  (<%= @t.day %>) de <%= l(@t, format: '%B')%> del año <%= @anio_letras %> <%=@t.year%>, </mark>
       siendo las <mark>tres (03) horas de la tarde</mark>,<%= @tacactas[0].para %> en la sede de la Defensa Pública,
       <%=@tacactas[0].sede.titleize  %>
       ,en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>

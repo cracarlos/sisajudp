@@ -47,7 +47,9 @@ class ActasController < ApplicationController
     @t = Time.now
     @tacactas = TacActa.generar(generar_pdf)
     @anio_letras = TacActa.anio_en_letras(@tacactas[0].para.year)
-    puts '!!!!!!!!!!!!!!!!!!!!!!' + @anio_letras.inspect
+    @dia_letras = TacActa.anio_en_letras(@tacactas[0].para.month)
+
+    #puts '!!!!!!!!!!!!!!!!!!!!!!' + @anio_letras.inspect
     respond_to do |format|
       format.html
       format.pdf do

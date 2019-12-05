@@ -32,4 +32,9 @@ class TacActa < ApplicationRecord
   	a = find_by_sql("SELECT monto_escrito(#{anio}) AS anio_letras")
   	a[0].anio_letras
   end
+
+  def self.dia_en_letras(dia)
+  	b = find_by_sql("SELECT monto_escrito(#{dia}) AS dia_letras")
+  	b[0].dia_en_letras
+  end
 end
