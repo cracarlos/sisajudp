@@ -1,30 +1,67 @@
-<div style=" width: 350px; margin-top: 12%; margin-left: 40%; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px 5px rgb(165, 161, 161)">
-<h2>Iniciar Sección</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :Correo %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control col-md-10" %>
+<style type="text/css">
+  /*html {
+    height: 100%;
+  }*/
+  body{
+    /*margin: 0px 0px 0px !important; 
+    padding: 0px;*/
+    background: url("/assets/fondoLogin.jpg") ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+/*    min-height: 100%;
+    height: 100%;*/
+  }
+  .caja{
+    width: 350px; margin-top: 15%; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px 5px rgb(165, 161, 161) background:white;
+  }
+
+  .caja2{
+    width: 370px; height: 350px; margin-top: 14%; padding: 20px; border-radius: 10px; background:white; margin-left:30%; border-style: solid; border-color: #A90329;
+  }
+</style>
+
+<head>
+  <div class="container text-center">
+    <h1>SISAJUDP</h1>
+    <h6>Sistema de Actas de Juramentación de la Defensa Pública</h6>
   </div>
+</head>
+<body>
 
-  <div class="form-group">
-  
-    <%= f.label :Contraseña %><br />
-    <%= f.password_field :password, autocomplete: "current-password", :class => "form-control col-md-10" %>
-  
-  </div>
+<div class="container">
+  <div class="row justify-content-center align-items-center align-self-center">
+      <div class="col-md-5">
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="card" style="padding: 30px;">
+        <h2 class="">Iniciar Sesión</h2>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.label :Correo %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control col-md-10" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :Contraseña %><br />
+            <%= f.password_field :password, autocomplete: "current-password", :class => "form-control col-md-10" %>
+          </div>
+          <div class="actions " style="margin-bottom: 20px;">
+            <%= f.submit "Entrar", :class => "btn btn-success tabla-color" %>
+          </div>
+        <% end %>
+      </div>
+    
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Entrar", :class => "btn btn-success" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 </div>
+
+</body>
+<footer>
+  <div class="container text-center">
+    <h6>Dirección Nacional de Tecnología de la Información  -  División de Proyectos e Innovaciones Tecnológicas </h6>
+  </div>
+</footer>
+

@@ -1,7 +1,7 @@
 <p>
   <h2>Juramentados</h2>  
 </p>
-<table class="table" id="tacjuramentados">
+<table class="table" id="tacactasFirmantes">
   <thead class="tabla-color" >
     <tr>
       <th scope="col">Acta</th>
@@ -36,3 +36,10 @@
    <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2" %> 
 
 </div>
+<script>
+  
+  $('#tacactasFirmantes').dataTable({
+    language: traduceDataTable()
+  });
+  
+</script>

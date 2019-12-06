@@ -48,12 +48,12 @@ class JuramentadosController < ApplicationController
   private
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                   :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id)
+                                   :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion)
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id)
+                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion)
     end
 
 

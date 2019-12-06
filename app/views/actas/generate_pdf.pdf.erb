@@ -31,7 +31,7 @@
   <body>
     <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
     <p class="justify">
-      En el día de hoy, <b><%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B') %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>)</b>,
+      En el día de hoy, <b><%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B').capitalize %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>)</b>,
       siendo las <b><%= @hora_letras %> (<%= @tacactas[0].para.hour %>)</b>, en la sede de la Defensa Pública,
       <b><%=@tacactas[0].sede.titleize  %></b>, en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>
       realizada comparecen ante la Defensora Pública General, <b>Dra. Carmen Marisela
@@ -46,7 +46,7 @@
         titular de la cédula de identidad N° <b><%=datos.cedula %></b>, a los fines de ser juramentado como 
         <b><%=datos.cargo_j %></b> extensión <%=datos.sede.capitalize %>
         Segundo con competencia en materia <b><%=datos.competencia %></b>, según lo establecido en <b><%=datos.resolucion %></b>
-        de fecha <mark>03/06/19</mark>;
+        de fecha <b><%= datos.fecha_resolucion%></b>.
 
       <% end %>
       Seguidamente, la máxima autoridad de

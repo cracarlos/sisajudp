@@ -71,9 +71,13 @@
       <%= form.label :resolucion %><br>
       <%= form.text_field :resolucion, :class => "form-control" %>
     </div>
+    <div class="form-group" style="margin-left: 30px;">
+      <%= form.label :fecha %><br>
+      <%= form.date_field( :fecha_resolucion, start_year: 2019)%>
+    </div>
   </div>
   <div style="margin-top: 20px;">
-    <%= form.submit "Guardar", :class => "btn btn-success col-md-2 offset-md-3 " %>
+    <%= form.submit "Guardar", :class => "btn tabla-color col-md-2 offset-md-3 " %>
   </div>
   <% end %>
 </section>

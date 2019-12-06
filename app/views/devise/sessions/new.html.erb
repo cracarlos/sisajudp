@@ -1,46 +1,91 @@
 
 
 <style type="text/css">
+  /*html {
+    height: 100%;
+  }*/
   body{
-    background: url("/assets/fondoLogin.jpg");
-    
-    
+    /*margin: 0px 0px 0px !important; 
+    padding: 0px;*/
+    background: url("/assets/fondoLogin.jpg") ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+/*    min-height: 100%;
+    height: 100%;*/
   }
-  .caja{
-    width: 350px; margin-top: 15%; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 20px 5px rgb(165, 161, 161) background:white;
-  }
+.outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+}
 
-  .caja2{
-    width: 370px; height: 350px; margin-top: 17%; padding: 20px; border-radius: 10px; background:white; margin-left:30%; border-style: solid; border-color: #A90329;
-  }
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
 
- 
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  
+  /*whatever width you want*/
+}
+footer {
+  color: #713030;
+  position: fixed;
+  bottom: 25px;
+  width: 100%;
+  z-index: 10;
+  font-size: 13px;
+}
+
 </style>
+
 <head>
-  <h1>SISAJUDP</h1>
+  <div class="container text-center" style="color: #731c23;" >
+    <h1>SISAJUDP</h1>
+    <h6>Sistema de Actas de Juramentación de la Defensa Pública</h6>
+  </div>
 </head>
+
 <body>
-  
-<div class="container caja2">
-<h2 class="container">Iniciar Sesión</h2>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner" >
+        <div class="card" style="padding: 30px;">
+          <h2 class="">Iniciar Sesión</h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :Correo %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control col-md-10" %>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :Correo %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control col-md-10" %>
+            <div class="form-group">
+              <%= f.label :Contraseña %><br />
+              <%= f.password_field :password, autocomplete: "current-password", :class => "form-control col-md-10" %>
+            </div>
+            <div class="actions " style="margin-bottom: 20px;">
+              <%= f.submit "Entrar", :class => "btn btn-success tabla-color" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-  
-    <%= f.label :Contraseña %><br />
-    <%= f.password_field :password, autocomplete: "current-password", :class => "form-control col-md-10" %>
-  
-  </div>
-  <div class="actions " style="margin-bottom: 20px;">
-    <%= f.submit "Entrar", :class => "btn btn-success tabla-color" %>
-  </div>
-<% end %>
-</div>
 </body>
+
+<footer>
+  <div class="container text-center" >
+    <p>Dirección Nacional de Tecnología de la Información  -  División de Proyectos e Innovaciones Tecnológicas <br>
+    <span style="color: #460202;">atencion.usuario@defensapublica.gob.ve EXT. 1950</span>
+  </p>
+  </div>
+</footer>
 
