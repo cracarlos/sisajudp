@@ -28,16 +28,14 @@
     </style>
     <img src="<%= wicked_pdf_asset_path 'logo.png' %>">
   </head>
-
   <body>
     <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
     <p class="justify">
-      En el día de hoy, <mark>viernes siete <%= @dia_letras %>  (<%= @t.day %>) de <%= l(@t, format: '%B')%> del año <%= @anio_letras %> <%=@t.year%>, </mark>
-      siendo las <mark>tres (03) horas de la tarde</mark>,<%= @tacactas[0].para %> en la sede de la Defensa Pública,
-      <%=@tacactas[0].sede.titleize  %>
-      ,en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>
-      realizada comparecen ante la Defensora Pública General, Dra. Carmen Marisela
-      Castro Gilly, designada mediante acuerdo de la Asamblea Nacional Constituyente
+      En el día de hoy, <b><%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B') %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>)</b>,
+      siendo las <b><%= @hora_letras %> (<%= @tacactas[0].para.hour %>)</b>, en la sede de la Defensa Pública,
+      <b><%=@tacactas[0].sede.titleize  %></b>, en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>
+      realizada comparecen ante la Defensora Pública General, <b>Dra. Carmen Marisela
+      Castro Gilly</b>, designada mediante acuerdo de la Asamblea Nacional Constituyente
       de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
       Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
       ciudadanos (a): 
