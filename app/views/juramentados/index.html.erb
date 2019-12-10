@@ -1,0 +1,45 @@
+<p>
+  <h2>Juramentados</h2>  
+</p>
+<table class="table" id="tacactasFirmantes">
+  <thead class="tabla-color" >
+    <tr>
+      <th scope="col">Acta</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Sede</th>
+      <th scope="col">Competencia</th>
+      <th scope="col">Resolución</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @tacjuramentados.each do |juramentados| %>
+    <tr>
+      <td><%= juramentados.numero_acta%></td>
+      <td><%= juramentados.primer_nombre%> <%= juramentados.primer_apellido%> </td>
+      <td><%= juramentados.cedula%></td>
+      <td><%= juramentados.sede%></td>
+      <td><%= juramentados.competencia%></td>
+      <td><%= juramentados.resolucion%></td>
+      <td>
+        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "btn btn-warning fa fa-edit"%>
+        <%= link_to '', juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash"%> 
+      </td>
+
+    </tr>
+     <% end %>
+  </tbody> 
+</table>
+
+<div class="offset-md-5 ">
+   <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2" %> 
+
+</div>
+<script>
+  
+  $('#tacactasFirmantes').dataTable({
+    language: traduceDataTable()
+  });
+  
+</script>

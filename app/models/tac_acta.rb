@@ -39,4 +39,8 @@ class TacActa < ApplicationRecord
   	b = find_by_sql("SELECT monto_escrito(#{dia}) AS dia_letras")
   	b[0].dia_en_letras
   end
+
+  def self.numero_acta
+	select('id,numero_acta').where(estatus: true)
+  end
 end

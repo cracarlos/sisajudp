@@ -1,12 +1,16 @@
 class JuramentadosController < ApplicationController
   before_action :authenticate_usuario!
 
+  def index
+    @tacjuramentados = TacJuramentado.numero_acta
+  end
+
   def new
     @tinsedes = TinSede.all
     @taccargos = TacCargo.all
     @taccompetencias = TacCompetencia.all
     @tacjuramentados = TacJuramentado.all
-    @tacactas = TacActa.all
+    @tacactas = TacActa.numero_acta
   end
 
   def create
@@ -27,7 +31,7 @@ class JuramentadosController < ApplicationController
     @tinsedes = TinSede.all
     @taccargos = TacCargo.all
     @taccompetencias = TacCompetencia.all
-    @tacactas = TacActa.all 	
+    @tacactas = TacActa.numero_acta	
   end
 
   def update

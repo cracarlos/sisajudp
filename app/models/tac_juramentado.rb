@@ -5,4 +5,12 @@ class TacJuramentado  < ApplicationRecord
 	select('* ,tac_juramentados.id').
 	joins(:tac_acta)
   end
+
+  def self.acta_abiertas
+	select('numero_acta').
+	  #joins('INNER JOIN tac_firmantes ON tac_actas.id_firmante = tac_firmantes.id')
+	  joins(:tac_acta).
+	  where(estatus: true)
+  end
+
 end
