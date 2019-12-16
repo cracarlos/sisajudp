@@ -17,5 +17,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
+//= require dataTables.responsive
 //= require_tree .
 

@@ -24,9 +24,31 @@
 </table>
 
 <script>
+  function no_duplica_datatable(datatabla) {
+    //https://datatables.net/forums/discussion/36875/duplicate-wrapper-with-browser-forward-back-button
+    //Duplicate wrapper with browser forward/back button
+    $(document).on("turbolinks:before-cache", function() {
+      if (datatabla  &&  datatabla !== null) {
+//        var datTab_id = datatabla.table().node().id;
+        var datTab_id = $(datatabla).attr("id")
+        $('#'+datTab_id).addClass('hidden');
+        datatabla.destroy();
+        datatabla = null;
+      }
+    });
+    
+    // Jquery DataTable Responsive:
+    //   Se refiere a la 1ra columna con el botón para mostrar/ocultar el resto de las columnas
+    //   O también cuando se utiliza la CLASE detente
+    $('.dataTable').off('click', '.control, .detente').on('click', '.control, .detente', function(e) {
+      e.stopImmediatePropagation();
+    });
+  }
+
   
-  $('#tacactasFirmantes').dataTable({
+  var tabla_cont = $('#tacactasFirmantes').dataTable({
     language: traduceDataTable()
   });
+  no_duplica_datatable(tabla_cont);
   
 </script>
