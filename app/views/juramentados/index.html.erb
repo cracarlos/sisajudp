@@ -33,13 +33,13 @@
 </table>
 
 <div class="offset-md-5 ">
-   <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2" %> 
+   <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2", id: 'asd'%> 
 
 </div>
+<p id="asd2"></p>
 <script>
   
   $('#tacactasFirmantes').dataTable({
     language: traduceDataTable()
-  });
-  
+  });  
 </script>

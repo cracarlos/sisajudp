@@ -1,6 +1,6 @@
 <script>
   $(document).ready(function(){
-    $("#asd").click(function(){
+    $("#buscador").click(function(){
       var cedula = $('#cedula').val();
       $.ajax(
             {   url: 'traer_cedulados',
@@ -8,44 +8,40 @@
               type: 'post',
               //dataType: 'json',
               success: function(data) {
-             // success: function(e, data, status, xhr) {
-                //alert('AJAX call was successful!');
-                console.log('Data from the server' + data.PRIMERNOMBRE);
-
-                 
-                
                 procesarDatos(data)
               },
               error: function() {
-                  alert('Error en llamada!');
+                  $("#notificacion").html("<p style='color:red'>No se encuentra el funcionario</p>");
               }
             }
           );
 
       function procesarDatos(datos_devueltos){
-          console.log("11111111");
-          $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
-          $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
-          $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
-          $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
-          $("#FormCedula").val(datos_devueltos.NUMCEDULA);
+        $("#notificacion").html("<p style='color:green'>Encontrado</p>");
+        $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
+        $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
+        $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
+        $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
+        $("#FormCedula").val(datos_devueltos.NUMCEDULA);
           }
 
       //return false
     });
   });
 </script>
-<%#= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
-  <%#= form.text_field :cedula, :class => "form-control col-md-7", placeholder: "Cedula", id: 'cedula' %>
-  <input class="form-control col-md-7" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]">
-  <input type="button" value="Buscar" id="asd">
-  <%#= form.submit "Buscar", :class => "btn tabla-color col-md-2 offset-md-3 " %>
-<% #end %>
-
-
 <section class = 'offset-md-1'> 
   <h1 class="">Registro</h1>
   <%= form_with scope: :acta, url: juramentados_path, local: true do |form| %>
+  <div>
+    <label>Buscador</label>
+    <div class="form-group"> 
+      <div class = "form-row">
+        <input class="form-control col-md-1" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]">
+        <input type="button" value="Buscar" id="buscador" style="margin-left:10px" class="btn btn-success">
+        <span id="notificacion" style="margin-left:15px"></span>
+      </div>
+    </div>
+  </div>
 
   <div class = "form-row">
     <div class="form-group">
@@ -81,11 +77,13 @@
     </div>
   </div>
 
-  <div class = "form-row">
-    <div class="form-group">
-      <%= form.text_field :cedula, :class => "form-control col-md-7", placeholder: "Cedula", id: 'FormCedula' %>
+    <div class = "form-row">
+      <%= form.label :Cedula %>
     </div>
-  </div>
+    <div class="form-group">
+      <%= form.text_field :cedula, :class => "form-control col-md-1", placeholder: "Cedula", id: 'FormCedula' %>
+    </div>
+  
   
   <div class = "form-row">
     <div class="form-group">
