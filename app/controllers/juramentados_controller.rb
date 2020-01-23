@@ -10,7 +10,7 @@ class JuramentadosController < ApplicationController
     @taccargos = TacCargo.all
     @taccompetencias = TacCompetencia.all
     @tacjuramentados = TacJuramentado.all
-    @tacactas = TacActa.numero_acta
+    @tacactas = TacActa.numero_acta 
   end
 
   def create
@@ -49,6 +49,16 @@ class JuramentadosController < ApplicationController
     redirect_to juramentado_path
   end
 
+  def traer_cedulados
+    puts '111111111111'
+    @cedulados = DatoPersonaV.cedulados(cedulados)
+    #@cedulados.to_json
+    #render json: { result: @cedulados.to_json }
+    #render json: { result: '@cedulados.to_json' }
+    render json: @cedulados
+    #puts @cedulados.to_json
+  end
+
   private
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
@@ -59,6 +69,10 @@ class JuramentadosController < ApplicationController
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
                                               :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion)
     end
+
+    def cedulados
+    params.require(:cedula)
+  end
 
 
 end

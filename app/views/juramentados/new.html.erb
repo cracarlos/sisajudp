@@ -1,3 +1,48 @@
+<script>
+  $(document).ready(function(){
+    $("#asd").click(function(){
+      var cedula = $('#cedula').val();
+      $.ajax(
+            {   url: 'traer_cedulados',
+              data: {cedula: cedula},
+              type: 'post',
+              //dataType: 'json',
+              success: function(data) {
+             // success: function(e, data, status, xhr) {
+                //alert('AJAX call was successful!');
+                console.log('Data from the server' + data.PRIMERNOMBRE);
+
+                 
+                
+                procesarDatos(data)
+              },
+              error: function() {
+                  alert('Error en llamada!');
+              }
+            }
+          );
+
+      function procesarDatos(datos_devueltos){
+          console.log("11111111");
+          $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
+          $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
+          $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
+          $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
+          $("#FormCedula").val(datos_devueltos.NUMCEDULA);
+          }
+
+      //return false
+    });
+  });
+</script>
+<%#= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
+  <%#= form.text_field :cedula, :class => "form-control col-md-7", placeholder: "Cedula", id: 'cedula' %>
+  <input class="form-control col-md-7" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]">
+  <input type="button" value="Buscar" id="asd">
+  <%#= form.submit "Buscar", :class => "btn tabla-color col-md-2 offset-md-3 " %>
+<% #end %>
+
+
 <section class = 'offset-md-1'> 
   <h1 class="">Registro</h1>
   <%= form_with scope: :acta, url: juramentados_path, local: true do |form| %>
@@ -16,10 +61,10 @@
   </div>
   <div class = "form-row">
     <div class="form-group">
-      <%= form.text_field :primer_nombre, :class => "form-control", placeholder: "Primer nombre" %>
+      <%= form.text_field :primer_nombre, :class => "form-control", placeholder: "Primer nombre", id: 'primer_nombre' %>
     </div>
     <div class="form-group">
-      <%= form.text_field :segundo_nombre, :class => "form-control offset-md-1", placeholder: "Segundo nombre" %>
+      <%= form.text_field :segundo_nombre, :class => "form-control offset-md-1", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
     </div>
 
   </div>
@@ -29,16 +74,16 @@
   </div>
   <div class = "form-row">
     <div class="form-group">
-      <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido" %>
+      <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido", id: 'primer_apellido' %>
     </div>
     <div class="form-group">
-      <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido" %>
+      <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido", id: 'segundo_apellido' %>
     </div>
   </div>
 
   <div class = "form-row">
     <div class="form-group">
-      <%= form.text_field :cedula, :class => "form-control col-md-7", placeholder: "Cedula" %>
+      <%= form.text_field :cedula, :class => "form-control col-md-7", placeholder: "Cedula", id: 'FormCedula' %>
     </div>
   </div>
   

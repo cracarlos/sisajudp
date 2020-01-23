@@ -81,4 +81,4 @@ gem 'wkhtmltopdf-binary'
 gem 'cocoon'
 
 # Iconos
-gem 'font-awesome-rails'
+#gem 'font-awesome-rails'

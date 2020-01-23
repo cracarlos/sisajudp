@@ -3,7 +3,8 @@ class TacJuramentado  < ApplicationRecord
 
   def self.numero_acta
 	select('* ,tac_juramentados.id').
-	joins(:tac_acta)
+	joins(:tac_acta).
+	where('tac_actas.estatus = true')
   end
 
   def self.acta_abiertas
