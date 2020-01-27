@@ -1,7 +1,8 @@
 <script>
   $(document).ready(function(){
     $("#formulario")[0].reset();
-    $("#buscador").click(function(){
+    
+    function buscar_cedula() {
       var cedula = $('#cedula').val();
       $.ajax(
             {   url: 'traer_cedulados',
@@ -30,8 +31,16 @@
         $("#primer_apellido").attr('readonly', true);
         $("#segundo_apellido").attr('readonly', true);
         $("#FormCedula").attr('readonly', true);
-          }
+      }
+    }
 
+    $('#cedula').change(function() {
+      buscar_cedula();
+    });
+
+    $("#buscador").click(function(){
+      buscar_cedula();
+      
       //return false
     });
   });
@@ -42,8 +51,8 @@
   <div style= "margin-top:2%;">
     <div class="form-group offset-md-8"> 
       <div class = "form-row">
-        <input class="form-control col-md-4" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
-        <input type="button" value="Buscar" id="buscador" style="margin-left:10px" class="btn btn-success">
+        <input class="form-control col-md-4" placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
+        <input type="button" value="Buscar" id="buscador" style="margin-left:10px" class="btn btn-success focus">
         <span id="notificacion" style="margin-left:15px"></span>
       </div>
     </div>
@@ -84,10 +93,10 @@
   </div>
 
     <div class = "form-row">
-      <%= form.label :Cedula %>
+      <%= form.label :Cédula %>
     </div>
     <div class="form-group">
-      <%= form.text_field :cedula, :class => "form-control col-md-1", placeholder: "Cedula", id: 'FormCedula' %>
+      <%= form.text_field :cedula, :class => "form-control col-md-1 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}' %>
     </div>
   
   
@@ -98,8 +107,7 @@
             :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
-
-  <div class = "form-row">
+  <div class= "form-row">
     <div class="form-group">
       <%= form.label :sede %><br> 
       <%= form.select :sede, options_from_collection_for_select(@tinsedes,
@@ -117,7 +125,7 @@
 
   <div class = "form-row">
     <div class="form-group">
-      <%= form.label :resolucion %><br>
+      <%= form.label :resolución %><br>
       <%= form.text_field :resolucion, :class => "form-control" %>
     </div>
     <div class="form-group" style="margin-left: 30px;">
@@ -130,3 +138,11 @@
   </div>
   <% end %>
 </section>
+
+<script>
+  $("form")
+    .off("keyup",     ".enteroPositivo").on("keyup",     ".enteroPositivo",    function() {this.value = this.value.replace(/[^0-9]/g,'');});
+
+  $("body")
+    .off("mouseover", ".focus").on("mouseover", ".focus",             function() {this.focus();});
+</script>
