@@ -1,5 +1,6 @@
 <script>
   $(document).ready(function(){
+    $("#formulario")[0].reset();
     $("#buscador").click(function(){
       var cedula = $('#cedula').val();
       $.ajax(
@@ -23,6 +24,12 @@
         $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
         $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
         $("#FormCedula").val(datos_devueltos.NUMCEDULA);
+        // a continuación le agregamos disable a los campos que es traidos desdes el ajax
+        $("#primer_nombre").attr('disabled', true);
+        $("#segundo_nombre").attr('disabled', true);
+        $("#primer_apellido").attr('disabled', true);
+        $("#segundo_apellido").attr('disabled', true);
+        $("#FormCedula").attr('disabled', true);
           }
 
       //return false
@@ -30,13 +37,12 @@
   });
 </script>
 <section class = 'offset-md-1'> 
-  <h1 class="">Registro</h1>
-  <%= form_with scope: :acta, url: juramentados_path, local: true do |form| %>
-  <div>
-    <label>Buscador</label>
-    <div class="form-group"> 
+  <h1 class="" style= "margin-left:24%; margin-top:1%;">Registro de Juramentados</h1>
+  <%= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
+  <div style= "margin-top:2%;">
+    <div class="form-group offset-md-8"> 
       <div class = "form-row">
-        <input class="form-control col-md-1" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]">
+        <input class="form-control col-md-4" placeholder="Cedula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
         <input type="button" value="Buscar" id="buscador" style="margin-left:10px" class="btn btn-success">
         <span id="notificacion" style="margin-left:15px"></span>
       </div>

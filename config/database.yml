@@ -40,7 +40,7 @@ cedulados_development:
   port:     5434
   database: cedulados
   username: sisdesa
-  password:
+  password: 12qwaszx
 
 cedulados_production:
   <<: *default
@@ -48,7 +48,7 @@ cedulados_production:
   port:     5434
   database: cedulados
   username: sisdesa
-  password:
+  password: 12qwaszx
 
 intranet_development:
   <<: *default
