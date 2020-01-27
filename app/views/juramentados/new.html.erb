@@ -25,11 +25,11 @@
         $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
         $("#FormCedula").val(datos_devueltos.NUMCEDULA);
         // a continuación le agregamos disable a los campos que es traidos desdes el ajax
-        $("#primer_nombre").attr('disabled', true);
-        $("#segundo_nombre").attr('disabled', true);
-        $("#primer_apellido").attr('disabled', true);
-        $("#segundo_apellido").attr('disabled', true);
-        $("#FormCedula").attr('disabled', true);
+        $("#primer_nombre").attr('readonly', true);
+        $("#segundo_nombre").attr('readonly', true);
+        $("#primer_apellido").attr('readonly', true);
+        $("#segundo_apellido").attr('readonly', true);
+        $("#FormCedula").attr('readonly', true);
           }
 
       //return false
