@@ -34,9 +34,9 @@
   <body>
     <h2>ACTA N° <%=@tacactas[0].numero_acta%> - <%= @t.year%></h2>
     <p class="justify">
-      En el día de hoy, <b><%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B').capitalize %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>)</b>,
-      siendo las <b><%= @hora_letras %> (<%= @tacactas[0].para.hour %>)</b>, en la sede de la Defensa Pública,
-      <b><%=@tacactas[0].sede.titleize  %></b>, en razón a la convocatoria <%= l(@tacactas[0].para, format: '%A')%>
+      En el día de hoy, <%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B').capitalize %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>),
+      siendo las <%= @hora_letras %> (<%= @tacactas[0].para.hour %>), en la sede de la Defensa Pública,
+      <%=@tacactas[0].sede.titleize  %>, en razón a la convocatoria
       realizada comparecen ante la Defensora Pública General, <b>Dra. Carmen Marisela
       Castro Gilly</b>, designada mediante acuerdo de la Asamblea Nacional Constituyente
       de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
@@ -46,10 +46,9 @@
 
         <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b>
         <b><%=datos.primer_apellido %></b> <b><%=datos.segundo_apellido%></b>,
-        titular de la cédula de identidad N° <b><%=datos.cedula %></b>, a los fines de ser juramentado como 
-        <b><%=datos.cargo_j %></b> extensión <%=datos.sede.capitalize %>
-        Segundo con competencia en materia <b><%=datos.competencia %></b>, según lo establecido en&nbsp;<b><%=datos.resolucion %></b>
-        de fecha <b><%= datos.fecha_resolucion%></b>.
+        titular de la cédula de identidad N° <%=datos.cedula %>, a los fines de ser juramentado como 
+        <%=datos.cargo_j %> con competencia en materia <%=datos.competencia %>, extensión <%=datos.sede.titleize %> según resolución N° <%=datos.resolucion %>
+        de fecha <%= datos.fecha_resolucion%>.
 
       <% end %>
       Seguidamente, la máxima autoridad de
