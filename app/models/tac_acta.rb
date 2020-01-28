@@ -20,7 +20,7 @@ class TacActa < ApplicationRecord
 	select("tac_actas.id,tac_actas.sede,numero_acta, tac_firmante_id, para,
 		    tac_juramentados.primer_nombre,tac_juramentados.segundo_nombre,tac_juramentados.primer_apellido,
 		    tac_juramentados.segundo_apellido,cedula,tac_juramentados.cargo AS cargo_j,
-		    tac_juramentados.resolucion,
+		    tac_juramentados.resolucion,tac_juramentados.sede AS sedej,
 		    TO_CHAR(tac_juramentados.fecha_resolucion, 'dd/mm/yyyy') AS fecha_resolucion,
 		    competencia, tac_firmantes.nombre_completo, tac_firmantes.cargo AS cargo_f,
 		    tac_firmantes.nombramiento,

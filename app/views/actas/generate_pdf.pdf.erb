@@ -44,10 +44,10 @@
       ciudadanos (a): 
       <% @tacactas.each do |datos|%>
 
-        <b><%=datos.primer_nombre %></b> <b><%=datos.segundo_nombre%></b>
-        <b><%=datos.primer_apellido %></b> <b><%=datos.segundo_apellido%></b>,
+        <b><%=datos.primer_nombre.upcase %></b> <b><%=datos.segundo_nombre.upcase%></b>
+        <b><%=datos.primer_apellido.upcase %></b> <b><%=datos.segundo_apellido.upcase%></b>,
         titular de la cédula de identidad N° <%=datos.cedula %>, a los fines de ser juramentado como 
-        <%=datos.cargo_j %> con competencia en materia <%=datos.competencia %>, extensión <%=datos.sede.titleize %> según resolución N° <%=datos.resolucion %>
+        <%=datos.cargo_j %> con competencia en materia <%=datos.competencia %>, adscrito (a) a la Unidad Regional de <%=datos.sedej.titleize %> según resolución N° <%=datos.resolucion %>
         de fecha <%= datos.fecha_resolucion%>.
 
       <% end %>
@@ -75,12 +75,12 @@
     <br>
     <% @tacactas.each do |datos2|%>
       <b style="">
-        <div style="margin-bottom:25px; margin-top: 100px;">__________________________________________________________________</div>
-        Abg. <%= datos2.primer_nombre %> <%= datos2.segundo_nombre %> <%= datos2.primer_apellido %> <%= datos2.segundo_apellido %> 
+        <div style="margin-bottom:25px; margin-top: 100px;">____________________________________________________</div>
+        Abg. <%= datos2.primer_nombre.upcase %> <%= datos2.segundo_nombre.upcase %> <%= datos2.primer_apellido.upcase %> <%= datos2.segundo_apellido.upcase %> 
       </b>
       
       <p class="tamanio"> 
-        <%= datos2.cargo_j%> Segundo con <%= datos2.competencia %> <%= datos2.sede.titleize %>
+        <%= datos2.cargo_j%> Segundo con <%= datos2.competencia %> <%= datos2.sedej.titleize %>
         <br><br>
     <% end %>
       </p>
