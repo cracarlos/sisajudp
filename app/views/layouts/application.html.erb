@@ -31,18 +31,23 @@
                     <li><%= link_to "Actas Abiertas", actas_abiertas_path, :class => "btn", :style=>"color:white" %></li>
 
                 </ul>
-                 <li>
-                 <%# <a href="#" style="margin-left: 10px;"><span class="fa fa-group" >Usuarios </span></a> %>
-                </li>
+
                 <li>
-                  <span class="fa fa-user" style="margin-left: 9px; "></span> <%= link_to "Juramentados", juramentados_path, :class => "btn", :style=>"color:white; font-size: 20px;" %>
+                  <span class="fa fa-user" style="margin-left: 10px; "></span> 
+                  <%= link_to "Juramentados", juramentados_path, :class => "btn", :style=>"color:white; " %>
                 </li>
+
+                <li data-toggle="collapse" data-target="#usuarios" class="collapsed ">
+                  <span class="fa fa-users" style="margin-left: 10px;"></span>
+                  <%= link_to "Usuarios", usuarios_path, :class => "btn", :style=>"color:white" %>
+                </li>
+
                 <li>
                   <% if signed_in? %>
-                  <span class="fa fa-sign-out" style="margin-left: 10px;">
-        <%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %>
-      </span>
-        <% end %>
+                    <span class="fa fa-sign-out" style="margin-left: 10px;">
+                    <%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %>
+                    </span>
+                  <% end %>
                 </li>
             </ul>
      </div>

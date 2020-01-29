@@ -54,10 +54,10 @@
       <%= juramentados.text_field :cedula, :class => "form-control col-md-5", placeholder: "Cedula" %>
     </div>
   </div>
-  
   <div class = "form-row">
     <div class="form-group">
-      <%= juramentados.label :cargo %><br> 
+      <%= juramentados.label :cargo %><br>
+      <%= puts '111111111' + juramentados %> 
       <%= juramentados.select :cargo, options_from_collection_for_select(@taccargos,
             :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
@@ -67,7 +67,7 @@
     <div class="form-group">
       <%= juramentados.label :sede %><br> 
       <%= juramentados.select :sede, options_from_collection_for_select(@tinsedes,
-            :descripcion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+            :descripcion, :descripcion ), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 

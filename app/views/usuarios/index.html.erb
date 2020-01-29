@@ -1,0 +1,21 @@
+<table class="table" id="TablaUsuarios">
+	<thead class="tabla-color">
+	  <tr>
+	    <th scope="col">Correo</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% @usuarios.each do |u| %>
+		<tr>
+	      <td><%= u.email %></td>
+	    </tr>
+		<% end %>
+	</tbody>
+</table>
+ <%= link_to 'Agregar', usuarios_new_path, :class => "btn btn-success col-md-3" %>
+<script>
+  
+  $('#TablaUsuarios').dataTable({
+    language: traduceDataTable()
+  });  
+</script>

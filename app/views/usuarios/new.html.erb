@@ -1,0 +1,29 @@
+<table class="table" id="TablaIntranet">
+	<thead class="tabla-color">
+	  <tr>
+	    <th scope="col">Nombre</th>
+	    <th scope="col">Cédula</th>
+	    <th scope="col">Correo</th>
+	    <th scope="col">Dependencia</th>
+	    <th scope="col">Cargo</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% @tinusuarios.each do |u| %>
+		<tr>
+	      <td><%= u.primer_nombre %> <%= u.segundo_nombre %>
+	      	  <%= u.primer_apellido %> <%= u.segundo_apellido %></td>
+	      <td><%= u.cedula %></td>
+	      <td><%= u.correo_inst %></td>
+	      <td><%= u.dependencia_id %></td>
+	      <td><%= u.descripcion_cargo %></td>
+	    </tr>
+		<% end %>
+	</tbody>
+</table>
+ <%#= link_to 'Agregar', usuarios_new_path, :class => "btn btn-success col-md-3" %>
+<script>
+  $('#TablaIntranet').dataTable({
+    language: traduceDataTable()
+  });  
+</script>
