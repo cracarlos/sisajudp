@@ -1,0 +1,3 @@
+class TacExtensionesSede < ApplicationRecord
+
+end

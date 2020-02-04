@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   post '/juramentados/traer_cedulados', to: "juramentados#traer_cedulados"
   get 'cerrar_acta/:id', to: 'actas#cerrar_acta', as: 'cerrar_acta'
   get 'actas/abiertas'
-  get 'usuarios', to: 'usuarios#index'
-  get 'usuarios/new', to: 'usuarios#new'
+  get 'usuarios_sistema', to: 'usuarios_sistema#index'
+  get 'usuarios_sistema/new', to: 'usuarios_sistema#new'
+  get '/usuarios_sistema/:id/edit', to: 'usuarios_sistema#edit', as: 'usuario_editar'
+  get 'usuarios_sistema/:id', to: 'usuarios_sistema#update'
   
 end

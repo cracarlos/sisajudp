@@ -1,0 +1,3 @@
+class TacUnidade < ApplicationRecord
+
+end

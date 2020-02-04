@@ -1,0 +1,39 @@
+# config/zimbra.yml
+# ZIMBRA server configuration settings
+
+#  CN = Common Name
+#  OU = Organizational Unit
+#  DC = Domain Component
+
+default: &default
+  host:       192.168.16.12
+  port:        389
+#  port:        636
+#  encryption: :simple_tls
+  method:     :simple
+  base:       'DC=defensapublica,DC=gob,DC=ve'
+#  username:    CN=wordpress-admin,OU=Aplicaciones,OU=DISTRITO CAPITAL,DC=defensapublica,DC=gob,DC=ve
+#  password:    DP.2017+
+#  username:    CN=sascrat,OU=Usuarios,OU=DISTRITO CAPITAL,DC=defensapublica,DC=gob,DC=ve
+  username:    uid=zimbra,cn=admins,cn=zimbra
+#  username:    uid=usuarioDelCorreoDp,ou=people,dc=defensapublica,dc=gob,dc=ve
+  password:   m7SG_1QY
+
+#ldap = Net::LDAP.new
+#ldap.host = '10.10.100.11'
+#ldap.port = '389'
+#ldap.auth "CN=sascrat,OU=Usuarios,OU=DISTRITO CAPITAL,DC=defensapublica,DC=gob,DC=ve", "Dp.2017*"
+#ldap.bind
+#ldap.get_operation_result.error_message
+
+development:
+  <<: *default
+
+test:
+  host:           examplehost
+  port:           389
+  default_domain: EXAMPLEDOMAIN
+  base:           examplebase # OU=US-Tampa Bay,OU=North America,OU=Accounts,DC=ourdomain,DC=org
+
+production:
+  <<: *default

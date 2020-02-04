@@ -6,17 +6,20 @@
 	    <th scope="col">Correo</th>
 	    <th scope="col">Dependencia</th>
 	    <th scope="col">Cargo</th>
+	    <th scope="col">Acciones</th>
 	  </tr>
 	</thead>
 	<tbody>
 		<% @tinusuarios.each do |u| %>
 		<tr>
-	      <td><%= u.primer_nombre %> <%= u.segundo_nombre %>
-	      	  <%= u.primer_apellido %> <%= u.segundo_apellido %></td>
-	      <td><%= u.cedula %></td>
-	      <td><%= u.correo_inst %></td>
-	      <td><%= u.dependencia_id %></td>
-	      <td><%= u.descripcion_cargo %></td>
+			<td><%= u.primer_nombre %> <%= u.segundo_nombre %>
+		      	<%= u.primer_apellido %> <%= u.segundo_apellido %>	      		
+		    </td>
+		    <td><%= u.cedula %></td>
+		    <td><%= u.correo_inst %></td>
+		    <td><%= u.dependencia_id %></td>
+		    <td><%= u.descripcion_cargo %></td>
+		    <td><%= link_to 'Agregar', usuario_editar_path(u.id), :class => "btn btn-warning fa fa-edit"%></td>
 	    </tr>
 		<% end %>
 	</tbody>

@@ -82,3 +82,10 @@ gem 'cocoon'
 
 # Iconos
 #gem 'font-awesome-rails'
+
+# Net::LDAP para Ruby (también llamado net-ldap) implementa el acceso del cliente para
+# el Lightweight Directory Access Protocol (LDAP)
+# Un protocolo estándar IETF para acceder a los servicios de directorio distribuidos.
+# Net::LDAP está escrito completamente en Ruby sin dependencias externas.
+# Es compatible con la mayoría de las características de cliente LDAP y un subconjunto de características de servidor también
+gem 'net-ldap', '0.16.0'
