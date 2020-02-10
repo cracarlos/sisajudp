@@ -1,9 +1,10 @@
 <script>
   $(document).ready(function(){
     $("#formulario")[0].reset();
-    
+ // ######### Traer Cedulados ##################################   
     function buscar_cedula() {
       var cedula = $('#cedula').val();
+
       $.ajax(
             {   url: 'traer_cedulados',
               data: {cedula: cedula},
@@ -43,7 +44,25 @@
       
       //return false
     });
+// ######## Fin Traer Cedulados ###############################
+
+// ######## Unidades y sedes #####################
+
+  $('#unidad').change(function() {
+    var unidad = $('#unidad').val();      
+    $.post("extensiones_sedes", function(result){
+      $.each(result, function(i, field){
+        if (unidad == field.tac_unidade_id) {
+          $("#sedes").append("<option>" + field.coordinaciones_extensiones + "</option>" );
+          console.log(field.coordinaciones_extensiones)
+        }
+      });
+    }, 'json');
   });
+
+// ######## Fin Unidades y sedes #####################
+});
+
 </script>
 <section class = 'offset-md-1'> 
   <h1 class="" style= "margin-left:24%; margin-top:1%;">Registro de Juramentados</h1>
@@ -61,7 +80,7 @@
   <div class = "form-row">
     <div class="form-group">
       <%= form.label :Acta %><br> 
-      <%= form.select :tac_acta_id, options_from_collection_for_select(@tacactas,
+      <%= form.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
             :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
@@ -77,7 +96,6 @@
     <div class="form-group">
       <%= form.text_field :segundo_nombre, :class => "form-control offset-md-1", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
     </div>
-
   </div>
 
   <div class = "form-row">
@@ -103,22 +121,28 @@
   <div class = "form-row">
     <div class="form-group">
       <%= form.label :cargo %><br> 
-      <%= form.select :cargo, options_from_collection_for_select(@taccargos,
+      <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
             :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
   <div class= "form-row">
     <div class="form-group">
-      <%= form.label :sede %><br> 
-      <%= form.select :sede, options_from_collection_for_select(@tinsedes,
-            :descripcion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= form.label :unidad %><br> 
+      <%= form.select :sede, options_from_collection_for_select(@tac_unidades,
+            :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
     </div>
+
+    <div class="form-group" style="margin-left: 10px;">
+      <%= form.label :extensión_o_sede %><br> 
+      <select id="sedes"></select>
+    </div>
+
   </div>
 
   <div class = "form-row">
     <div class="form-group">
       <%= form.label :competencia %><br> 
-      <%= form.select :competencia, options_from_collection_for_select(@taccompetencias,
+      <%= form.select :competencia, options_from_collection_for_select(@tac_competencias,
             :nombre_completo, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>

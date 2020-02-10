@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :actas
   get :generate_pdf, to: "actas#generate_pdf"
   post '/juramentados/traer_cedulados', to: "juramentados#traer_cedulados"
+  post '/juramentados/extensiones_sedes', to: "juramentados#extensiones_sedes"
   get 'cerrar_acta/:id', to: 'actas#cerrar_acta', as: 'cerrar_acta'
   get 'actas/abiertas'
   get 'usuarios_sistema', to: 'usuarios_sistema#index'

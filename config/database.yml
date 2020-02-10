@@ -11,11 +11,11 @@ default: &default
 
 development:
   <<: *default
-  host:     localhost
-  port:     5432
+  host:     huachamacare
+  port:     5433
   database: actas
-  username: postgres
-  password: 3.3
+  username: sisdesa
+  password: 12qwaszx
 
 production:
   <<: *default
@@ -26,37 +26,37 @@ production:
   password: 3.3
 
 
-#cedulados_development:
-#  <<: *default
-#  host:     huachamacare
-#  port:     5434
-#  database: cedulados
-#  username: sisdesa
-#  password: 12qwaszx
+cedulados_development:
+  <<: *default
+  host:     huachamacare
+  port:     5434
+  database: cedulados
+  username: sisdesa
+  password: 12qwaszx
 
-#cedulados_production:
-#  <<: *default
-#  host:     huachamacare
-#  port:     5434
-#  database: cedulados
-#  username: sisdesa
-#  password: 12qwaszx
+cedulados_production:
+  <<: *default
+  host:     huachamacare
+  port:     5434
+  database: cedulados
+  username: sisdesa
+  password: 12qwaszx
 
-#intranet_development:
-#  <<: *default
-#  host:     huachamacare
-#  port:     5432
-#  database: intranet
-#  username: sisdesa
-#  password: 12qwaszx
+intranet_development:
+  <<: *default
+  host:     huachamacare
+  port:     5432
+  database: intranet
+  username: sisdesa
+  password: 12qwaszx
 
-#intranet_production:
-#  <<: *default
-#  host:     huachamacare
-#  port:     5432
-#  database: intranet
-#  username: sisdesa
-#  password: 12qwaszx
+intranet_production:
+  <<: *default
+  host:     huachamacare
+  port:     5432
+  database: intranet
+  username: sisdesa
+  password: 12qwaszx
 
 
 

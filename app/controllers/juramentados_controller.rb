@@ -6,11 +6,11 @@ class JuramentadosController < ApplicationController
   end
 
   def new
-    @tinsedes = TinSede.all
-    @taccargos = TacCargo.all
-    @taccompetencias = TacCompetencia.all
-    @tacjuramentados = TacJuramentado.all
-    @tacactas = TacActa.numero_acta 
+    @tac_unidades = TacUnidade.all
+    @tac_extensiones_sedes = TacExtensionesSede.all
+    @tac_cargos = TacCargo.all
+    @tac_competencias = TacCompetencia.all
+    @tac_actas = TacActa.numero_acta
   end
 
   def create
@@ -50,13 +50,15 @@ class JuramentadosController < ApplicationController
   end
 
   def traer_cedulados
-    puts '111111111111'
     @cedulados = DatoPersonaV.cedulados(cedulados)
-    #@cedulados.to_json
-    #render json: { result: @cedulados.to_json }
-    #render json: { result: '@cedulados.to_json' }
     render json: @cedulados
     #puts @cedulados.to_json
+  end
+
+  def extensiones_sedes
+    #@extensiones_sedes = TacExtensionesSede.extensiones_sedes(tac_unidade_id)
+    @extensiones_sedes = TacExtensionesSede.all
+    render json: @extensiones_sedes  
   end
 
   private
@@ -71,8 +73,12 @@ class JuramentadosController < ApplicationController
     end
 
     def cedulados
-    params.require(:cedula)
-  end
+      params.require(:cedula)
+    end
+
+    def tac_unidade_id
+      params.require(:unidad)
+    end
 
 
 end
