@@ -12,6 +12,7 @@
   </head>
 
   <body>
+
    
 <% if signed_in? %>
 <div class="nav-side-menu">
@@ -55,8 +56,12 @@
 <% end %>
 <div class="offset-lg-2 offset-md-4  " style="padding: 10px;">
   <div >
+    <div class="loader">Loading...</div>
     <%= yield %>
   </div>
 </div>
   </body>
+  <script>
+    $(".loader").fadeOut("slow");
+  </script>
 </html>

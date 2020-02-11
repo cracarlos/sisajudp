@@ -47,14 +47,14 @@
 // ######## Fin Traer Cedulados ###############################
 
 // ######## Unidades y sedes #####################
-
+  
   $('#unidad').change(function() {
-    var unidad = $('#unidad').val();      
+    $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
+    var unidad = $('#unidad').val();    
     $.post("extensiones_sedes", function(result){
       $.each(result, function(i, field){
         if (unidad == field.tac_unidade_id) {
-          $("#sedes").append("<option>" + field.coordinaciones_extensiones + "</option>" );
-          console.log(field.coordinaciones_extensiones)
+          $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
         }
       });
     }, 'json');
@@ -134,7 +134,7 @@
 
     <div class="form-group" style="margin-left: 10px;">
       <%= form.label :extensión_o_sede %><br> 
-      <select id="sedes"></select>
+      <select id="sedes" class="form-control" name="acta[extension_sede]" required></select>
     </div>
 
   </div>

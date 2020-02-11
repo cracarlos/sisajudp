@@ -9,15 +9,15 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
-development:
-  <<: *default
-  host:     huachamacare
-  port:     5433
-  database: actas
-  username: sisdesa
-  password: 12qwaszx
+#development:
+#  <<: *default
+#  host:     huachamacare
+#  port:     5433
+#  database: actas
+#  username: sisdesa
+#  password: 12qwaszx
 
-production:
+development:
   <<: *default
   host:     localhost
   port:     5432
@@ -25,38 +25,54 @@ production:
   username: postgres
   password: 3.3
 
+#production:
+#  <<: *default
+#  host:     localhost
+#  port:     5432
+#  database: actas
+#  username: sisdesa
+#  password: 12qwaszx
 
-cedulados_development:
-  <<: *default
-  host:     huachamacare
-  port:     5434
-  database: cedulados
-  username: sisdesa
-  password: 12qwaszx
 
-cedulados_production:
-  <<: *default
-  host:     huachamacare
-  port:     5434
-  database: cedulados
-  username: sisdesa
-  password: 12qwaszx
+#cedulados_development:
+#  <<: *default
+#  host:     huachamacare
+#  port:     5434
+#  database: cedulados
+#  username: sisdesa
+#  password: 12qwaszx
+
+#cedulados_production:
+#  <<: *default
+#  host:     huachamacare
+#  port:     5434
+#  database: cedulados
+#  username: sisdesa
+#  password: 12qwaszx
+
+#intranet_development:
+#  <<: *default
+#  host:     huachamacare
+#  port:     5432
+#  database: intranet
+#  username: sisdesa
+#  password: 12qwaszx
 
 intranet_development:
   <<: *default
-  host:     huachamacare
+  host:     localhost
   port:     5432
   database: intranet
-  username: sisdesa
-  password: 12qwaszx
+  username: postgres
+  password: 3.3
 
-intranet_production:
-  <<: *default
-  host:     huachamacare
-  port:     5432
-  database: intranet
-  username: sisdesa
-  password: 12qwaszx
+#intranet_production:
+#  <<: *default
+#  host:     huachamacare
+#  port:     5432
+#  database: intranet
+#  username: sisdesa
+#  password: 12qwaszx
 
 
 
