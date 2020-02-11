@@ -16,7 +16,7 @@ class JuramentadosController < ApplicationController
   def create
     @tacjuramentados = TacJuramentado.new(juramentados_parametros)
     if @tacjuramentados.save
-      redirect_to action: 'show', id: @tacjuramentados.id
+      redirect_to action: 'index', id: @tacjuramentados.id
     else
       render 'new'
     end	
@@ -64,7 +64,7 @@ class JuramentadosController < ApplicationController
   private
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                   :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion)
+                                   :segundo_apellido, :cedula, :cargo, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidades_id, :tac_extensiones_sedes_id)
        end
 
     def juramentados_parametros_edit

@@ -128,13 +128,13 @@
   <div class= "form-row">
     <div class="form-group">
       <%= form.label :unidad %><br> 
-      <%= form.select :sede, options_from_collection_for_select(@tac_unidades,
+      <%= form.select :tac_unidades_id, options_from_collection_for_select(@tac_unidades,
             :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
     </div>
 
     <div class="form-group" style="margin-left: 10px;">
-      <%= form.label :extensión_o_sede %><br> 
-      <select id="sedes" class="form-control" name="acta[extension_sede]" required></select>
+      <%= form.label :extension_o_sede %><br> 
+      <select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]" required></select>
     </div>
 
   </div>

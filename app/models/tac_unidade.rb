@@ -1,5 +1,6 @@
 class TacUnidade < ApplicationRecord
 	has_many :tac_extensiones_sede
+	belongs_to :tac_juramentados
 
 	def self.extensiones_sedes(id)
 
