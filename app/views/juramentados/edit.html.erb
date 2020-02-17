@@ -1,15 +1,32 @@
+<script>
+  // ######## Unidades y sedes #####################
+  
+  $('#unidad').change(function() {
+    $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
+    var unidad = $('#unidad').val();    
+    $.post("extensiones_sedes", function(result){
+      $.each(result, function(i, field){
+        if (unidad == field.tac_unidade_id) {
+          $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
+        }
+      });
+    }, 'json');
+  });
+
+// ######## Fin Unidades y sedes #####################
+</script>
 <div class="">
   <h3>Editar</h3>
 
-<%= form_for @tacjuramentados, url: {action: "update"}  do |juramentados| %>
+<%= form_for @tac_juramentados, url: {action: "update"}  do |juramentados| %>
 
-  <% if @tacjuramentados.errors.any? %>
+  <% if @tac_juramentados.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@tacjuramentados.errors.count, "error") %> han impedido que el artículo sea grabado:
+        <%= pluralize(@tac_juramentados.errors.count, "error") %> han impedido que el artículo sea grabado:
       </h2>
       <ul>
-        <% @tacjuramentados.errors.full_messages.each do |msg| %>
+        <% @tac_juramentados.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -19,7 +36,7 @@
     <div class = "form-row">
     <div class="form-group">
       <%= juramentados.label :Acta %><br> 
-      <%= juramentados.select :tac_acta_id, options_from_collection_for_select(@tacactas,
+      <%= juramentados.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
             :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
@@ -57,25 +74,31 @@
   <div class = "form-row">
     <div class="form-group">
       <%= juramentados.label :cargo %><br>
-      <%= puts '111111111' + juramentados %> 
-      <%= juramentados.select :cargo, options_from_collection_for_select(@taccargos,
+      <%#= puts '111111111' + juramentados %> 
+      <%= juramentados.select :cargo, options_from_collection_for_select(@tac_cargos,
             :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 
-  <div class = "form-row">
+  <div class= "form-row">
     <div class="form-group">
-      <%= juramentados.label :sede %><br> 
-      <%= juramentados.select :sede, options_from_collection_for_select(@tinsedes,
-            :descripcion, :descripcion ), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= juramentados.label :unidad %><br> 
+      <%= juramentados.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
+            :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
     </div>
+
+    <div class="form-group" style="margin-left: 10px;">
+      <%= juramentados.label :extension_o_sede %><br> 
+      <select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]"></select>
+    </div>
+
   </div>
 
   <div class = "form-row">
     <div class="form-group">
       <%= juramentados.label :competencia %><br> 
-      <%= juramentados.select :competencia, options_from_collection_for_select(@taccompetencias,
-            :nombre_completo, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= juramentados.select :competencia, options_from_collection_for_select(@tac_competencias,
+            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 

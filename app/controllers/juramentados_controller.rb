@@ -27,11 +27,14 @@ class JuramentadosController < ApplicationController
   end
 
   def edit
-  	@tacjuramentados = TacJuramentado.find(params[:id])
-    @tinsedes = TinSede.all
-    @taccargos = TacCargo.all
-    @taccompetencias = TacCompetencia.all
-    @tacactas = TacActa.numero_acta	
+  	@tac_juramentados = TacJuramentado.find(params[:id])
+    @tac_unidades = TacUnidade.all
+    @tac_extensiones_sedes = TacExtensionesSede.all
+    @tac_cargos = TacCargo.all
+    @tac_competencias = TacCompetencia.all
+    @tac_actas = TacActa.numero_acta
+    @tac_competencias = TacCompetencia.all
+
   end
 
   def update
@@ -39,7 +42,7 @@ class JuramentadosController < ApplicationController
     if @tacjuramentados.update(juramentados_parametros_edit)
       redirect_to action: 'show', id: @tacjuramentados.id
     else
-      render 'edit'
+      render 'index'
     end	
   end
 
@@ -64,12 +67,12 @@ class JuramentadosController < ApplicationController
   private
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                   :segundo_apellido, :cedula, :cargo, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidades_id, :tac_extensiones_sedes_id)
+                                   :segundo_apellido, :cedula, :cargo, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidade_id, :tac_extensiones_sedes_id)
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion)
+                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidade_id,:tac_extensiones_sedes_id)
     end
 
     def cedulados

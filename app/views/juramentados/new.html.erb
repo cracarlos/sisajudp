@@ -128,7 +128,7 @@
   <div class= "form-row">
     <div class="form-group">
       <%= form.label :unidad %><br> 
-      <%= form.select :tac_unidades_id, options_from_collection_for_select(@tac_unidades,
+      <%= form.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
             :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
     </div>
 
@@ -143,7 +143,18 @@
     <div class="form-group">
       <%= form.label :competencia %><br> 
       <%= form.select :competencia, options_from_collection_for_select(@tac_competencias,
-            :nombre_completo, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <select id='pre-selected-options' multiple='multiple'>
+        <option value='elem_1' selected>elem 1</option>
+        <option value='elem_2'>elem 2</option>
+        <option value='elem_3'>elem 3</option>
+        <option value='elem_4' selected>elem 4</option>
+        ...
+        <option value='elem_100'>elem 100</option>
+      </select>
     </div>
   </div>
 
@@ -169,4 +180,6 @@
 
   $("body")
     .off("mouseover", ".focus").on("mouseover", ".focus",             function() {this.focus();});
+
+    $('#pre-selected-options').multiSelect();
 </script>
