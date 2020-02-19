@@ -24,10 +24,18 @@ class TacActa < ApplicationRecord
 		    TO_CHAR(tac_juramentados.fecha_resolucion, 'dd/mm/yyyy') AS fecha_resolucion,
 		    competencia, tac_firmantes.nombre_completo, tac_firmantes.cargo AS cargo_f,
 		    tac_firmantes.nombramiento,
-		    tac_firmantes.titulo"
+		    tac_firmantes.titulo,tac_materias.materia, tac_unidades.coordinaciones_regionales,
+		    tac_extensiones_sedes.coordinaciones_extensiones"
 		    ).
-	  joins(:tac_juramentados, :tac_firmante, :ta).
+	  joins(" 
+		   INNER JOIN tac_juramentados ON tac_juramentados.tac_acta_id = tac_actas.id
+		   INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
+		   INNER JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
+		   INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
+		   INNER JOIN tac_materias ON tac_materias.id = tac_juramentados.tac_materia_id
+		   INNER JOIN tac_firmantes ON tac_firmantes.id = tac_actas.tac_firmante_id").
 	  where(id: generar)
+	  #joins(:tac_juramentados, :tac_firmante, :tac_competencia)
   end
 
   def self.anio_en_letras(anio)

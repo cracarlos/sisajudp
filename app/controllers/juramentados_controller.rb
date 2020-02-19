@@ -64,15 +64,24 @@ class JuramentadosController < ApplicationController
     render json: @extensiones_sedes  
   end
 
+  def materias
+    @materias = TacMateria.all
+    render json: @materias  
+  end
+
   private
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                   :segundo_apellido, :cedula, :cargo, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidade_id, :tac_extensiones_sedes_id)
+                                   :segundo_apellido, :cedula, :cargo, :resolucion, 
+                                   :tac_acta_id, :fecha_resolucion,:tac_unidade_id, 
+                                   :tac_extensiones_sedes_id, :tac_competencia_id, :tac_materia_id)
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion, :competencia,:tac_acta_id, :fecha_resolucion,:tac_unidade_id,:tac_extensiones_sedes_id)
+                                              :segundo_apellido, :cedula, :cargo, :sede, :resolucion,
+                                              :tac_acta_id, :fecha_resolucion,:tac_unidade_id,
+                                              :tac_extensiones_sedes_id,:tac_competencia_id,:tac_materia_id)
     end
 
     def cedulados

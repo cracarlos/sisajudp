@@ -18,6 +18,5 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables.responsive
-//= require lou-multi-select-57fb8d3
 //= require_tree .
 

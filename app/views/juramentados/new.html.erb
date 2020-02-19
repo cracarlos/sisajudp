@@ -61,6 +61,22 @@
   });
 
 // ######## Fin Unidades y sedes #####################
+
+// ######## Materias #####################
+  
+  $('#competencia').change(function() {
+    $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
+    var competencia = $('#competencia').val();    
+    $.post("materias", function(result){
+      $.each(result, function(i, field){
+        if (competencia == field.tac_competencia_id) {
+          $("#materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+        }
+      });
+    }, 'json');
+  });
+
+// ######## Fin Materias #####################
 });
 
 </script>
@@ -142,19 +158,12 @@
   <div class = "form-row">
     <div class="form-group">
       <%= form.label :competencia %><br> 
-      <%= form.select :competencia, options_from_collection_for_select(@tac_competencias,
-            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
+            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
     </div>
-
-    <div class="form-group">
-      <select id='pre-selected-options' multiple='multiple'>
-        <option value='elem_1' selected>elem 1</option>
-        <option value='elem_2'>elem 2</option>
-        <option value='elem_3'>elem 3</option>
-        <option value='elem_4' selected>elem 4</option>
-        ...
-        <option value='elem_100'>elem 100</option>
-      </select>
+    <div class="form-group" style="margin-left: 10px;">
+      <%= form.label :materias %><br> 
+      <select id="materias" class="form-control" name="acta[tac_materia_id]" required></select>
     </div>
   </div>
 
@@ -181,5 +190,4 @@
   $("body")
     .off("mouseover", ".focus").on("mouseover", ".focus",             function() {this.focus();});
 
-    $('#pre-selected-options').multiSelect();
 </script>

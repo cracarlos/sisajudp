@@ -47,7 +47,7 @@
         <b><%=datos.primer_nombre.upcase %></b> <b><%=datos.segundo_nombre.upcase%></b>
         <b><%=datos.primer_apellido.upcase %></b> <b><%=datos.segundo_apellido.upcase%></b>,
         titular de la cédula de identidad N° <%=datos.cedula %>, a los fines de ser juramentado como 
-        <%=datos.cargo_j %> con competencia en materia <%=datos.competencia %>, adscrito (a) a la Unidad Regional de <%#=datos.sedej.titleize %> según resolución N° <%=datos.resolucion %>
+        <%=datos.cargo_j %> con competencia en materia <%=datos.materia %>, adscrito a la <%=datos.coordinaciones_regionales %>, <%=datos.coordinaciones_extensiones %> según resolución N° <%=datos.resolucion %>
         de fecha <%= datos.fecha_resolucion%>.
 
       <% end %>

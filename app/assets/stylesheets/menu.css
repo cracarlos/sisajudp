@@ -30,6 +30,7 @@
   display: block;
   text-align: center;
   font-size: 14px;
+  width: 100%;
 }
 .nav-side-menu .toggle-btn {
   display: none;

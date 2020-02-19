@@ -10,6 +10,7 @@
       <th scope="col">Unidad</th>
       <th scope="col">Extensión o Sede</th>
       <th scope="col">Competencia</th>
+      <th scope="col">Materia</th>
       <th scope="col">Resolución</th>
       <th scope="col">Acciones</th>
     </tr>
@@ -23,6 +24,7 @@
       <td><%= juramentados.coordinaciones_regionales%></td>
       <td><%= juramentados.coordinaciones_extensiones%></td>
       <td><%= juramentados.competencia%></td>
+      <td><%= juramentados.materia%></td>
       <td><%= juramentados.resolucion%></td>
       <td>
         <%= link_to '', edit_juramentado_path(juramentados.id), :class => "btn btn-warning fa fa-edit"%>
