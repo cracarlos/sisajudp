@@ -1,4 +1,10 @@
 <h2>Crear acta</h2>
+<% flash.each do |type, msg| %>
+
+  <div class="alert alert-danger"> <%= msg %> </div>
+  
+<% end %>
+
 <%= form_with scope: :acta, url: actas_path, local: true do |acta| %>
 <div class="form-row"> 
   <div class="form-group">

@@ -1,5 +1,6 @@
 class ActasController < ApplicationController
   before_action :authenticate_usuario!
+  add_flash_types :info, :error, :warning
   def index
     @tacactasFirmantes = TacActa.acta_cerradas
   end
@@ -12,11 +13,15 @@ class ActasController < ApplicationController
   end
 
   def create
-    @tacactas = TacActa.new(acta)
-    if @tacactas.save!
-      redirect_to action: 'show', id: @tacactas.id
-    else
-      redirect_to action: 'new'
+    begin  
+      @tacactas = TacActa.new(actaa)
+      if @tacactas.save!
+        redirect_to action: 'show', id: @tacactas.id
+      else
+        redirect_to action: 'new'
+      end
+    rescue Exception => e
+      redirect_to :new_acta, error: "Error en acta"
     end
   end
 
@@ -44,21 +49,27 @@ class ActasController < ApplicationController
   end
 
   def generate_pdf
-    @t = Time.now
-    @tacactas = TacActa.generar(generar_pdf)
-    @anio_letras = TacActa.anio_en_letras(@tacactas[0].para.year)
-    @dia_letras = TacActa.anio_en_letras(@tacactas[0].para.day)
-    @hora_letras = TacActa.anio_en_letras(@tacactas[0].para.hour)
-
-
-    #puts '!!!!!!!!!!!!!!!!!!!!!!' + @anio_letras.inspect
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render  pdf: 'acta',
-             template: 'actas/generate_pdf.pdf.erb'
+    begin
+      @t = Time.now
+      @tacactas = TacActa.generar(generar_pdf)
+      @anio_letras = TacActa.anio_en_letras(@tacactas[0].para.year)
+      @dia_letras = TacActa.anio_en_letras(@tacactas[0].para.day)
+      @hora_letras = TacActa.anio_en_letras(@tacactas[0].para.hour)
+      #puts '!!!!!!!!!!!!!!!!!!!!!!' + @anio_letras.inspect
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render  pdf: 'acta',
+               template: 'actas/generate_pdf.pdf.erb'
+           end
          end
-       end
+      rescue Exception => e
+        #redirect_to :actas_abiertas, notice: "Agregue juramentados para poder generar el acta"
+        flash[:error] = "Agregue juramentados para poder generar el acta" 
+        #redirect_to :actas_abiertas, flash.alert = "Agregue juramentados para poder generar el acta"
+        #flash.now[:info] = "We have exactly #{@tacactas} books available."
+        redirect_to :actas_abiertas
+    end
   end
 
   def cerrar_acta

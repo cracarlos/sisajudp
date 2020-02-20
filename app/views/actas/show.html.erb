@@ -1,6 +1,13 @@
 <p>
   <h2>Actas abiertas</h2>  
 </p>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-danger "> <%= msg %> </div>
+    <% end %>
+    <% if !flash[:error]%>
+      <%=flash[:error] %>
+    <%end%>
+    
 <table class="table tablaBasica" id="tacactasFirmantes">
   <thead class="tabla-color">
     <tr>
