@@ -1,11 +1,17 @@
 <p>
   <h2>Actas abiertas</h2>  
 </p>
-    <% flash.each do |type, msg| %>
-      <div class="alert alert-danger "> <%= msg %> </div>
-    <% end %>
-    <% if !flash[:error]%>
-      <%=flash[:error] %>
+    <%# flash.each do |type, msg| %>
+      <div > <%#= msg %> </div>
+    <%# end %>
+    <% if flash[:error]%>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+        <%=flash[:error] %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
     <%end%>
     
 <table class="table tablaBasica" id="tacactasFirmantes">

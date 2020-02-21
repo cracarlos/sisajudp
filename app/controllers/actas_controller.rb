@@ -6,22 +6,29 @@ class ActasController < ApplicationController
   end
 
   def new
-    @tacactas = TacActa.all
-	  @tacfirmantes = TacFirmante.all
-	  @tinsedes = TinSede.all
-    @TiempoHora = Time.now 
+    begin
+      @tacactas = TacActa.all
+      @tacfirmantes = TacFirmante.all
+      @tinsedes = TinSede.all
+      @TiempoHora = Time.now
+    rescue Exception => e
+      flash[:error] = "No se pudo conectar con la Base de Datos" 
+      redirect_to :actas_abiertas
+      puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
+    end
+    
   end
 
   def create
     begin  
       @tacactas = TacActa.new(actaa)
-      if @tacactas.save!
-        redirect_to action: 'show', id: @tacactas.id
-      else
-        redirect_to action: 'new'
-      end
+      @tacactas.save!
+      flash[:info] = "Acta Creada" 
+      redirect_to :actas_abiertas
     rescue Exception => e
-      redirect_to :new_acta, error: "Error en acta"
+      flash[:error] = "No se pudo guardar" 
+      redirect_to :actas_abiertas
+      puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
     end
   end
 
@@ -43,9 +50,17 @@ class ActasController < ApplicationController
   end
 
   def destroy
-    @tacactas = TacActa.find(params[:id])
-    @tacactas.destroy
-    redirect_to acta_path
+    begin
+      @tacactas = TacActa.find(params[:id])
+      @tacactas.destroy
+      flash[:info] = "Acta Elminada" 
+      redirect_to :actas_abiertas
+    rescue Exception => e
+      flash[:error] = "No se pudo eliminar" 
+      redirect_to :actas_abiertas
+      puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
+    end
+    
   end
 
   def generate_pdf
@@ -64,11 +79,9 @@ class ActasController < ApplicationController
            end
          end
       rescue Exception => e
-        #redirect_to :actas_abiertas, notice: "Agregue juramentados para poder generar el acta"
         flash[:error] = "Agregue juramentados para poder generar el acta" 
-        #redirect_to :actas_abiertas, flash.alert = "Agregue juramentados para poder generar el acta"
-        #flash.now[:info] = "We have exactly #{@tacactas} books available."
         redirect_to :actas_abiertas
+        puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
     end
   end
 

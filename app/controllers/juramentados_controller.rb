@@ -2,24 +2,44 @@ class JuramentadosController < ApplicationController
   before_action :authenticate_usuario!
 
   def index
-    @tacjuramentados = TacJuramentado.numero_acta
+    begin
+      @tacjuramentados = TacJuramentado.numero_acta
+    rescue Exception => e
+      flash[:error] = "Problema de Conexión con Bases de Datos" 
+      redirect_to :actas
+      puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
+    end
+    
   end
 
   def new
-    @tac_unidades = TacUnidade.all
-    @tac_extensiones_sedes = TacExtensionesSede.all
-    @tac_cargos = TacCargo.all
-    @tac_competencias = TacCompetencia.all
-    @tac_actas = TacActa.numero_acta
+    begin
+      @tac_unidades = TacUnidade.all
+      @tac_extensiones_sedes = TacExtensionesSede.all
+      @tac_cargos = TacCargo.all
+      @tac_competencias = TacCompetencia.all
+      @tac_actas = TacActa.numero_acta
+
+    rescue Exception => e
+      flash[:error] = "Problema de Conexión con Bases de Datos" 
+      redirect_to :juramentados
+      puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
+      
+    end
+    
   end
 
   def create
-    @tacjuramentados = TacJuramentado.new(juramentados_parametros)
-    if @tacjuramentados.save
-      redirect_to action: 'index', id: @tacjuramentados.id
-    else
-      render 'new'
-    end	
+    begin
+      @tacjuramentados = TacJuramentado.new(juramentados_parametros)
+      @tacjuramentados.save
+      flash[:info] = "Guardado" 
+      redirect_to :juramentados
+    rescue Exception => e
+      flash[:error] = "No se pudo guardar al Juramentado" 
+      puts e
+      redirect_to :juramentados
+    end
   end
 
   def show
@@ -47,9 +67,16 @@ class JuramentadosController < ApplicationController
   end
 
   def destroy
-    @tacjuramentados = TacJuramentado.find(params[:id])
-    @tacjuramentados.destroy
-    redirect_to juramentado_path
+    begin
+      @tacjuramentados = TacJuramentado.find(params[:id])
+      @tacjuramentados.destroy
+      flash[:info] = "Eliminado" 
+      redirect_to :juramentados
+    rescue Exception => e
+      flash[:error] = "No se pudo eliminar" 
+      redirect_to :juramentados
+    end
+    
   end
 
   def traer_cedulados
