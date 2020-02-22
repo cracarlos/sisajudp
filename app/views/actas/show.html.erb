@@ -1,54 +1,56 @@
-<p>
-  <h2>Actas abiertas</h2>  
-</p>
-    <%# flash.each do |type, msg| %>
-      <div > <%#= msg %> </div>
-    <%# end %>
-    <% if flash[:error]%>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-        <%=flash[:error] %> 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+<div class="subContenido">
+  <p>
+    <h2>Actas abiertas</h2>  
+  </p>
+      <%# flash.each do |type, msg| %>
+        <div > <%#= msg %> </div>
+      <%# end %>
+      <% if flash[:error]%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+          <%=flash[:error] %> 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+      <%end%>
       
-    <%end%>
-    
-<table class="table tablaBasica" id="tacactasFirmantes">
-  <thead class="tabla-color">
-    <tr>
-      <th scope="col">Acta</th>
-      <th scope="col">Sede</th>
-      <th scope="col">Firmante</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-     <% @tacactasFirmantes.each do |acta| %>
-    <tr>
-      <td><%= acta.numero_acta%></td>
-      <td><%= acta.sede%></td>
-      <td><%= acta.nombre_completo%></td>
-      <td>
-        <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
-        <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> 
-        <%#= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
+  <table class="table tablaBasica" id="tacactasFirmantes">
+    <thead class="tabla-color">
+      <tr>
+        <th scope="col">Acta</th>
+        <th scope="col">Sede</th>
+        <th scope="col">Firmante</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @tacactasFirmantes.each do |acta| %>
+      <tr>
+        <td><%= acta.numero_acta%></td>
+        <td><%= acta.sede%></td>
+        <td><%= acta.nombre_completo%></td>
+        <td>
+          <%= link_to '', edit_acta_path(acta), :class => "btn btn-warning fa fa-edit ", :title => "Editar"%>
+          <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> 
+          <%#= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
 
-        <%= link_to "", cerrar_acta_path(acta), :class => "btn btn-success fa fa-check", :title => "Cerrar Acta" %>
-        <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
+          <%= link_to "", cerrar_acta_path(acta), :class => "btn btn-success fa fa-check", :title => "Cerrar Acta" %>
+          <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash ", :title => "Eliminar" %>
 
-          
-      </td>
-    </tr>
-     <% end %>
-  </tbody> 
-</table>
+            
+        </td>
+      </tr>
+       <% end %>
+    </tbody> 
+  </table>
 
-<div class="offset-md-4">
-   
-   <%= link_to 'Agregar Acta', new_acta_path, :class => "btn tabla-color col-md-2" %> 
-   <%= link_to 'Agregar Defensores', new_juramentado_path, :class => "btn btn-warning col-md-2 offset-md-1" %>
+  <div class="offset-md-4">
+     
+     <%= link_to 'Agregar Acta', new_acta_path, :class => "btn tabla-color col-md-2" %> 
+     <%= link_to 'Agregar Defensores', new_juramentado_path, :class => "btn btn-warning col-md-2 offset-md-1" %>
 
+  </div>
 </div>
 <script>
 $('#tacactasFirmantes').dataTable({

@@ -5,62 +5,65 @@
     <link rel="icon" type="image/ico" href="<%= image_path("dp.ico") %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
 
    
 <% if signed_in? %>
-<div class="nav-side-menu">
-    <div class="brand"> <%= image_tag("logo.png", size: "180x70")%></div>
-    <i class="fa fa-bars fa-2x fa-toggle-down toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-        <div class="menu-list">
-            <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                  <span class="fa fa-home" style="margin-left: 10px; "></span> <%= link_to "Inicio", actas_path, :class => "btn", :style=>"color:white; font-size: 20px;" %>
-                </li>
 
-                <li  data-toggle="collapse" data-target="#products" class="collapsed ">
-                 <span class="fa fa-book" style="margin-left: 10px;"></span><b style="margin-left: 10px;">Actas</b> <span class="arrow"></span>
-                </li>
-                <ul class="sub-menu collapse" id="products">
-                    <li class="active"><%= link_to "Crear", new_acta_path, :class => "btn", :style=>"color:white" %></li>
-                    <li><%= link_to "Actas Abiertas", actas_abiertas_path, :class => "btn", :style=>"color:white" %></li>
+<div class="contenedor">
+  <header>
+      <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
+      <a id="despliegue" class="despliegue"><span class=" fa fa-bars"></span></a>
+      <div><h4> <%=current_usuario.email%></h4></div>
+  </header>
+  <main class="contenido">
 
-                </ul>
+    <div>
+      <%= yield %>
+    </div>
+   
+  </main>
 
-                <li>
-                  <span class="fa fa-user" style="margin-left: 10px; "></span> 
-                  <%= link_to "Juramentados", juramentados_path, :class => "btn", :style=>"color:white; " %>
-                </li>
+    <nav id="nav" class="menu">
+      <ul>
+        <li><a><span class="fa fa-home"></span><%= link_to "Inicio", actas_path %></a></li>
+        <li id="menu"><a><span class="fa fa-book"></span>Actas</a><span id="flecha" class=" flecha fa fa-arrow-down"></span></li>
+        <ul class="subMenu" id="subMenu">
+          <li><a><span class="fa fa-long-arrow-right"></span> <%= link_to "Crear", new_acta_path %></a></li>
+          <li><a><span class="fa fa-long-arrow-right"></span> <%= link_to "Actas Abiertas", actas_abiertas_path %></a></li>
+        </ul>
+        <li><a><span class="fa fa-user"></span><%= link_to "Juramentados", juramentados_path %></a></li>
+        <li><a><span class="fa fa-users"></span><%= link_to "Usuarios", usuarios_sistema_path %></a></li>
+        <% if signed_in? %>
+          <li><a href="#"><span class="fa fa-sign-out"></span> <%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></a></li>
+        <% end %>
+      </ul>
+    </nav>
+   <footer>Dirección Nacional de Tecnología de la Información - División de Proyectos e Innovaciones Tecnologícas</footer>
 
-                <li data-toggle="collapse" data-target="#usuarios" class="collapsed ">
-                  <span class="fa fa-users" style="margin-left: 10px;"></span>
-                  <%= link_to "Usuarios", usuarios_sistema_path, :class => "btn", :style=>"color:white" %>
-                </li>
-
-                <li>
-                  <% if signed_in? %>
-                    <span class="fa fa-sign-out" style="margin-left: 10px;">
-                    <%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %>
-                    </span>
-                  <% end %>
-                </li>
-            </ul>
-     </div>
 </div>
+
+
 <% end %>
-<div class="offset-lg-2 offset-md-4  " style="padding: 10px;">
-  <div >
-    <%= yield %>
-  </div>
-</div>
   </body>
   <script>
-    $(".loader").fadeOut("slow");
+    $(document).ready(function(){
+
+          var display = $('#subMenu').css("display");
+          $('#menu').click(function(event) {
+            $('#subMenu').slideToggle(300);
+          });
+
+          var nav = $('#nav').css("display");         
+          $('#despliegue').click(function(event) {
+            $('#nav').slideToggle(300);
+          });
+
+
+      });
   </script>
 </html>
