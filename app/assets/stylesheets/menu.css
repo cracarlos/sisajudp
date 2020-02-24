@@ -27,7 +27,7 @@ body {
 .contenedor footer {
 	background: white;
 	padding: 20px;
-	/*border-radius: 6px;*/
+	/*border-radius: 6px;*/	
 }
 
 .contenedor header{
@@ -238,4 +238,3 @@ body {
     	position: relative;
     }
 }
-

@@ -12,7 +12,7 @@ class ActasController < ApplicationController
       @tinsedes = TinSede.all
       @TiempoHora = Time.now
     rescue Exception => e
-      flash[:error] = "No se pudo conectar con la Base de Datos" 
+      flash[:error] = "No se pudo conectar con la Base de Datos"
       redirect_to :actas_abiertas
       puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
     end
