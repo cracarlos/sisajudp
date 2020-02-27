@@ -10,12 +10,9 @@ body {
 
 .contenedor {
 	width: 100%;
-	/*margin: 20px auto;*/
-	display: grid;  /* Nos permite trabajar con Grid*/
-	/*grid-gap: 10px; /* Da margenes entre los elementos*/
-	/*grid-template-columns: repeat(3, 1fr); /*Indico la cantidad de columnas*/
-	grid-template-columns: 10% 90%; /*Indico la cantidad de columnas*/
-	grid-template-rows: 3, auto); /*Cantidad de filas*/
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: (3, auto);
 	grid-template-areas: "header header"
 						 "nav main "
 						 "footer footer "
@@ -27,7 +24,6 @@ body {
 .contenedor footer {
 	background: white;
 	padding: 20px;
-	/*border-radius: 6px;*/	
 }
 
 .contenedor header{
@@ -43,10 +39,6 @@ body {
 	color: white;
 	padding: 10px;
 	border-left: 4px solid #2e353d;
-	/*
-	grid-column-start: 1;
-	grid-column-end: 4;
-	*/
 	grid-area: header;
 	height: 100px;
 }
@@ -64,10 +56,9 @@ body {
 	bottom: 50px;
 }
 .contenedor main {
-	/*grid-column: 2 / 4;*/
 	grid-area: main;
 	height: 100%;
-	min-height: 757px;
+	min-height: 788px;
 	background: #f7f7f7;
 	padding: 45px;
 	
@@ -76,10 +67,6 @@ body {
 .contenedor nav{
 	background: #72001a;
 	color: white;
-	/*width: 25%;*/
-	/*
-	grid-column: 1 / 2; /*Hace lo mismo que grid-colum-start y end pero de forma resumida*/
-	/*grid-row: 2 / 4;*/
 	grid-area: nav;
 	border-left: 4px solid #2e353d;
 	padding: 0px;
@@ -108,12 +95,12 @@ body {
 
 .contenedor nav ul li:hover {
 	background: #4C1516;
-   border-left: 1px solid #ffffff; 
-   -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+	border-left: 1px solid #ffffff; 
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
 
@@ -151,12 +138,17 @@ body {
 	background: linear-gradient(to right, rgba(109,0,25,1) 0%, rgba(143,2,34,1) 56%, rgba(169,3,41,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d0019', endColorstr='#a90329', GradientType=1 );
 	color: white;
-	/*grid-column: 2 / 4;*/
 	text-align:center;
 	grid-area: footer;
 	width: auto;
 	border-left: 4px solid #2e353d;
+	height: 64px;
 
+}
+
+.footer {
+	font-size: 12px;
+	line-height : 3px;
 }
 
 .despliegue {

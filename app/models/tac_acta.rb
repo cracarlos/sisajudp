@@ -30,7 +30,7 @@ class TacActa < ApplicationRecord
 	  joins(" 
 		   INNER JOIN tac_juramentados ON tac_juramentados.tac_acta_id = tac_actas.id
 		   INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
-		   INNER JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
+		   LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
 		   INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
 		   INNER JOIN tac_materias ON tac_materias.id = tac_juramentados.tac_materia_id
 		   INNER JOIN tac_firmantes ON tac_firmantes.id = tac_actas.tac_firmante_id").
