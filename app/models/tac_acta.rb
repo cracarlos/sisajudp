@@ -24,7 +24,7 @@ class TacActa < ApplicationRecord
 		    TO_CHAR(tac_juramentados.fecha_resolucion, 'dd/mm/yyyy') AS fecha_resolucion,
 		    competencia, tac_firmantes.nombre_completo, tac_firmantes.cargo AS cargo_f,
 		    tac_firmantes.nombramiento,
-		    tac_firmantes.titulo,tac_materias.materia, tac_unidades.coordinaciones_regionales,
+		    tac_firmantes.titulo,tac_firmantes.texto,tac_materias.materia, tac_unidades.coordinaciones_regionales,
 		    tac_extensiones_sedes.coordinaciones_extensiones"
 		    ).
 	  joins(" 

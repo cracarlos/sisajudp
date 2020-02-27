@@ -37,7 +37,10 @@
       En el día de hoy, <%= l(@tacactas[0].para, format: '%A') %> <%= @dia_letras %>  (<%= @tacactas[0].para.day %>) de <%= l(@tacactas[0].para, format: '%B').capitalize %> del año <%= @anio_letras %> (<%= @tacactas[0].para.year %>),
       siendo las <%= @hora_letras %> (<%= @tacactas[0].para.hour %>), en la sede de la Defensa Pública,
       <%=@tacactas[0].sede.titleize  %>, en razón a la convocatoria
-      realizada comparecen <%= @tacactas[0].texto%>; los (las)
+      realizada comparecen ante la Defensora Pública General, <b>Dra. Carmen Marisela
+      Castro Gilly</b>, designada mediante acuerdo de la Asamblea Nacional Constituyente
+      de fecha 08 de Enero de 2019, publicada en Gaceta Oficial de la República
+      Bolivariana de Venezuela mediante el N° 41.559 de esa misma fecha; los (las)
       ciudadanos (a): 
       <% @tacactas.each do |datos|%>
 
