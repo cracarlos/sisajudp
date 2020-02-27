@@ -1,9 +1,10 @@
 <script>
   // ######## Unidades y sedes #####################
-  
-  $('#unidad').change(function() {
+  $(document).ready(function(){
+    $('#unidad').change(function() {
     $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
-    var unidad = $('#unidad').val();    
+    var unidad = $('#unidad').val();  
+    console.log(unidad)  
     $.post("extensiones_sedes", function(result){
       $.each(result, function(i, field){
         if (unidad == field.tac_unidade_id) {
@@ -14,6 +15,25 @@
   });
 
 // ######## Fin Unidades y sedes #####################
+
+// ######## Materias #####################
+  
+  $('#competencia').change(function() {
+    $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
+    var competencia = $('#competencia').val();    
+    $.post("materias", function(result){
+      $.each(result, function(i, field){
+        if (competencia == field.tac_competencia_id) {
+          $("#materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+        }
+      });
+    }, 'json');
+  });
+
+  // ######## Fin Materias #####################
+
+  });
+  
 </script>
 <div class="">
   <h3>Editar</h3>
@@ -97,8 +117,12 @@
   <div class = "form-row">
     <div class="form-group">
       <%= juramentados.label :competencia %><br> 
-      <%= juramentados.select :competencia, options_from_collection_for_select(@tac_competencias,
-            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <%= juramentados.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
+            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
+    </div>
+    <div class="form-group" style="margin-left: 10px;">
+      <%= juramentados.label :materias %><br> 
+      <select id="materias" class="form-control" name="acta[tac_materia_id]" required></select>
     </div>
   </div>
 

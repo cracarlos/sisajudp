@@ -36,6 +36,7 @@ class ActasController < ApplicationController
     @tacactas = TacActa.find(params[:id])
 	  @tacfirmantes = TacFirmante.all
 	  @tinsedes = TinSede.all
+    @tac_compentencias = TacCompetencia.all
   end
 
   def update		
