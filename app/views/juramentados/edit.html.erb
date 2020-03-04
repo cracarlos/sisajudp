@@ -1,6 +1,39 @@
 <script>
-  // ######## Unidades y sedes #####################
   $(document).ready(function(){
+    var dat_extension = $('#unidad').val();
+    $.post("extensiones_sedes", function(result){
+      $.each(result, function(i, field){
+        if (dat_extension == field.tac_unidade_id) {
+          $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
+          //console.log(field.coordinaciones_extensiones);
+        }
+      });
+    }, 'json');
+
+    var dat_materia = $('#competencia').val();
+    //console.log(dat_materia);
+    $.post("materias", function(result){
+      $.each(result, function(i, field){
+        //console.log(i);
+        if (i == 0) {
+          i +=1
+          console.log(i);
+        }
+        if (i == field.id) {
+          $("#materias").html(`<option value = ${field.id}>` + field.materia + "</option>" );
+        }
+        if (dat_materia == field.tac_competencia_id) {
+          $("#materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+          //console.log(field.materia);
+        }
+      });
+    }, 'json');
+
+
+
+// ######## Unidades y sedes #####################
+
+
     $('#unidad').change(function() {
     $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
     var unidad = $('#unidad').val();  
@@ -33,7 +66,7 @@
   // ######## Fin Materias #####################
 
   });
-  
+
 </script>
 <div class="">
   <h3>Editar</h3>
@@ -57,7 +90,7 @@
     <div class="form-group">
       <%= juramentados.label :Acta %><br> 
       <%= juramentados.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
-            :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+            :id, :numero_acta,@tac_juramentados.tac_acta_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 
@@ -87,6 +120,9 @@
   </div>
 
   <div class = "form-row">
+    <%= juramentados.label :Cedula %>
+  </div>
+  <div class = "form-row">
     <div class="form-group">
       <%= juramentados.text_field :cedula, :class => "form-control col-md-5", placeholder: "Cedula" %>
     </div>
@@ -109,7 +145,7 @@
 
     <div class="form-group" style="margin-left: 10px;">
       <%= juramentados.label :extension_o_sede %><br> 
-      <select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]"></select>
+      <select id="sedes" class="form-control" name="tac_juramentado[tac_extensiones_sedes_id]"></select>
     </div>
 
   </div>
@@ -122,7 +158,7 @@
     </div>
     <div class="form-group" style="margin-left: 10px;">
       <%= juramentados.label :materias %><br> 
-      <select id="materias" class="form-control" name="acta[tac_materia_id]" required></select>
+      <select id="materias" class="form-control" name="tac_juramentado[tac_materia_id]" required></select>
     </div>
   </div>
 
