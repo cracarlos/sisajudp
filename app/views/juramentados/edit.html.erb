@@ -96,7 +96,7 @@
       <%= juramentados.label :cargo %><br>
       <%#= puts '111111111' + juramentados %> 
       <%= juramentados.select :cargo, options_from_collection_for_select(@tac_cargos,
-            :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+            :cargos, :cargos, @tac_juramentados.cargo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
     </div>
   </div>
 
@@ -104,7 +104,7 @@
     <div class="form-group">
       <%= juramentados.label :unidad %><br> 
       <%= juramentados.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
-            :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
+            :id, :coordinaciones_regionales, @tac_juramentados.tac_unidade_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
     </div>
 
     <div class="form-group" style="margin-left: 10px;">
@@ -118,7 +118,7 @@
     <div class="form-group">
       <%= juramentados.label :competencia %><br> 
       <%= juramentados.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
-            :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
+            :id, :competencia, @tac_juramentados.tac_competencia_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
     </div>
     <div class="form-group" style="margin-left: 10px;">
       <%= juramentados.label :materias %><br> 
