@@ -1,6 +1,4 @@
 .tabla-color{
- /* background: #1b5155;*/
-
 background: rgba(27,81,85,1);
 background: -moz-linear-gradient(left, rgba(27,81,85,1) 0%, rgba(27,81,85,1) 43%, rgba(27,81,85,1) 100%);
 background: -webkit-gradient(left top, right top, color-stop(0%, rgba(27,81,85,1)), color-stop(43%, rgba(27,81,85,1)), color-stop(100%, rgba(27,81,85,1)));
@@ -11,6 +9,25 @@ background: linear-gradient(to right, rgba(27,81,85,1) 0%, rgba(27,81,85,1) 43%,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b5155', endColorstr='#1b5155', GradientType=1 );
 
   color: white
+}
+
+.PraParte{
+	border-radius: 43px 44px 73px 56px;
+	-moz-border-radius: 43px 44px 73px 56px;
+	-webkit-border-radius: 43px 44px 73px 56px;
+	border: 1px solid #72001a;
+	padding: 20px;
+	width: 710px;
+	margin-bottom: 5px;
+}
+
+.seguda_parte{
+	border-radius: 43px 44px 73px 56px;
+	-moz-border-radius: 43px 44px 73px 56px;
+	-webkit-border-radius: 43px 44px 73px 56px;
+	border: 1px solid #72001a;
+	padding: 20px;
+	width: 710px;
 }
 
 
