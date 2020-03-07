@@ -53,7 +53,7 @@ class JuramentadosController < ApplicationController
     @tac_cargos = TacCargo.all
     @tac_competencias = TacCompetencia.all
     @tac_actas = TacActa.numero_acta
-    @tac_competencias = TacCompetencia.all
+    @tac_materias = TacMateria.all
 
   end
 
