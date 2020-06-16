@@ -6,17 +6,17 @@
         <div > <%#= msg %> </div>
       <%# end %>
       <% if flash[:error]%>
-        <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert"> 
+       <div id="alert" class="callout alert" data-closable>
          
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         
       <%end%>
       
-  <table class="table tablaBasica" id="tacactasFirmantes">
-    <thead class="tabla-color">
+  <table class="" id="tacactasFirmantes">
+    <thead class="backroundColorPrincipal">
       <tr>
         <th scope="col">Acta</th>
         <th scope="col">Sede</th>
@@ -43,11 +43,8 @@
     </tbody> 
   </table>
 
-  <div class="offset-md-4">
-     
-     <%= link_to 'Agregar Acta', new_acta_path, :class => "btn tabla-color col-md-2" %> 
-     <%= link_to 'Agregar Defensores', new_juramentado_path, :class => "btn btn-warning col-md-2 offset-md-1" %>
-
+  <div class="text-center">    
+     <%= link_to 'Agregar Acta', new_acta_path, :class => "button buttonColor" %> 
   </div>
 </div>
 <script>

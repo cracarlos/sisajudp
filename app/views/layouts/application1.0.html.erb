@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SISAJUDP</title>
+    <link rel="icon" type="image/ico" href="<%= image_path("dp.ico") %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+   
+<% if signed_in? %>
+
+<div class="contenedor">
+  <header>
+      <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
+      <a id="despliegue" class="despliegue"><span class=" fa fa-bars"></span></a>
+      <div><h4> <%=current_usuario.email%></h4></div>
+  </header>
+  <main class="contenido">
+
+    <div>
+      <%= yield %>
+    </div>
+   
+  </main>
+
+    <nav id="nav" class="menu">
+      <ul>
+        <li><a><span class="fa fa-home"></span><%= link_to "Inicio", actas_path %></a></li>
+        <li id="menu"><a><span class="fa fa-files-o"></span>Actas</a><span id="flecha" class=" flecha fa fa-arrow-down"></span></li>
+        <ul class="subMenu" id="subMenu">
+          <li><a><span class="fa fa-chevron-right"></span> <%= link_to "Crear", new_acta_path %></a></li>
+          <li><a><span class="fa fa-chevron-right"></span> <%= link_to "Actas Abiertas", actas_abiertas_path %></a></li>
+        </ul>
+        <li><a><span class="fa fa-user-o"></span><%= link_to "Juramentados", juramentados_path %></a></li>
+        <li><a><span class="fa fa-user-plus"></span><%= link_to "Usuarios", usuarios_sistema_path %></a></li>
+        <% if signed_in? %>
+          <li><a href="#"><span class="fa fa-sign-out"></span> <%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></a></li>
+        <% end %>
+      </ul>
+    </nav>
+   <footer>
+    <div class="footer">
+      <p>Dirección Nacional de Tecnología de la Información - División de Proyectos e Innovaciones Tecnologícas</p>
+      <p>atencion.usuario@defensapublica.gob.ve EXT. 1950</p>
+    </div>
+
+    </footer>
+
+</div>
+
+
+<% end %>
+  </body>
+  <script>
+    $(document).ready(function(){
+
+          var display = $('#subMenu').css("display");
+          $('#menu').click(function(event) {
+            $('#subMenu').slideToggle(300);
+          });
+
+          var nav = $('#nav').css("display");         
+          $('#despliegue').click(function(event) {
+            $('#nav').slideToggle(300);
+          });
+
+
+      });
+  </script>
+</html>

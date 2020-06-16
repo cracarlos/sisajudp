@@ -1,0 +1,37 @@
+body {
+	background: #f7f7f7;
+	color: black;
+	font-family: Arial;
+}
+
+ul li a {
+	color: white !important;
+}
+ul li:hover {
+	color: white !important;
+	background: #5F071B !important;
+}
+.menuBackground {
+	background: #75001b;
+}
+
+.subMenu {
+	background: #181c20;
+	border:#181c20;
+	color: white;
+}
+
+.backroundColorPrincipal {
+	background: #75001b;
+	color: white;
+}
+
+.buttonColor {
+	background: #75001b;
+	color: white;
+}
+
+.buttonColor:hover {
+	color: white !important;
+	background: #5F071B !important;
+}

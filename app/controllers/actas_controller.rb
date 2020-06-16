@@ -9,7 +9,7 @@ class ActasController < ApplicationController
     begin
       @tacactas = TacActa.all
       @tacfirmantes = TacFirmante.all
-      @tinsedes = TinSede.all
+      #@tinsedes = TinSede.all
       @TiempoHora = Time.now
     rescue Exception => e
       flash[:error] = "No se pudo conectar con la Base de Datos"

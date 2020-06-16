@@ -22,15 +22,13 @@
 </div>
 
 <table class="table" id="tacactasFirmantes">
-  <thead class="tabla-color" >
+  <thead class="backroundColorPrincipal" >
     <tr>
       <th scope="col">Acta</th>
       <th scope="col">Nombre</th>
       <th scope="col">Cedula</th>
       <th scope="col">Unidad</th>
       <th scope="col">Extensión o Sede</th>
-      <th scope="col">Competencia</th>
-      <th scope="col">Materia</th>
       <th scope="col">Resolución</th>
       <th scope="col">Acciones</th>
     </tr>
@@ -43,12 +41,10 @@
       <td><%= juramentados.cedula%></td>
       <td><%= juramentados.coordinaciones_regionales%></td>
       <td><%= juramentados.coordinaciones_extensiones%></td>
-      <td><%= juramentados.competencia%></td>
-      <td><%= juramentados.materia%></td>
       <td><%= juramentados.resolucion%></td>
       <td>
-        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "btn btn-warning fa fa-edit"%>
-        <%= link_to '', juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "btn btn-danger fa fa-trash"%> 
+        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "clear button fi-page-edit"%>
+        <%= link_to '', juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "clear button alert fi-trash"%> 
       </td>
 
     </tr>
@@ -56,9 +52,8 @@
   </tbody> 
 </table>
 
-<div class="offset-md-5 ">
-   <%= link_to 'Agregar', new_juramentado_path, :class => "btn tabla-color col-md-2", id: 'asd'%> 
-
+<div class="text-center ">
+   <%= link_to 'Agregar', new_juramentado_path, :class => "button buttonColor", id: 'asd'%> 
 </div>
 <p id="asd2"></p>
 <script>

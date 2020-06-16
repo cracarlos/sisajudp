@@ -20,8 +20,8 @@
     </div>
   <%end%>
 </div>
-<table class="table" id="tacactasFirmantes" >
-  <thead class="tabla-color">
+<table class="" id="tacactasFirmantes" >
+  <thead class="backroundColorPrincipal">
     <tr>
       <th scope="col">Acta</th>
       <th scope="col">Sede</th>
@@ -31,13 +31,13 @@
   </thead>
   <tbody>
      <% @tacactasFirmantes.each do |acta| %>
-    <tr>
-      <td><%= acta.numero_acta%></td>
-      <td><%= acta.sede%></td>
-      <td> <%= acta.titulo %>. <%= acta.nombre_completo%></td>
-      <td><%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> </td>
-      
-    </tr>
+      <tr>
+        <td><%= acta.numero_acta%></td>
+        <td><%= acta.sede%></td>
+        <td> <%= acta.titulo %>. <%= acta.nombre_completo%></td>
+        <td><%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "btn btn-info fa fa-print", :title => "Generar" %> </td>
+        
+      </tr>
      <% end %>
   </tbody> 
 </table>
