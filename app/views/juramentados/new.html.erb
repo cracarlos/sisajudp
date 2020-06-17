@@ -188,9 +188,11 @@
         <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
               :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
       </div>
-      <div class="large-6 cell">
+    </div>
+    <div class="grid-x grid-padding-x">
+      <div class="large-12 cell">
         <%= form.label :materias %>
-        <select id="materias" class="form-control" name="acta[tac_materia_id]" required></select>
+        <select id="materias" class="form-control" name="acta[tac_materia_id]" required multiple></select>
       </div>
     </div>
   </div>
