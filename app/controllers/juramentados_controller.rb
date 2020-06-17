@@ -37,7 +37,7 @@ class JuramentadosController < ApplicationController
       redirect_to :juramentados
     rescue Exception => e
       flash[:error] = "No se pudo guardar al Juramentado" 
-      puts e
+      puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
       redirect_to :juramentados
     end
   end
@@ -58,11 +58,16 @@ class JuramentadosController < ApplicationController
   end
 
   def update
-    @tacjuramentados = TacJuramentado.find(params[:id])
-    if @tacjuramentados.update(juramentados_parametros_edit)
-      redirect_to action: 'show', id: @tacjuramentados.id
-    else
-      render 'index'
+    begin
+      @tacjuramentados = TacJuramentado.find(params[:id])
+      @tacjuramentados.update(juramentados_parametros_edit)
+      #redirect_to action: 'show', id: @tacjuramentados.id
+      flash[:info] = "Guardado" 
+      redirect_to :juramentados
+    rescue Exception => e
+      flash[:error] = "No se pudo modificar al Juramentado" 
+      puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
+      redirect_to :juramentados
     end	
   end
 
@@ -100,15 +105,15 @@ class JuramentadosController < ApplicationController
     def juramentados_parametros
       params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
                                    :segundo_apellido, :cedula, :cargo, :resolucion, 
-                                   :tac_acta_id, :fecha_resolucion,:tac_unidade_id, 
-                                   :tac_extensiones_sedes_id, :tac_competencia_id, :tac_materia_id)
+                                   :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
+                                   :tac_unidade_id, :tac_extensiones_sedes_id,:tac_materia_id)
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                              :segundo_apellido, :cedula, :cargo, :resolucion,
-                                              :tac_acta_id, :fecha_resolucion,:tac_unidade_id,
-                                              :tac_extensiones_sedes_id,:tac_competencia_id,:tac_materia_id)
+                                               :segundo_apellido, :cedula, :cargo, :resolucion, 
+                                               :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
+                                               :tac_unidade_id, :tac_extensiones_sedes_id,:tac_materia_id)
     end
 
     def cedulados

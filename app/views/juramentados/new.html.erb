@@ -81,117 +81,123 @@
 
 </script>
 <section> 
-  <h1 class="" style= "margin-top:1%;">Registro de Juramentados</h1>
+  <h2 class="" style= "margin-top:1%;">Registro de Juramentados</h2>
   <%= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
 
 
-  <div class="PraParte">
-      <div style= "margin-top:2%;">
-      <div class="form-group"> 
-        <div class = "form-row">
-          <input class="form-control col-md-4" placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
-          <input type="button" value="Buscar" id="buscador" style="margin-left:10px" class="btn btn-success focus">
-          <span id="notificacion" style="margin-left:15px"></span>
+  
+      <div class="callout border-none radius bordered shadow card">
+        <div class="grid-x grid-padding-x"> 
+          <div class = "large-3 cell" style="display: flex;">
+            <div class="input-group">
+              <input class="input-group-field" placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
+            <div class="input-group-button">
+              <input type="button" value="Buscar" id="buscador" class="button buttonColor">
+            </div>
+            </div>            
+          </div>
+          <div class = "large-5 cell">
+            <span id="notificacion" ></span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class = "form-row">
-
-      <div class="form-group">
-        <%= form.label :Cédula %>
-        <%= form.text_field :cedula, :class => "form-control col-md-7 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Acta %><br> 
-        <%= form.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
-              :id, :numero_acta), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
-     </div>
-
       
-    </div>
+ 
 
-    <div class = "form-row">
-      <%= form.label :Nombres %>
-    </div>
-    <div class = "form-row">
-      <div class="form-group">
-        <%= form.text_field :primer_nombre, :class => "form-control", placeholder: "Primer nombre", id: 'primer_nombre' %>
-      </div>
-      <div class="form-group">
-        <%= form.text_field :segundo_nombre, :class => "form-control offset-md-1", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
-      </div>
-    </div>
 
-    <div class = "form-row">
-      <%= form.label :Apellidos %>
-    </div>
-    <div class = "form-row">
-      <div class="form-group">
+    
+      
+   <div class="callout border-none radius bordered shadow card">
+    <h4>Nombres y Apellidos</h4>
+        <%= form.label :Nombres %>
+
+    <div class = "grid-x grid-padding-x">
+      
+        
+      <div class="large-4 cell">
+        <%= form.text_field :primer_nombre, :class => "", placeholder: "Primer nombre", id: 'primer_nombre' %>
+      </div>
+     <div class="large-4 cell">
+        <%= form.text_field :segundo_nombre, :class => "", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
+     </div>
+      
+    </div>  
+    <%= form.label :Apellidos %>
+   
+    <div class = "grid-x grid-padding-x">
+      <div class="large-4 cell">
         <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido", id: 'primer_apellido' %>
       </div>
-      <div class="form-group">
+      <div class="large-4 cell">
         <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido", id: 'segundo_apellido' %>
       </div>
     </div>
 
+    <div  class = "grid-x grid-padding-x">
+      <div class="large-2 cell">
+        <%= form.label :Cédula %>
+        <%= form.text_field :cedula, :class => "form-control col-md-7 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}' %>
+      </div>
+    </div>
+     
+   </div>
       
-  </div>
-  
-  
-  <div class="seguda_parte">
-      <div class = "form-row">
-        <div class="form-group">
-          <%= form.label :cargo %><br> 
-          <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
-                :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
-        </div>
-        <div class="form-group">
-          <%= form.label :resolución %><br>
+  <div class="callout border-none radius bordered shadow card">
+    <h4>Datos del Acta</h4>
+      <div class = "grid-x grid-padding-x">
+        <div class="large-4 cell">
+          <%= form.label :Acta %>
+          <%= form.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
+                :id, :numero_acta), { prompt: 'Seleccione acta...' }, { required: true, class: 'form-control' } %>
+       </div>   
+        <div class="large-4 cell">
+          <%= form.label :resolución %>
           <%= form.text_field :resolucion, :class => "form-control" %>
         </div>
-        <div class="form-group" style="margin-left: 30px;">
-          <%= form.label :fecha %><br>
+        <div class="large-4 cell">
+          <%= form.label :fecha %>
           <%= form.date_field( :fecha_resolucion, start_year: 2020)%>
-        </div>
-      
+        </div> 
     </div>
-    <div class= "form-row">
-      <div class="form-group">
-        <%= form.label :unidad %><br> 
+
+    <div class="grid-x grid-padding-x">
+      <div class="large-4 cell">
+          <%= form.label :Cargo %>
+          <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
+                :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      </div>   
+    </div>
+
+    <div class= "grid-x grid-padding-x">
+      <div class="large-6 cell">
+        <%= form.label :unidad %>
         <%= form.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
               :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
       </div>
-
-      <div class="form-group" style="margin-left: 10px;">
-        <%= form.label :extension_o_sede %><br> 
+     
+      <div class="large-6 cell">
+        <%= form.label :extension_o_sede %>
         <select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]" required></select>
       </div>
-
+      
     </div>
 
-    <div class = "form-row">
-      <div class="form-group">
-        <%= form.label :competencia %><br> 
+    <div class = "grid-x grid-padding-x">
+      <div class="large-6 cell">
+        <%= form.label :competencia %>
         <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
               :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
       </div>
-      <div class="form-group" style="margin-left: 10px;">
-        <%= form.label :materias %><br> 
+      <div class="large-6 cell">
+        <%= form.label :materias %>
         <select id="materias" class="form-control" name="acta[tac_materia_id]" required></select>
       </div>
     </div>
-
-    <div class = "form-row">
-      
-    </div>
-  
   </div>
   
   
-  <div style="margin-top: 20px;">
-    <%= form.submit "Guardar", :class => "btn tabla-color col-md-2 offset-md-3 " %>
+  <div class="text-center" style="margin-top: 20px;">
+    <%= form.submit "Guardar", :class => "button large rounded bordered shadow buttonColor" %>
   </div>
   <% end %>
 </section>

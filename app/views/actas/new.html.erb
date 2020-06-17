@@ -13,22 +13,26 @@
   </div>
 </div>
 
-<%= acta.label :Firmante %><br>
-<div class="form-row"> 
-  <div class="form-group">
-    <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
-            :id, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+<div class="grid-x grid-padding-x" >
+  
+  <div class="large-4 cell"> 
+    <%= acta.label :Firmante %><br>
+   
+      <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
+              :id, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+  </div>
+   <div class="large-4 cell">
+    <%= acta.label :Fecha %><br>
+    <input type="date" name="acta[para]">
   </div>
 </div>
 
-<%= acta.label :Fecha %><br>
-<div class="form-row"> 
-  <div class="form-group">
-    <%= acta.datetime_select( :para, start_year: 2019) %>
-  </div>
+
+<div class="grid-x grid-padding-x"> 
+
 </div>
 
-<div class="form-row" style="margin-top: 30px;">
-    <%= acta.submit "Guardar", :class => "btn tabla-color col-md-2 offset-md-3" %>
+<div class="text-center" style="">
+    <%= acta.submit "Guardar", :class => "button rounded bordered shadow buttonColor" %>
 </div>
 <% end %>

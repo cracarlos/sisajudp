@@ -3,25 +3,19 @@
 </p>
 <div>
   <% if flash[:info]%>
-    <div class="alert alert-success alert-dismissible fade show"> 
+    <div class="callout success"> 
       <%=flash[:info] %> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   <%end%>
 
   <% if flash[:error]%>
-    <div class="alert alert-danger alert-dismissible fade show"> 
+    <div class="callout alert"> 
       <%=flash[:error] %> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   <%end%>
 </div>
 
-<table class="table" id="tacactasFirmantes">
+<table class="radius bordered shadow" id="tacactasFirmantes">
   <thead class="backroundColorPrincipal" >
     <tr>
       <th scope="col">Acta</th>
@@ -43,8 +37,8 @@
       <td><%= juramentados.coordinaciones_extensiones%></td>
       <td><%= juramentados.resolucion%></td>
       <td>
-        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "clear button fi-page-edit"%>
-        <%= link_to '', juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "clear button alert fi-trash"%> 
+        <%= link_to '', edit_juramentado_path(juramentados.id), :class => "badge warning fi-page-edit", :title => "Editar"%>
+        <%= link_to '', juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "badge alert fi-trash", :title => "Eliminar"%> 
       </td>
 
     </tr>
@@ -53,7 +47,7 @@
 </table>
 
 <div class="text-center ">
-   <%= link_to 'Agregar', new_juramentado_path, :class => "button buttonColor", id: 'asd'%> 
+   <%= link_to 'Agregar', new_juramentado_path, :class => "button rounded bordered shadow buttonColor", id: 'asd'%> 
 </div>
 <p id="asd2"></p>
 <script>
