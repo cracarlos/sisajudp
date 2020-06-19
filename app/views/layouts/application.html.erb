@@ -113,19 +113,12 @@
     <script src="jquery.min.js"></script>
     <script src="foundation.js"></script>
     <script>
-      $(document).foundation();
-      $(document).ready(function(){
-
-          var display = $('#subMenu').css("display");
-          $('#menu').click(function(event) {
-            $('#subMenu').slideToggle(300);
-          });
-
-          var nav = $('#nav').css("display");         
-          $('#despliegue').click(function(event) {
-            $('#nav').slideToggle(300);
-          });
+      $(document).ready(function() {
+        $('#materias').select2();
+        $(document).foundation();
       });
+      
+      //$('#materias').select2();
     </script>
     <% end %>
   </body>

@@ -65,7 +65,7 @@
 // ######## Materias #####################
   
   $('#competencia').change(function() {
-    $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
+   // $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
     var competencia = $('#competencia').val();    
     $.post("materias", function(result){
       $.each(result, function(i, field){
@@ -192,8 +192,9 @@
     <div class="grid-x grid-padding-x">
       <div class="large-12 cell">
         <%= form.label :materias %>
-        <select id="materias" class="" name="acta[tac_materia_id][]" required multiple></select> 
-        <%#= form.select :tac_materia_id, [], {}, {:multiple => true, :id => :materias} %>
+        <select id="materias" class="asd" name="acta[tac_materia_id][]" multiple="multiple"></select>
+        <!--<select id="materias" class="" name="acta[tac_materia_id][]" required multiple></select> -->
+        <%#= form.select :tac_materia_id, [1,2,3], {}, {:multiple => true, :id => :materias} %>
       </div>
     </div>
   </div>
