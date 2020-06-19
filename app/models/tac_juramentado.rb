@@ -2,6 +2,8 @@ class TacJuramentado  < ApplicationRecord
   belongs_to :tac_acta
   has_many :tac_unidade
   has_many :tac_extensiones_sede
+  has_many :tac_materia
+  #accepts_nested_attributes_for :tac_materia
 
   def self.numero_acta
 	select('* ,tac_juramentados.id').
