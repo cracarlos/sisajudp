@@ -1,6 +1,7 @@
 class TacActa < ApplicationRecord
   belongs_to :tac_firmante
   has_many :tac_juramentados
+  has_many :tac_juramentados_materias
   
   def self.acta_abiertas
 	select('numero_acta,sede,nombre_completo, tac_actas.id').
@@ -24,7 +25,7 @@ class TacActa < ApplicationRecord
 		    TO_CHAR(tac_juramentados.fecha_resolucion, 'dd/mm/yyyy') AS fecha_resolucion,
 		    competencia, tac_firmantes.nombre_completo, tac_firmantes.cargo AS cargo_f,
 		    tac_firmantes.nombramiento,
-		    tac_firmantes.titulo,tac_firmantes.texto,tac_materias.materia, tac_unidades.coordinaciones_regionales,
+		    tac_firmantes.titulo,tac_firmantes.nombramiento,tac_materias.materia, tac_unidades.coordinaciones_regionales,
 		    tac_extensiones_sedes.coordinaciones_extensiones"
 		    ).
 	  joins(" 
@@ -32,7 +33,8 @@ class TacActa < ApplicationRecord
 		   INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
 		   LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
 		   INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
-		   INNER JOIN tac_materias ON tac_materias.id = tac_juramentados.tac_materia_id
+		   INNER JOIN tac_juramentado_materias ON tac_juramentado_materias.tac_juramentado_id = tac_juramentados.id
+		   INNER JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.tac_materia_id
 		   INNER JOIN tac_firmantes ON tac_firmantes.id = tac_actas.tac_firmante_id").
 	  where(id: generar)
 	  #joins(:tac_juramentados, :tac_firmante, :tac_competencia)
@@ -50,5 +52,10 @@ class TacActa < ApplicationRecord
 
   def self.numero_acta
 	select('id,numero_acta').where(estatus: true)
+  end
+
+  def self.multi
+	  select("primer_nombre").
+	  from("tac_juramentados")
   end
 end

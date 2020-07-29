@@ -20,5 +20,6 @@
 //= require DataTables-1.10.21/js/dataTables.foundation.min
 //= require datatables.min
 //= require dist/js/select2.min
+//= require cocoon
 
 

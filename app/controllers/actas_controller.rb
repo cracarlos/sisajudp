@@ -7,10 +7,21 @@ class ActasController < ApplicationController
 
   def new
     begin
-      @tacactas = TacActa.all
+      @tacactas = TacActa.last
       @tacfirmantes = TacFirmante.all
-      #@tinsedes = TinSede.all
+      #@tinsedes = TinSede.all Activar cuando este en la DP
       @TiempoHora = Time.now
+      
+      # ------------------ Correlativo de las Actas -------------------
+      
+       if @tacactas
+         @correlativo = @tacactas.numero_acta + 1    
+       end
+
+      if !@tacactas
+        @correlativo = 1
+      end
+
     rescue Exception => e
       flash[:error] = "No se pudo conectar con la Base de Datos"
       redirect_to :actas_abiertas
@@ -21,7 +32,7 @@ class ActasController < ApplicationController
 
   def create
     begin  
-      @tacactas = TacActa.new(actaa)
+      @tacactas = TacActa.new(acta)
       @tacactas.save!
       flash[:info] = "Acta Creada" 
       redirect_to :actas_abiertas
@@ -35,7 +46,7 @@ class ActasController < ApplicationController
   def edit
     @tacactas = TacActa.find(params[:id])
 	  @tacfirmantes = TacFirmante.all
-	  @tinsedes = TinSede.all
+	  #@tinsedes = TinSede.all  Activar cuando este en la DP
     @tac_compentencias = TacCompetencia.all
   end
 
@@ -101,7 +112,7 @@ class ActasController < ApplicationController
 
   private
     def acta
-	  params.require(:acta).permit(:sede, :tac_firmante_id, :para)
+	  params.require(:acta).permit(:numero_acta,:sede, :tac_firmante_id, :para)
 	end
 
 	def acta_edit

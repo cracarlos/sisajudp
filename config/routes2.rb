@@ -2,14 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :usuarios
   root 'actas#index'
-  resources :tac_juramentados
+  resources :juramentados
   resources :actas
   get :generate_pdf, to: "actas#generate_pdf"
-  post '/tac_juramentados/traer_cedulados', to: "tac_juramentados#traer_cedulados"
-  post '/tac_juramentados/extensiones_sedes', to: "tac_juramentados#extensiones_sedes"
-  post '/tac_juramentados/:id/extensiones_sedes', to: "tac_juramentados#extensiones_sedes"
-  post '/tac_juramentados/materias', to: "tac_juramentados#materias"
-  post '/tac_juramentados/:id/materias', to: "tac_juramentados#materias"
+  post '/juramentados/traer_cedulados', to: "juramentados#traer_cedulados"
+  post '/juramentados/extensiones_sedes', to: "juramentados#extensiones_sedes"
+  post '/juramentados/:id/extensiones_sedes', to: "juramentados#extensiones_sedes"
+  post '/juramentados/materias', to: "juramentados#materias"
+  post '/juramentados/:id/materias', to: "juramentados#materias"
   get 'cerrar_acta/:id', to: 'actas#cerrar_acta', as: 'cerrar_acta'
   get 'actas/abiertas'
   get 'usuarios_sistema', to: 'usuarios_sistema#index'

@@ -1,0 +1,235 @@
+<div class="callout border-none radius bordered shadow card">
+        <div class="grid-x grid-padding-x"> 
+          <div class = "large-3 cell" style="display: flex;">
+            <div class="input-group">
+              <input class="input-group-field" placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
+            <div class="input-group-button">
+              <input type="button" value="Buscar" id="buscador" class="button buttonColor">
+            </div>
+            </div>            
+          </div>
+          <div class = "large-5 cell">
+            <span id="notificacion" ></span>
+          </div>
+        </div>
+      </div>
+      
+<%= form_for @juramentado, :html => {:id => "formulario"} do |form| %>
+  <%#= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
+  
+   <div class="callout border-none radius bordered shadow card">
+    <h4>Nombres y Apellidos</h4>
+        <%= form.label :Nombres %>
+
+    <div class = "grid-x grid-padding-x">
+      
+        
+      <div class="large-4 cell">
+        <%= form.text_field :primer_nombre, :class => "", placeholder: "Primer nombre", id: 'primer_nombre' %>
+      </div>
+     <div class="large-4 cell">
+        <%= form.text_field :segundo_nombre, :class => "", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
+     </div>
+      
+    </div>  
+    <%= form.label :Apellidos %>
+   
+    <div class = "grid-x grid-padding-x">
+      <div class="large-4 cell">
+        <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido", id: 'primer_apellido' %>
+      </div>
+      <div class="large-4 cell">
+        <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido", id: 'segundo_apellido' %>
+      </div>
+    </div>
+
+    <div  class = "grid-x grid-padding-x">
+      <div class="large-2 cell">
+        <%= form.label :Cédula %>
+        <%= form.text_field :cedula, :class => "form-control col-md-7 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}' %>
+      </div>
+    </div>
+     
+   </div>
+      
+  <div class="callout border-none radius bordered shadow card">
+    <h4>Datos del Acta</h4>
+    <div class = "grid-x grid-padding-x">
+      <div class="large-4 cell">
+        <%= form.label :Acta %>
+        <%= form.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
+                :id, :numero_acta), { prompt: 'Seleccione acta...' }, { required: true, class: 'form-control' } %>
+      </div>   
+      <div class="large-4 cell">
+          <%= form.label :resolución %>
+          <%= form.text_field :resolucion, :class => "form-control" %>
+      </div>
+      <div class="large-4 cell">
+          <%= form.label :fecha %>
+          <%= form.date_field( :fecha_resolucion, start_year: 2020)%>
+      </div> 
+    </div>
+
+    <div class="grid-x grid-padding-x">
+      <div class="large-4 cell">
+          <%= form.label :Cargo %>
+          <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
+                :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      </div>   
+    </div>
+
+    <div class= "grid-x grid-padding-x">
+      <div class="large-6 cell">
+        <%= form.label :unidad %>
+        <%= form.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
+              :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
+      </div>
+     
+      <div class="large-6 cell">
+        <%= form.label :extension_o_sede %>
+        <select id="sedes" class="form-control" name="tac_juramentado[tac_extensiones_sedes_id]" required></select>
+      </div>
+      
+    </div>
+
+    <div class = "grid-x grid-padding-x">
+      <div class="large-6 cell">
+        <%= form.label :competencia %>
+        <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
+              :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
+      </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+      <div class="large-12 cell">
+        <div id='tac_juramentado_materias'>
+          <%= form.fields_for :tac_juramentado_materias do |materia| %>
+           <!-- <select id="materias" class="asd" name="tac_juramentado[tac_juramentado_materias_attributes][tac_materia_id]" multiple="multiple"></select> -->
+             
+            <%= render 'materias_fields', :f => materia %>
+                
+            
+          <% end %>
+          <div class='links'>
+              <%= link_to_add_association 'agregar materias', form, :tac_juramentado_materias %>
+            </div>
+        </div>
+        
+       
+       <!-- <select id="materias" class="" name="tac_juramentado[tac_juramentado_materias_attributes][1593462868100][tac_materia_id]" required multiple></select> -->
+        <%#= form.select :tac_materia_id, [1,2,3], {}, {:multiple => true, :id => :materias} %>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="text-center" style="margin-top: 20px;">
+    <%= form.submit "Guardar", :class => "button large rounded bordered shadow buttonColor" %>
+  </div>
+  <% end %>
+
+  <script>
+    var contador = false;
+    $(document).ready(function(){
+    $("#formulario")[0].reset();
+ // ######### Traer Cedulados ##################################   
+    function buscar_cedula() {
+      var cedula = $('#cedula').val();
+
+      $.ajax(
+            {   url: 'traer_cedulados',
+              data: {cedula: cedula},
+              type: 'post',
+              //dataType: 'json',
+              success: function(data) {
+                procesarDatos(data)
+              },
+              error: function() {
+                  $("#notificacion").html("<p style='color:red'>No se encuentra el funcionario</p>");
+              }
+            }
+          );
+
+      function procesarDatos(datos_devueltos){
+        $("#notificacion").html("<p style='color:green'>Encontrado</p>");
+        $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
+        $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
+        $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
+        $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
+        $("#FormCedula").val(datos_devueltos.NUMCEDULA);
+        // a continuación le agregamos disable a los campos que es traidos desdes el ajax
+        $("#primer_nombre").attr('readonly', true);
+        $("#segundo_nombre").attr('readonly', true);
+        $("#primer_apellido").attr('readonly', true);
+        $("#segundo_apellido").attr('readonly', true);
+        $("#FormCedula").attr('readonly', true);
+      }
+    }
+
+    $('#cedula').change(function() {
+      buscar_cedula();
+    });
+
+    $("#buscador").click(function(){
+      buscar_cedula();
+      
+      //return false
+    });
+// ######## Fin Traer Cedulados ###############################
+
+// ######## Unidades y sedes #####################
+  
+  $('#unidad').change(function() {
+    $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
+    var unidad = $('#unidad').val();    
+    $.post("extensiones_sedes", function(result){
+      $.each(result, function(i, field){
+        if (unidad == field.tac_unidade_id) {
+          $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
+        }
+      });
+    }, 'json');
+  });
+
+// ######## Fin Unidades y sedes #####################
+
+// ######## Materias #####################
+  
+  $('#competencia').change(function() {
+    $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
+    var competencia = $('#competencia').val();    
+    $.post("materias", function(result){
+      $.each(result, function(i, field){
+        if (competencia == field.tac_competencia_id) {
+          $("#materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+        }
+      });
+    }, 'json');
+    $(".add_fields").click();
+    contador = true;
+  });
+
+/*
+  $(".add_fields").click(function() {
+    if (contador == true) {
+      //$("#asd").html("<select id = 'materias2'>" +"<option>" +"Seleccione..."+ "</option>"+ "</select>" );
+    }
+    $("#materias option").each(function(){
+      console.log('opcion '+$(this).text()+' valor '+ $(this).attr('value'))
+      //console.log($(this).text())
+      //console.log($(this).attr('value'))
+      $("#materias").append(`<option value = $(this).attr('value') >` + $(this).text() + "</option>" );
+      //$(`<option value = $(this).attr('value') >` + $(this).text() + "</option>").appendTo("#materias");
+
+    });
+  });
+*/
+
+$().change
+// ######## Fin Materias #####################
+
+ 
+
+  
+
+});
+  </script>

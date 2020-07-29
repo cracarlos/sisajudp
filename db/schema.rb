@@ -49,6 +49,11 @@ ActiveRecord::Schema.define(version: 2019_10_30_155651) do
     t.string "nombramiento", limit: 500
   end
 
+  create_table "tac_juramentado_materias", id: :integer, default: nil, force: :cascade do |t|
+    t.integer "tac_juramentado_id"
+    t.integer "tac_materia_id"
+  end
+
   create_table "tac_juramentados", id: :integer, default: nil, force: :cascade do |t|
     t.string "primer_nombre", limit: 15, null: false
     t.string "segundo_nombre", limit: 15
@@ -57,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_155651) do
     t.string "cedula", limit: 9, null: false
     t.string "cargo", null: false
     t.string "resolucion", null: false
-    t.string "competencia", null: false
+    t.integer "tac_competencia_id", null: false
     t.integer "tac_acta_id"
     t.date "fecha_resolucion"
     t.integer "tac_unidade_id", null: false
@@ -67,19 +72,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_155651) do
   create_table "tac_materias", id: :integer, default: nil, force: :cascade do |t|
     t.string "materia", limit: 120, null: false
     t.integer "tac_competencia_id", null: false
-  end
-
-  create_table "tac_pre_juramentados", id: :integer, default: nil, force: :cascade do |t|
-    t.string "primer_nombre", limit: 15, null: false
-    t.string "segundo_nombre", limit: 15
-    t.string "primer_apellido", limit: 15, null: false
-    t.string "segundo_apellido", limit: 15
-    t.string "cedula", limit: 9, null: false
-    t.string "cargo", null: false
-    t.string "sede", null: false
-    t.string "resolucion", null: false
-    t.string "competencia", null: false
-    t.integer "id_numero_acta", null: false
   end
 
   create_table "tac_unidades", id: :integer, default: nil, force: :cascade do |t|
@@ -100,6 +92,9 @@ ActiveRecord::Schema.define(version: 2019_10_30_155651) do
 
   add_foreign_key "tac_actas", "tac_firmantes", name: "tac_actas_id_firmante_fkey"
   add_foreign_key "tac_extensiones_sedes", "tac_unidades", column: "tac_unidade_id", name: "tac_extensiones_sedes_tac_unidades_id_fkey"
+  add_foreign_key "tac_juramentado_materias", "tac_juramentados", name: "tac_juramentado_materias_tac_juramentado_id_fkey"
+  add_foreign_key "tac_juramentado_materias", "tac_materias", name: "tac_juramentado_materias_tac_materia_id_fkey"
   add_foreign_key "tac_juramentados", "tac_actas", name: "tac_juramentados_tac_acta_id_fkey"
+  add_foreign_key "tac_juramentados", "tac_competencias", name: "\ttac_juramentados_tac_competencias_id_fkey"
   add_foreign_key "tac_materias", "tac_competencias", name: "tac_materias_tac_competencias_id_fkey"
 end

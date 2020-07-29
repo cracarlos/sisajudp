@@ -1,0 +1,24 @@
+<script>
+  
+
+</script>
+<section> 
+  <h2 class="" style= "margin-top:1%;">Registro de Juramentados</h2>
+  <%= render 'form', tac_juramentados: @juramentado %>
+      
+  
+</section>
+
+<script>
+  $("form")
+    .off("keyup",     ".enteroPositivo").on("keyup",     ".enteroPositivo",    function() {this.value = this.value.replace(/[^0-9]/g,'');});
+
+  $("body")
+    .off("mouseover", ".focus").on("mouseover", ".focus",             function() {this.focus();});
+
+   /* $('#unidad').click(function() {
+      alert('asd');
+    });*/
+    
+
+</script>

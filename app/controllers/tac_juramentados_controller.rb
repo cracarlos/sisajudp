@@ -1,4 +1,4 @@
-class JuramentadosController < ApplicationController
+class TacJuramentadosController < ApplicationController
   before_action :authenticate_usuario!
 
   def index
@@ -24,7 +24,7 @@ class JuramentadosController < ApplicationController
 
     rescue Exception => e
       flash[:error] = "Problema de Conexión con Bases de Datos" 
-      redirect_to :juramentados
+      redirect_to :tac_juramentados
       puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
       
     end
@@ -32,17 +32,19 @@ class JuramentadosController < ApplicationController
   end
 
   def create
-    begin
+    #begin
       @tacjuramentados = TacJuramentado.new(juramentados_parametros)
-      puts juramentados_parametros.inspect
-      @tacjuramentados.save
+      puts '111111111111111111111' + juramentados_parametros.inspect
+      puts '22222222222222222222' + @tacjuramentados.inspect
+      @tacjuramentados.save(validate: false)
+      puts '33333333333333333333' + @tacjuramentados.save.inspect
       flash[:info] = "Guardado" 
-      redirect_to :juramentados
-    rescue Exception => e
-      flash[:error] = "No se pudo guardar al Juramentado" 
-      puts '!!!!!!!!!!!!!!!!!!!111111111' + e.inspect
-      redirect_to :juramentados
-    end
+      redirect_to :tac_juramentados
+    #rescue Exception => e
+     # flash[:error] = "No se pudo guardar al Juramentado" 
+     # puts '!!!!!!!!!!!!!!!!!!!111111111' + e.inspect
+      #redirect_to :tac_juramentados
+    #end
   end
 
   def show
@@ -66,23 +68,26 @@ class JuramentadosController < ApplicationController
       @tacjuramentados.update(juramentados_parametros_edit)
       #redirect_to action: 'show', id: @tacjuramentados.id
       flash[:info] = "Guardado" 
-      redirect_to :juramentados
+      redirect_to :tac_juramentados
     rescue Exception => e
       flash[:error] = "No se pudo modificar al Juramentado" 
       puts '!!!!!!!!!!!!!!!!!!!' + e.inspect
-      redirect_to :juramentados
+      redirect_to :tac_juramentados
     end	
   end
 
   def destroy
     begin
       @tacjuramentados = TacJuramentado.find(params[:id])
+      puts '¡¡¡¡¡¡DESTROY!!!!!' + @tacjuramentados.inspect
       @tacjuramentados.destroy
+      puts '¡¡¡¡¡¡DESTROY!!!!! 222' + @tacjuramentados.destroy.inspect
       flash[:info] = "Eliminado" 
-      redirect_to :juramentados
+      redirect_to :tac_juramentados
     rescue Exception => e
+      puts '¡¡¡¡¡DETALES DEL ERROR!!!!!' + e.inspect
       flash[:error] = "No se pudo eliminar" 
-      redirect_to :juramentados
+      redirect_to :tac_juramentados
     end
     
   end
@@ -106,10 +111,10 @@ class JuramentadosController < ApplicationController
 
   private
     def juramentados_parametros
-      params.require(:acta).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
+      params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
                                    :segundo_apellido, :cedula, :cargo, :resolucion, 
                                    :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
-                                   :tac_unidade_id, :tac_extensiones_sedes_id,materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy])
+                                   :tac_unidade_id, :tac_extensiones_sedes_id,tac_juramentado_materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy])
        end
 
     def juramentados_parametros_edit

@@ -111,7 +111,7 @@
         <div class="large-4 cell">
           <%= form.label :Acta %>
           <%= form.select :tac_acta_id, options_from_collection_for_select(@tac_actas,
-                :id, :numero_acta), { prompt: 'Seleccione acta...' }, { required: true, class: 'form-control' } %>
+                :id, :numero_acta,form.object.tac_acta_id), { prompt: 'Seleccione acta...' }, { required: true, class: 'form-control' } %>
        </div>   
         <div class="large-4 cell">
           <%= form.label :resolución %>
@@ -127,7 +127,7 @@
       <div class="large-4 cell">
           <%= form.label :Cargo %>
           <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
-                :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+                :cargos, :cargos,form.object.cargo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
       </div>   
     </div>
 
@@ -135,7 +135,7 @@
       <div class="large-6 cell">
         <%= form.label :unidad %>
         <%= form.select :tac_unidade_id, options_from_collection_for_select(@tac_unidades,
-              :id, :coordinaciones_regionales), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
+              :id, :coordinaciones_regionales, form.object.tac_unidade_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control',id: 'unidad' } %>
       </div>
      
       <div class="large-6 cell">
@@ -149,7 +149,7 @@
       <div class="large-6 cell">
         <%= form.label :competencia %>
         <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
-              :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
+              :id, :competencia, form.object.tac_competencia_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
       </div>
     </div>
     <div class="grid-x grid-padding-x">

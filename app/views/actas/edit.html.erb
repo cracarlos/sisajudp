@@ -17,8 +17,8 @@
     <% end %>
 
     <div class="form-row"> 
-      <div class="form-group">
-        <%= acta.select :sede, options_from_collection_for_select(@tinsedes,
+      <div class="form-group"> <!-- Activar cuando este en la DP -->
+        <%#= acta.select :sede, options_from_collection_for_select(@tinsedes,
             :direccion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
       </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-row"> 
       <div class="form-group">
         <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
-            :id, :nombre_completo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+            :id, :nombre_completo, acta.object.tac_firmante_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
       </div>
     </div>
     <div class="row" style="margin-top: 30px;">
