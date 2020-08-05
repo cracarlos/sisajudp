@@ -103,20 +103,12 @@
       <div class="large-12 cell">
         <div id='tac_juramentado_materias'>
           <%= form.fields_for :tac_juramentado_materias do |materia| %>
-           <!-- <select id="materias" class="asd" name="tac_juramentado[tac_juramentado_materias_attributes][tac_materia_id]" multiple="multiple"></select> -->
-             
-            <%= render 'materias_fields', :f => materia %>
-                
-            
+            <%= render 'materias_fields', :f => materia %>   
           <% end %>
           <div class='links'>
-              <%= link_to_add_association 'agregar materias', form, :tac_juramentado_materias %>
+              <%= link_to_add_association '', form, :tac_juramentado_materias, :class => "button tiny rounded bordered shadow success fi-plus ",:title => "Agregar Materia" %>
             </div>
         </div>
-        
-       
-       <!-- <select id="materias" class="" name="tac_juramentado[tac_juramentado_materias_attributes][1593462868100][tac_materia_id]" required multiple></select> -->
-        <%#= form.select :tac_materia_id, [1,2,3], {}, {:multiple => true, :id => :materias} %>
       </div>
     </div>
   </div>
@@ -193,38 +185,41 @@
 // ######## Fin Unidades y sedes #####################
 
 // ######## Materias #####################
-  
+  $('.add_fields').hide(); // Oculto el enlace
   $('#competencia').change(function() {
     $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
     var competencia = $('#competencia').val();    
     $.post("materias", function(result){
       $.each(result, function(i, field){
         if (competencia == field.tac_competencia_id) {
-          $("#materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+          $(".materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
         }
       });
     }, 'json');
     $(".add_fields").click();
+    $('.add_fields').show(); // Muestro el enlace
     contador = true;
   });
 
-/*
+  
+
   $(".add_fields").click(function() {
     if (contador == true) {
       //$("#asd").html("<select id = 'materias2'>" +"<option>" +"Seleccione..."+ "</option>"+ "</select>" );
+    $(".materias").attr("class","materias2");
     }
-    $("#materias option").each(function(){
-      console.log('opcion '+$(this).text()+' valor '+ $(this).attr('value'))
-      //console.log($(this).text())
-      //console.log($(this).attr('value'))
-      $("#materias").append(`<option value = $(this).attr('value') >` + $(this).text() + "</option>" );
-      //$(`<option value = $(this).attr('value') >` + $(this).text() + "</option>").appendTo("#materias");
-
-    });
   });
-*/
 
-$().change
+  $('body').on('click', '.add_fields', function(){
+    console.log("Bien");
+    setTimeout(function() {
+      $(".materias2 option").each(function(){
+        console.log('opcion '+$(this).text()+' valor '+ $(this).attr('value'))
+        $(".materias").append("<option value = " + $(this).attr('value') + ">" + $(this).text() + "</option>" );
+      });
+    },100);
+  });
+
 // ######## Fin Materias #####################
 
  

@@ -32,7 +32,7 @@ class TacJuramentadosController < ApplicationController
   end
 
   def create
-    #begin
+    begin
       @tacjuramentados = TacJuramentado.new(juramentados_parametros)
       puts '111111111111111111111' + juramentados_parametros.inspect
       puts '22222222222222222222' + @tacjuramentados.inspect
@@ -40,11 +40,11 @@ class TacJuramentadosController < ApplicationController
       puts '33333333333333333333' + @tacjuramentados.save.inspect
       flash[:info] = "Guardado" 
       redirect_to :tac_juramentados
-    #rescue Exception => e
-     # flash[:error] = "No se pudo guardar al Juramentado" 
-     # puts '!!!!!!!!!!!!!!!!!!!111111111' + e.inspect
-      #redirect_to :tac_juramentados
-    #end
+    rescue Exception => e
+      flash[:error] = "No se pudo guardar al Juramentado" 
+      puts '!!!!!!!!!!!!!!!!!!!111111111' + e.inspect
+      redirect_to :tac_juramentados
+    end
   end
 
   def show

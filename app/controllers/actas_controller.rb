@@ -21,7 +21,7 @@ class ActasController < ApplicationController
       if !@tacactas
         @correlativo = 1
       end
-
+     # ---------------------------------------------------------------
     rescue Exception => e
       flash[:error] = "No se pudo conectar con la Base de Datos"
       redirect_to :actas_abiertas

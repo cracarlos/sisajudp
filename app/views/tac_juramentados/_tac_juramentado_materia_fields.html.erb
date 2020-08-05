@@ -1,19 +1,10 @@
-  <div class='nested-fields'>
-    <div class="field">
-      <%#= f.hidden_field :tac_juramentado_id, :value => @usuarioId %>
-      <input type="hidden" name="tac_juramentado[tac_juramentado_materias_attributes][1593462868100][tac_materia_id]" value="<%= @usuarioId %>">
-    </div> 
-    <div class="field" id="asd">
-      <%= f.label :materias %>
-      <%#= f.select :tac_materia_id, { prompt: 'Seleccione...' },{:class => 'materias'} %>
-    <select id="materias" class="asd" name="tac_juramentado[tac_juramentado_materias_attributes][1593462868100][tac_materia_id]"></select> 
-    <!--<select id="materias" class="" name="tac_juramentado[tac_juramentado_materias_attributes][1593462868100][tac_materia_id]" required multiple></select> -->
-
-      <!-- <select id="materias" class="asd" name="acta[materias][tac_materia_id]" multiple="multiple"></select>  -->
-      <%#= f.text_field :tac_materia_id %>
-    </div>
-    
-    <%= link_to_remove_association "remove materia", f %>
-
-    
-  </div>
+<div class='nested-fields'>
+  <div class="field">
+    <%= f.hidden_field :tac_juramentado_id, :value => @usuarioId %>
+  </div> 
+  <div class="field" id="asd">
+    <%= f.label :materias %>
+    <%=f.select :tac_materia_id, {}, {include_blank: true}, {class: 'materias'} %>
+  </div>  
+  <%= link_to_remove_association "", f, :class => "button tiny alert rounded bordered shadow fi-x ",:title => "Eliminar Materia" %>
+</div>

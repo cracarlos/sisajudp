@@ -31,12 +31,12 @@
         <td><%= acta.sede%></td>
         <td><%= acta.nombre_completo%></td>
         <td style="display: flex;" >
-          <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "badge secondary fi-eye", :title => "Ver", :style => "margin-right:5px;"%> 
-          <%= link_to '', edit_acta_path(acta), :class => "badge warning fi-page-edit ", :title => "Editar", :style => "margin-right:5px;"%>
+          <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "button tiny secondary rounded bordered shadow fi-eye", :title => "Ver", :style => "margin-right:5px;"%> 
+          <%= link_to '', edit_acta_path(acta), :class => "button tiny primary rounded bordered shadow  fi-page-edit ", :title => "Editar", :style => "margin-right:5px;"%>
           <%#= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
 
-          <%= link_to "", cerrar_acta_path(acta), :class => "badge success fi-lock", :title => "Cerrar",:style => "margin-right:5px;" %>
-          <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "badge alert fi-trash ", :title => "Eliminar",:style => "margin-right:5px;" %>
+          <%= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "button tiny alert rounded bordered shadow fi-trash ", :title => "Eliminar",:style => "margin-right:5px;" %>
+          <%= link_to "", cerrar_acta_path(acta), :class => "button tiny success rounded bordered shadow  fi-lock", :title => "Cerrar",:style => "margin-right:5px;" %>
         </td>
       </tr>
        <% end %>
