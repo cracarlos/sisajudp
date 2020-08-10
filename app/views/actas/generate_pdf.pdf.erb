@@ -40,13 +40,24 @@
       realizada comparecen <%= @tacactas[0].nombramiento%>; los (las)
       ciudadanos (a): 
       <% @tacactas.each do |datos|%>
-
-        <b><%=datos.primer_nombre.upcase %></b> <b><%=datos.segundo_nombre.upcase%></b>
-        <b><%=datos.primer_apellido.upcase %></b> <b><%=datos.segundo_apellido.upcase%></b>,
-        titular de la cédula de identidad N° <%=datos.cedula %>, a los fines de ser juramentado como 
-        <%=datos.cargo_j %> con competencia en materia <%=datos.materia %>, adscrito a la <%=datos.coordinaciones_regionales %>, <%=datos.coordinaciones_extensiones %> según resolución N° <%=datos.resolucion %>
-        de fecha <%= datos.fecha_resolucion%>.
-
+        
+        <%manilla = datos.cedula%>
+        <% if manilla != @cedula %>
+          <%@cedula = manilla%>
+          <%primeraVez = true%>
+        <% end %>
+        
+        <% if @cedula == manilla && primeraVez == true %>
+          <b><%=datos.primer_nombre.upcase %></b> <b><%=datos.segundo_nombre.upcase%></b>
+          <b><%=datos.primer_apellido.upcase %></b> <b><%=datos.segundo_apellido.upcase%></b>,
+          titular de la cédula de identidad N° <%=datos.cedula %>, a los fines de ser juramentado como 
+          <%=datos.cargo_j %> con competencia en materia <%=datos.materia %>, adscrito a la <%=datos.coordinaciones_regionales %>, <%=datos.coordinaciones_extensiones %> según resolución N° <%=datos.resolucion %>
+          de fecha <%= datos.fecha_resolucion%>.
+          <%primeraVez = false%>
+        <% elsif @cedula == manilla %>
+          <%=datos.materia %>, adscrito a la <%=datos.coordinaciones_regionales %>, <%=datos.coordinaciones_extensiones %> según resolución N° <%=datos.resolucion %>
+            de fecha <%= datos.fecha_resolucion%>.
+        <% end %>
       <% end %>
       Seguidamente, la máxima autoridad de
       la Institución de conformidad con lo dispuesto en el Artículo 1 de la Ley de Juramentos y Artículo 22
@@ -71,7 +82,10 @@
     </p>
     <br>
     <% @tacactas.each do |datos2|%>
-      <b style="">
+      <%llave = datos2.cedula%> 
+      <% if llave != @ci %>
+        <%@ci = datos2.cedula%>
+        <b style="">
         <div style="margin-bottom:25px; margin-top: 100px;">____________________________________________________</div>
         Abg. <%= datos2.primer_nombre.upcase %> <%= datos2.segundo_nombre.upcase %> <%= datos2.primer_apellido.upcase %> <%= datos2.segundo_apellido.upcase %> 
       </b>
@@ -79,6 +93,7 @@
       <p class="tamanio"> 
         <%= datos2.cargo_j%> Segundo con <%= datos2.competencia %> <%#= datos2.sedej.titleize %>
         <br><br>
+      <% end %> 
     <% end %>
       </p>
   </body>

@@ -78,6 +78,8 @@ class ActasController < ApplicationController
   def generate_pdf
     begin
       @t = Time.now
+      @cedula
+      @ci
       @tacactas = TacActa.generar(generar_pdf)
       @anio_letras = TacActa.anio_en_letras(@tacactas[0].para.year)
       @dia_letras = TacActa.anio_en_letras(@tacactas[0].para.day)
