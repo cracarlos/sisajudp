@@ -81,7 +81,10 @@ class ActasController < ApplicationController
       @cedula
       @ci
       @tacactas = TacActa.generar(generar_pdf)
+      puts "PASANDO POR AQUIIIIIIIIIIIIII" + @tacactas.inspect
       @anio_letras = TacActa.anio_en_letras(@tacactas[0].para.year)
+      puts @anio_letras.inspect
+      puts "PASANDO POR AQUIIIIIIIIIIIIII2"
       @dia_letras = TacActa.anio_en_letras(@tacactas[0].para.day)
       @hora_letras = TacActa.anio_en_letras(@tacactas[0].para.hour)
       #puts '!!!!!!!!!!!!!!!!!!!!!!' + @anio_letras.inspect
@@ -95,7 +98,7 @@ class ActasController < ApplicationController
       rescue Exception => e
         flash[:error] = "Agregue juramentados para poder generar el acta" 
         redirect_to :actas_abiertas
-        puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + e.inspect
+        puts '¡¡¡¡¡¡¡¡¡¡¡ ERROR GENERAR PDF !!!!!!!!!!!!!' + e.inspect
     end
   end
 

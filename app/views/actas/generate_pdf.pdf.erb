@@ -40,7 +40,7 @@
       realizada comparecen <%= @tacactas[0].nombramiento%>; los (las)
       ciudadanos (a): 
       <% @tacactas.each do |datos|%>
-        
+        <%# Estas validaciones son para que no se repita el funcionario si contiene mas de una materia%>
         <%manilla = datos.cedula%>
         <% if manilla != @cedula %>
           <%@cedula = manilla%>

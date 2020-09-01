@@ -11,6 +11,7 @@ class TacJuramentado  < ApplicationRecord
   joins("INNER JOIN tac_actas ON tac_actas.id = tac_juramentados.tac_acta_id 
        INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
        LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
+       INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
        ").
   where('tac_actas.estatus = true')
   end

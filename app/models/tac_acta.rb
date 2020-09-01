@@ -18,9 +18,9 @@ class TacActa < ApplicationRecord
   end
 
   def self.generar(generar)
-	select("tac_actas.id,tac_actas.sede,numero_acta, tac_firmante_id, para,
+	select("tac_actas.id,tac_actas.sede,numero_acta, tac_firmante_id, tac_actas.para,
 		    tac_juramentados.primer_nombre,tac_juramentados.segundo_nombre,tac_juramentados.primer_apellido,
-		    tac_juramentados.segundo_apellido,cedula,tac_juramentados.cargo AS cargo_j,
+		    tac_juramentados.segundo_apellido,cedula,tac_cargos.cargos AS cargo_j,
 		    tac_juramentados.resolucion,
 		    TO_CHAR(tac_juramentados.fecha_resolucion, 'dd/mm/yyyy') AS fecha_resolucion,
 		    competencia, tac_firmantes.nombre_completo, tac_firmantes.cargo AS cargo_f,
@@ -32,10 +32,13 @@ class TacActa < ApplicationRecord
 		   INNER JOIN tac_juramentados ON tac_juramentados.tac_acta_id = tac_actas.id
 		   INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
 		   LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
-		   INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
-		   INNER JOIN tac_juramentado_materias ON tac_juramentado_materias.tac_juramentado_id = tac_juramentados.id
-		   INNER JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.tac_materia_id
-		   INNER JOIN tac_firmantes ON tac_firmantes.id = tac_actas.tac_firmante_id").
+		   LEFT JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
+		   LEFT JOIN tac_juramentado_materias ON tac_juramentado_materias.tac_juramentado_id = tac_juramentados.id
+		   LEFT JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.tac_materia_id
+		   INNER JOIN tac_firmantes ON tac_firmantes.id = tac_actas.tac_firmante_id
+		   INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
+		   "
+		   ).
 	  where(id: generar)
 	  #joins(:tac_juramentados, :tac_firmante, :tac_competencia)
   end

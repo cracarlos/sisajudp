@@ -8,3 +8,9 @@
   </div>  
   <%= link_to_remove_association "", f, :class => "button tiny alert rounded bordered shadow fi-x ",:title => "Eliminar Materia" %>
 </div>
+
+<script>
+  $('.remove_fields').click(function() {
+    $('.add_fields').hide();
+  });
+</script>

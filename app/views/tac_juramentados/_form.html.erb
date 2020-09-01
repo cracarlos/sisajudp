@@ -2,14 +2,15 @@
         <div class="grid-x grid-padding-x"> 
           <div class = "large-3 cell" style="display: flex;">
             <div class="input-group">
-              <input class="input-group-field" placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
+              <input class="input-group-field" disabled placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
             <div class="input-group-button">
-              <input type="button" value="Buscar" id="buscador" class="button buttonColor">
+              <input type="button" value="Buscar" id="buscador" class="button buttonColor" disabled>
             </div>
             </div>            
           </div>
           <div class = "large-5 cell">
             <span id="notificacion" ></span>
+            <h4 style="color:red;">Mantenimiento</h4>
           </div>
         </div>
       </div>
@@ -73,8 +74,8 @@
     <div class="grid-x grid-padding-x">
       <div class="large-4 cell">
           <%= form.label :Cargo %>
-          <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
-                :cargos, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+          <%= form.select :tac_cargo_id, options_from_collection_for_select(@tac_cargos,
+                :id, :cargos), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'cargo' } %>
       </div>   
     </div>
 
@@ -92,14 +93,14 @@
       
     </div>
 
-    <div class = "grid-x grid-padding-x">
+    <div class = "grid-x grid-padding-x" id="competenciaDiv">
       <div class="large-6 cell">
         <%= form.label :competencia %>
         <%= form.select :tac_competencia_id, options_from_collection_for_select(@tac_competencias,
-              :id, :competencia), { prompt: 'Seleccione...' }, { required: true, class: 'form-control', id: 'competencia' } %>
+              :id, :competencia), { prompt: 'Seleccione...' }, {class: 'form-control', id: 'competencia' } %>
       </div>
     </div>
-    <div class="grid-x grid-padding-x">
+    <div class="grid-x grid-padding-x" id="CompMateria">
       <div class="large-12 cell">
         <div id='tac_juramentado_materias'>
           <%= form.fields_for :tac_juramentado_materias do |materia| %>
@@ -107,7 +108,7 @@
           <% end %>
           <div class='links'>
               <%= link_to_add_association '', form, :tac_juramentado_materias, :class => "button tiny rounded bordered shadow success fi-plus ",:title => "Agregar Materia" %>
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -121,110 +122,139 @@
 
   <script>
     var contador = false;
-    $(document).ready(function(){
-    $("#formulario")[0].reset();
- // ######### Traer Cedulados ##################################   
-    function buscar_cedula() {
-      var cedula = $('#cedula').val();
+$(document).ready(function(){
+  $('.add_fields').hide(); // Oculto el enlace
+  $('#competenciaDiv').hide(); // Oculto el enlace
+  
+  $("#formulario")[0].reset();
+// ######### Traer Cedulados ##################################   
+  function buscar_cedula() {
+    var cedula = $('#cedula').val();
 
-      $.ajax(
-            {   url: 'traer_cedulados',
-              data: {cedula: cedula},
-              type: 'post',
-              //dataType: 'json',
-              success: function(data) {
-                procesarDatos(data)
-              },
-              error: function() {
-                  $("#notificacion").html("<p style='color:red'>No se encuentra el funcionario</p>");
-              }
-            }
-          );
+    $.ajax(
+        {   url: 'traer_cedulados',
+          data: {cedula: cedula},
+          type: 'post',
+          //dataType: 'json',
+          success: function(data) {
+            procesarDatos(data)
+          },
+          error: function() {
+              $("#notificacion").html("<p style='color:red'>No se encuentra el funcionario</p>");
+          }
+        }
+      );
 
-      function procesarDatos(datos_devueltos){
-        $("#notificacion").html("<p style='color:green'>Encontrado</p>");
-        $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
-        $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
-        $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
-        $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
-        $("#FormCedula").val(datos_devueltos.NUMCEDULA);
-        // a continuación le agregamos disable a los campos que es traidos desdes el ajax
-        $("#primer_nombre").attr('readonly', true);
-        $("#segundo_nombre").attr('readonly', true);
-        $("#primer_apellido").attr('readonly', true);
-        $("#segundo_apellido").attr('readonly', true);
-        $("#FormCedula").attr('readonly', true);
-      }
-    }
+  function procesarDatos(datos_devueltos){
+    $("#notificacion").html("<p style='color:green'>Encontrado</p>");
+    $("#primer_nombre").val(datos_devueltos.PRIMERNOMBRE);
+    $("#segundo_nombre").val(datos_devueltos.SEGUNDONOMBRE);
+    $("#primer_apellido").val(datos_devueltos.PRIMERAPELLIDO);
+    $("#segundo_apellido").val(datos_devueltos.SEGUNDOAPELLIDO);
+    $("#FormCedula").val(datos_devueltos.NUMCEDULA);
+    // a continuación le agregamos disable a los campos que es traidos desdes el ajax
+    $("#primer_nombre").attr('readonly', true);
+    $("#segundo_nombre").attr('readonly', true);
+    $("#primer_apellido").attr('readonly', true);
+    $("#segundo_apellido").attr('readonly', true);
+    $("#FormCedula").attr('readonly', true);
+  }
+}
 
-    $('#cedula').change(function() {
-      buscar_cedula();
-    });
+  $('#cedula').change(function() {
+    buscar_cedula();
+  });
 
-    $("#buscador").click(function(){
-      buscar_cedula();
-      
-      //return false
-    });
+  $("#buscador").click(function(){
+    buscar_cedula();
+  
+  //return false
+  });
 // ######## Fin Traer Cedulados ###############################
 
 // ######## Unidades y sedes #####################
-  
+
   $('#unidad').change(function() {
-    $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
-    var unidad = $('#unidad').val();    
-    $.post("extensiones_sedes", function(result){
-      $.each(result, function(i, field){
-        if (unidad == field.tac_unidade_id) {
-          $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
-        }
-      });
-    }, 'json');
+  $("#sedes").html("<option>" +"Seleccione..."+ "</option>" );
+  var unidad = $('#unidad').val();    
+  $.post("extensiones_sedes", function(result){
+    $.each(result, function(i, field){
+      if (unidad == field.tac_unidade_id) {
+        $("#sedes").append(`<option value = ${field.id}>` + field.coordinaciones_extensiones + "</option>" );
+      }
+    });
+  }, 'json');
   });
 
-// ######## Fin Unidades y sedes #####################
+  // ######## Fin Unidades y sedes #####################
 
-// ######## Materias #####################
-  $('.add_fields').hide(); // Oculto el enlace
+  // ######## Materias #####################
+  /*
+  $(window).on("load",function(){
+    console.log("1")
+    $('.add_fields').hide(); // Oculto el enlace
+    console.log("2")
+  });
+  */
   $('#competencia').change(function() {
-    $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
-    var competencia = $('#competencia').val();    
-    $.post("materias", function(result){
-      $.each(result, function(i, field){
-        if (competencia == field.tac_competencia_id) {
-          $(".materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
-        }
-      });
-    }, 'json');
-    $(".add_fields").click();
-    $('.add_fields').show(); // Muestro el enlace
-    contador = true;
+  $("#materias").html("<option>" +"Seleccione..."+ "</option>" );
+  var competencia = $('#competencia').val();    
+  $.post("materias", function(result){
+    $.each(result, function(i, field){
+      if (competencia == field.tac_competencia_id) {
+        $(".materias").append(`<option value = ${field.id}>` + field.materia + "</option>" );
+      }
+    });
+  }, 'json');
+  $(".add_fields").click();
+  $('.add_fields').show("fast"); // Muestro el enlace
+  contador = true;
   });
-
-  
 
   $(".add_fields").click(function() {
-    if (contador == true) {
-      //$("#asd").html("<select id = 'materias2'>" +"<option>" +"Seleccione..."+ "</option>"+ "</select>" );
-    $(".materias").attr("class","materias2");
-    }
+  if (contador == true) {
+    //$("#asd").html("<select id = 'materias2'>" +"<option>" +"Seleccione..."+ "</option>"+ "</select>" );
+  $(".materias").attr("class","materias2");
+  }
   });
 
   $('body').on('click', '.add_fields', function(){
     console.log("Bien");
     setTimeout(function() {
+      $('.materias').prop('required',true);
       $(".materias2 option").each(function(){
         console.log('opcion '+$(this).text()+' valor '+ $(this).attr('value'))
         $(".materias").append("<option value = " + $(this).attr('value') + ">" + $(this).text() + "</option>" );
-      });
-    },100);
+    });
+  },100);
   });
 
-// ######## Fin Materias #####################
+  // ######## Fin Materias #####################
 
- 
+  // ####### Cuando es un Coordinador ##########
 
-  
+  $('#cargo').change(function() {
+   var cargo = $('#cargo').val();
+   if (cargo==3) {
+     $('#competenciaDiv').hide("fast");      
+     $('#CompMateria').hide("fast");
+     $('#competencia').val("");
+     $('.materias').val("");
+     $('.materias2').val("");
+     $('.remove_fields').click();
+     $('.add_fields').hide();
+     //$(".materias").remove();
+     //$(".materias2").remove();
+     
+   }else{
+     $('#competenciaDiv').show("fast");
+     $('#CompMateria').show("fast");
+     $('#competencia').prop('required',true);         
+   }
+  //$('.add_fields').hide();
+  });
+
+  // ###### FIN #######
 
 });
   </script>

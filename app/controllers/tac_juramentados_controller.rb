@@ -112,14 +112,14 @@ class TacJuramentadosController < ApplicationController
   private
     def juramentados_parametros
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                   :segundo_apellido, :cedula, :cargo, :resolucion, 
+                                   :segundo_apellido, :cedula, :tac_cargo_id, :resolucion, 
                                    :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
                                    :tac_unidade_id, :tac_extensiones_sedes_id,tac_juramentado_materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy])
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
-                                               :segundo_apellido, :cedula, :cargo, :resolucion, 
+                                               :segundo_apellido, :cedula, :tac_cargo_id, :resolucion, 
                                                :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
                                                :tac_unidade_id, :tac_extensiones_sedes_id,:materias)
     end

@@ -126,8 +126,8 @@
     <div class="grid-x grid-padding-x">
       <div class="large-4 cell">
           <%= form.label :Cargo %>
-          <%= form.select :cargo, options_from_collection_for_select(@tac_cargos,
-                :cargos, :cargos,form.object.cargo), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+          <%= form.select :tac_cargo_id, options_from_collection_for_select(@tac_cargos,
+                :cargos, :cargos,form.object.id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
       </div>   
     </div>
 

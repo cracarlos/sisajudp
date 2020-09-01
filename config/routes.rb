@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   get 'usuarios_sistema/new', to: 'usuarios_sistema#new'
   get '/usuarios_sistema/:id/edit', to: 'usuarios_sistema#edit', as: 'usuario_editar'
   get 'usuarios_sistema/:id', to: 'usuarios_sistema#update'
+
+  get '*path' => redirect('/public/404.html')
   
 end
