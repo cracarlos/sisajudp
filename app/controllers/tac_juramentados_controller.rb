@@ -1,5 +1,6 @@
 class TacJuramentadosController < ApplicationController
   before_action :authenticate_usuario!
+  skip_before_action :verify_authenticity_token # Me permite hacer los llamados ajax (Investigar porque dejaron de funcionar)
 
   def index
     begin
@@ -114,14 +115,16 @@ class TacJuramentadosController < ApplicationController
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
                                    :segundo_apellido, :cedula, :tac_cargo_id, :resolucion, 
                                    :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
-                                   :tac_unidade_id, :tac_extensiones_sedes_id,tac_juramentado_materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy])
+                                   :tac_unidade_id, :tac_extensiones_sedes_id,:cargo_letras, :cargo_numero,tac_juramentado_materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy]
+                                   )
        end
 
     def juramentados_parametros_edit
       params.require(:tac_juramentado).permit(:primer_nombre, :segundo_nombre,:primer_apellido, 
                                                :segundo_apellido, :cedula, :tac_cargo_id, :resolucion, 
                                                :tac_competencia_id, :tac_acta_id,:fecha_resolucion, 
-                                               :tac_unidade_id, :tac_extensiones_sedes_id,:materias)
+                                               :tac_unidade_id, :tac_extensiones_sedes_id,:cargo_letras, :cargo_numero,tac_juramentado_materias_attributes: [:id, :tac_juramentado_id, :tac_materia_id, :_destroy],
+                                               )
     end
 
     def cedulados

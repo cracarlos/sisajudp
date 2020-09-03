@@ -140,7 +140,11 @@
      
       <div class="large-6 cell">
         <%= form.label :extension_o_sede %>
-        <select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]" required></select>
+        <!--<select id="sedes" class="form-control" name="acta[tac_extensiones_sedes_id]" required></select>-->
+        <%=form.select :tac_extensiones_sedes_id, options_from_collection_for_select(@tac_extensiones_sedes,
+         :id, :coordinaciones_extensiones, form.object.tac_extensiones_sedes_id),{include_blank: true}, {class: 'materias', id:'sedes', required: true} %>
+        <!--<%=form.select :tac_extensiones_sedes_id, {}, {include_blank: true}, {class: 'materias', id:'sedes', required: true} %>-->
+        <h6><%= form.object.tac_extensiones_sedes_id%></h6>
       </div>
       
     </div>
@@ -155,7 +159,7 @@
     <div class="grid-x grid-padding-x">
       <div class="large-12 cell">
         <%= form.label :materias %>
-        <select id="materias" class="form-control" name="acta[tac_materia_id]" required multiple></select>
+       <!-- <select id="materias" class="form-control" name="acta[tac_materia_id]" required multiple></select> -->
       </div>
     </div>
   </div>
