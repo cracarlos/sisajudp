@@ -1,23 +1,31 @@
 <div class="callout border-none radius bordered shadow card">
-        <div class="grid-x grid-padding-x"> 
-          <div class = "large-3 cell" style="display: flex;">
-            <div class="input-group">
-              <input class="input-group-field" disabled placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
-            <div class="input-group-button">
-              <input type="button" value="Buscar" id="buscador" class="button buttonColor" disabled>
-            </div>
-            </div>            
-          </div>
-          <div class = "large-5 cell">
-            <span id="notificacion" ></span>
-            <h4 style="color:red;">Mantenimiento</h4>
-          </div>
+  <div class="grid-x grid-padding-x"> 
+    <div class = "large-3 cell">
+      <div class="input-group">
+        <input class="input-group-field" disabled placeholder="Cédula" id="cedula" type="text" name="acta[cedula]" title= "Cedula para buscar al funcionario">
+        <div class="input-group-button">
+          <input type="button" value="Buscar" id="buscador" class="button buttonColor" disabled>
+        </div>
+      </div>            
+    </div>
+          <!--
           <div class = "large-4 cell">
             <span id="notificacion" ></span>
-            <button class="button rounded bordered shadow" id="manual">Manual</button>
           </div>
-        </div>
-      </div>
+          -->
+    <div class="large-4 cell">
+      <p class="callout warning">
+        <i class="fi-alert"></i>
+          La busqueda por cedula se encuentra deshabilitada.
+          Por favor presione el botón Manual para poder escribir el nombre del juramentado
+      </p>
+    </div>
+    <div class = "large-1 cell">
+      <span id="notificacion" ></span>
+        <button class="button rounded bordered shadow" id="manual">Manual</button>
+    </div>
+</div>
+</div>
       
 <%= form_for @juramentado, :html => {:id => "formulario"} do |form| %>
   <%#= form_with scope: :acta, id: 'formulario', url: juramentados_path, local: true do |form| %>
