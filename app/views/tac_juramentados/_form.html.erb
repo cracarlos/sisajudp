@@ -30,7 +30,7 @@
       
         
       <div class="large-4 cell">
-        <%= form.text_field :primer_nombre, :class => "", placeholder: "Primer nombre", id: 'primer_nombre' %>
+        <%= form.text_field :primer_nombre, :class => "", placeholder: "Primer nombre", id: 'primer_nombre', required: true %>
       </div>
      <div class="large-4 cell">
         <%= form.text_field :segundo_nombre, :class => "", placeholder: "Segundo nombre", id: 'segundo_nombre' %>
@@ -41,7 +41,7 @@
    
     <div class = "grid-x grid-padding-x">
       <div class="large-4 cell">
-        <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido", id: 'primer_apellido' %>
+        <%= form.text_field :primer_apellido, :class => "form-control", placeholder: "Primer apellido", id: 'primer_apellido' , required: true %>
       </div>
       <div class="large-4 cell">
         <%= form.text_field :segundo_apellido, :class => "form-control offset-md-1", placeholder: "Segundo apellido", id: 'segundo_apellido' %>
@@ -51,7 +51,7 @@
     <div  class = "grid-x grid-padding-x">
       <div class="large-2 cell">
         <%= form.label :Cédula %>
-        <%= form.text_field :cedula, :class => "form-control col-md-7 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}' %>
+        <%= form.text_field :cedula, :class => "form-control col-md-7 enteroPositivo", placeholder: "Cédula", id: 'FormCedula', pattern:'[0-9]{3,8}', required: true %>
       </div>
     </div>
      
