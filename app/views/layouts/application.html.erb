@@ -30,7 +30,7 @@
                       </ul>
                       </li>
                       <li><%= link_to "Juramentados", tac_juramentados_path %></li>
-                      <li><%= link_to "Usuarios", usuarios_sistema_path %></li>
+                      <li><%#= link_to "Usuarios", usuarios_sistema_path %></li>
                       <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
                       <li>
                         <a><%=current_usuario.email%> </a>
@@ -60,7 +60,7 @@
                         </ul>
                       </li>
                       <li><%= link_to "Juramentados", tac_juramentados_path, :class => "" %></li>
-                      <li><%= link_to "Usuarios", usuarios_sistema_path, :class => "" %></li>
+                      <li><%#= link_to "Usuarios", usuarios_sistema_path, :class => "" %></li>
                       <li>
                         <a class=""><%=current_usuario.email%> </a>
                         <ul class="menu subMenu">
