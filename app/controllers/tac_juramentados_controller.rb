@@ -17,10 +17,10 @@ class TacJuramentadosController < ApplicationController
     begin
       @juramentado = TacJuramentado.new
       @usuarioId = current_usuario.id
-      @tac_unidades = TacUnidade.all
-      @tac_extensiones_sedes = TacExtensionesSede.all
-      @tac_cargos = TacCargo.all
-      @tac_competencias = TacCompetencia.all
+      @tac_unidades = TacUnidade.order(:coordinaciones_regionales)
+      #@tac_extensiones_sedes = TacExtensionesSede.all
+      @tac_cargos = TacCargo.order(:cargos)
+      @tac_competencias = TacCompetencia.order(:competencia)
       @tac_actas = TacActa.numero_acta
 
     rescue Exception => e
@@ -101,12 +101,12 @@ class TacJuramentadosController < ApplicationController
 
   def extensiones_sedes
     #@extensiones_sedes = TacExtensionesSede.extensiones_sedes(tac_unidade_id)
-    @extensiones_sedes = TacExtensionesSede.all
+    @extensiones_sedes = TacExtensionesSede.order(:coordinaciones_extensiones)
     render json: @extensiones_sedes  
   end
 
   def materias
-    @materias = TacMateria.all
+    @materias = TacMateria.order(:materia)
     render json: @materias  
   end
 
