@@ -17,7 +17,7 @@ ul li:hover {
 }
 
 .contenedor {
-	min-height: calc(100vh - 54.38px - 167.45px)
+	min-height: calc(100vh - 54.38px - 240px)
 }
 .menuBackground {
 	background: #75001b;
