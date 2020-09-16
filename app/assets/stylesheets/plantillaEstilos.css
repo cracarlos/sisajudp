@@ -44,3 +44,23 @@ ul li:hover {
 	background: #75001b;
 	color: white;
 }
+
+.footer {
+	margin-top: 366px;
+	background-color: #181c20;
+	color: #f7f7f7;
+	padding: 30px;
+	
+}
+
+@media screen and (max-width: 1280px) {
+	.footer {
+		margin-top: 148px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.footer {
+		margin-top: 0px;
+	}
+}

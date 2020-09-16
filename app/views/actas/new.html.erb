@@ -11,7 +11,7 @@ class="form-row">
   <div class="form-group"> <%#= acta.select :sede,
     options_from_collection_for_select(@tinsedes, :direccion, :descripcion), {
     prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %> 
-    <%=acta.text_area :sede, :class => "", placeholder: "Dirección" ,size: "2x2" %>
+    <%=acta.text_area :sede, :class => "", placeholder: "Dirección" ,size: "2x2", required: true %>
     <%= acta.hidden_field :numero_acta, value: @correlativo%>
     
   </div> 

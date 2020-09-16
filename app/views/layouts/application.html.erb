@@ -71,10 +71,10 @@
                     </ul>
                  
 
-                  <div class="title-bar-right hide-for-large">
+                <div class="title-bar-right hide-for-large">
                     <button class="menu-icon" type="button" data-open="my-info"></button>
-                  </div>
                 </div>
+              </div>
 
                 <div class="title-bar hide-for-medium menuBackground">
                   <div class="title-bar-left">
@@ -88,20 +88,26 @@
                   <div class="grid-x grid-padding-x">
                     <div class="large-12 cell">
                       <%= yield %>   
+                    </div>  
+                  </div>
+                </div>
+                <div class ="footer">
+                  <div class="grid-container">
+                  <div class="grid-x grid-padding-x ">
+                    <div class ="large-4 cell">
+                      <%= image_tag("logo.png", size: "180x70")%>
                     </div>
-                    
+                    <div class="large-8 cell ">
+                    <div class="text-left">
+                      <p>Dirección Nacional de Tecnología de la Información - División de Proyectos e Innovaciones Tecnologícas</p>
+                      <p>atencion.usuario@defensapublica.gob.ve Ext. 1950</p>
+                    </div> 
+                    </div>
+                  </div>
                   </div>
                 </div>
-                <div class="grid-x grid-padding-x">
-                  <div class="large-12 cell">
-                  <hr>
-                  <div class="text-center">
-                    <p>Dirección Nacional de Tecnología de la Información - División de Proyectos e Innovaciones Tecnologícas</p>
-                    <p>atencion.usuario@defensapublica.gob.ve Ext. 1950</p>
-                  </div>
-                    
-                  </div>
-                </div>
+                
+                
             
                 
               </div>
