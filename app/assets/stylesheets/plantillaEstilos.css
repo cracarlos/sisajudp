@@ -15,6 +15,10 @@ ul li:hover {
 	color: white !important;
 	background: #5F071B !important;
 }
+
+.contenedor {
+	min-height: calc(100vh - 54.38px - 167.45px)
+}
 .menuBackground {
 	background: #75001b;
 }
@@ -46,13 +50,13 @@ ul li:hover {
 }
 
 .footer {
-	margin-top: 366px;
 	background-color: #181c20;
 	color: #f7f7f7;
-	padding: 30px;
+	padding: 20px;
 	
 }
 
+/*
 @media screen and (max-width: 1280px) {
 	.footer {
 		margin-top: 148px;
@@ -64,3 +68,5 @@ ul li:hover {
 		margin-top: 0px;
 	}
 }
+
+*/

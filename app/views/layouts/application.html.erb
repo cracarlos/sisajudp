@@ -13,112 +13,134 @@
   <body>
     <% if signed_in? %>
       <div class="off-canvas-wrapper">
-            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+          <div class="off-canvas position-left menuBackground " id="my-info" data-off-canvas data-position="left" >
+            <div class="row column">
+              <br>
+              <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
+              <h4> <%=current_usuario.email%></h4>
+              <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle>
+                <li> <%= link_to "Inicio", actas_path %></li>
+                <li>
+                  <a href="#">Actas</a>
+                  <ul class="vertical menu nested subMenu">
+                    <li><%= link_to "Crear", new_acta_path %></li>
+                    <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
+                  </ul>
+                </li>
+                <li><%= link_to "Juramentados", tac_juramentados_path %></li>
+                <li><%#= link_to "Usuarios", usuarios_sistema_path %></li>
+                <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
+                <li>
+                  <a><%=current_usuario.email%> </a>
+                  <ul class="menu subMenu">
+                    <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
+                  </ul>   
+                </li>
+              </ul>
+            </div>
+          </div>
 
-              <div class="off-canvas position-left menuBackground " id="my-info" data-off-canvas data-position="left" >
-                <div class="row column">
-                  <br>
-                  <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
-                  <h4> <%=current_usuario.email%></h4>
-                  <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle>
-                    <li> <%= link_to "Inicio", actas_path %></li>
-                    <li>
-                      <a href="#">Actas</a>
-                      <ul class="vertical menu nested subMenu">
-                        <li><%= link_to "Crear", new_acta_path %></li>
-                        <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
-                      </ul>
-                      </li>
-                      <li><%= link_to "Juramentados", tac_juramentados_path %></li>
-                      <li><%#= link_to "Usuarios", usuarios_sistema_path %></li>
-                      <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
-                      <li>
-                        <a><%=current_usuario.email%> </a>
-                        <ul class="menu subMenu">
-                          <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
-                        </ul>
-                        
-                      </li>
-                    </ul>
-                </div>
+          <div class="off-canvas-content" data-off-canvas-content>
+            <div class="title-bar show-for-medium menuBackground">
+              <div class="title-bar-left">
+                <%= link_to "SISAJUDP", actas_path, :class => "title-bar-title", :style => "color:white;" %>
               </div>
-
-              <div class="off-canvas-content" data-off-canvas-content>
-
-                <div class="title-bar show-for-medium menuBackground">
-                  <div class="title-bar-left">
-
-                    <%= link_to "SISAJUDP", actas_path, :class => "title-bar-title", :style => "color:white;" %>
-                  </div>
-
-                    <ul class="dropdown menu show-for-large icons" data-dropdown-menu >
-                      <li>
-                        <a href="#" class="" >Actas</a>
-                        <ul class="menu subMenu">
-                          <li><%= link_to "Crear", new_acta_path %></li>
-                          <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
-                        </ul>
-                      </li>
-                      <li><%= link_to "Juramentados", tac_juramentados_path, :class => "" %></li>
-                      <li><%#= link_to "Usuarios", usuarios_sistema_path, :class => "" %></li>
-                      <li>
-                        <a class=""><%=current_usuario.email%> </a>
-                        <ul class="menu subMenu">
-                          <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
-                        </ul>
-                        
-                      </li>
-                    </ul>
+              <ul class="dropdown menu show-for-large icons" data-dropdown-menu >
+                <li>
+                  <a href="#" class="" >Actas</a>
+                  <ul class="menu subMenu">
+                    <li><%= link_to "Crear", new_acta_path %></li>
+                    <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
+                  </ul>
+                </li>
+                <li><%= link_to "Juramentados", tac_juramentados_path, :class => "" %></li>
+                <li><%#= link_to "Usuarios", usuarios_sistema_path, :class => "" %></li>
+                <li>
+                  <a class=""><%=current_usuario.email%> </a>
+                  <ul class="menu subMenu">
+                    <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
+                  </ul> 
+                </li>
+              </ul>
                  
-
-                <div class="title-bar-right hide-for-large">
+              <div class="title-bar-right hide-for-large">
                     <button class="menu-icon" type="button" data-open="my-info"></button>
-                </div>
-              </div>
-
-                <div class="title-bar hide-for-medium menuBackground">
-                  <div class="title-bar-left">
-                    <button class="menu-icon" type="button" data-open="my-info"></button>
-                    <span class="title-bar-title">SISAJUDP</span>
-                  </div>
-                </div>
-
-
-                <div class="grid-container">
-                  <div class="grid-x grid-padding-x">
-                    <div class="large-12 cell">
-                      <%= yield %>   
-                    </div>  
-                  </div>
-                </div>
-                <div class ="footer">
-                  <div class="grid-container">
-                  <div class="grid-x grid-padding-x ">
-                    <div class ="large-4 cell">
-                      <%= image_tag("logo.png", size: "180x70")%>
-                    </div>
-                    <div class="large-8 cell ">
-                    <div class="text-left">
-                      <p>Dirección Nacional de Tecnología de la Información - División de Proyectos e Innovaciones Tecnologícas</p>
-                      <p>atencion.usuario@defensapublica.gob.ve Ext. 1950</p>
-                    </div> 
-                    </div>
-                  </div>
-                  </div>
-                </div>
-                
-                
-            
-                
               </div>
             </div>
+
+            <div class="title-bar hide-for-medium menuBackground">
+              <div class="title-bar-left">
+                <button class="menu-icon" type="button" data-open="my-info"></button>
+                <span class="title-bar-title">SISAJUDP</span>
+              </div>
+            </div>
+
+            <div class="grid-container contenedor">
+              <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <%= yield %>   
+                </div>  
+              </div>
+            </div>
+
+            <div class ="footer">
+              <div class="grid-container">
+                <div class="grid-x grid-padding-x ">
+                  <div class ="large-4 cell">
+                    <%= image_tag("logo.png", size: "180x70")%>
+                  </div>
+                  <div class="large-4 cell ">
+                    <div class="text-left">
+                      <h5><b>Contacto</b></h5>
+                      <p><b>Correo:</b> atencion.usuario@defensapublica.gob.ve</p>
+                      <p><b>Telefonos:</b> 0212-505-1950</p>
+                    </div> 
+                  </div>
+                  <div class="large-4 cell ">
+                    <div class="text-left">
+                      <h5><b>Utilidad</b></h5>
+                      <a href="https://correo.defensapublica.gob.ve/" class="button tiny secondary rounded bordered shadow " title="Correo" target="_blank">
+                        <i class="fi-mail" ></i>
+                      </a>
+                      <a href="https://mrrhh.defensapublica.gob.ve/login" class="button tiny secondary rounded bordered shadow " title="SISTRADP" target="_blank">
+                        <i class="fi-torso"></i>
+                      </a>
+                      <a href="http://www.defensapublica.gob.ve/" class="button tiny secondary rounded bordered shadow " title="Pagina Web" target="_blank">
+                        <i class="fi-web"></i>
+                      </a>
+                      <a href="https://intranet.defensapublica.gob.ve/wp-login.php?redirect_to=https%3A%2F%2Fintranet.defensapublica.gob.ve%2F&reauth=1" class="button tiny secondary rounded bordered shadow " title="Intranet" target="_blank" >
+                        <i class="fi-rss"></i>
+                      </a>
+
+                    </div> 
+                  </div>
+                </div>
+
+                <div class="grid-x grid-padding-x ">
+                  <div class="large-12 cell ">
+                    <div class="text-center">
+                      <hr>
+                      <p>
+                        Dirección Nacional de Tecnología de la Información -
+                        División de Proyectos e Innovaciones Tecnologícas
+                      </p>
+
+                    </div> 
+                  </div>
+                </div>
+
+              </div>
+            </div>   
+          </div>
+        </div>
       </div>
 
-    <script>
-      $(document).ready(function() {
-        $(document).foundation();
-      });
-    </script>
+      <script>
+        $(document).ready(function() {
+          $(document).foundation();
+        });
+      </script>
     <% end %>
   </body>
 </html>
