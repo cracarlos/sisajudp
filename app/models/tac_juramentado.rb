@@ -7,13 +7,26 @@ class TacJuramentado  < ApplicationRecord
   accepts_nested_attributes_for :tac_juramentado_materias, reject_if: :all_blank, allow_destroy: true
 
   def self.numero_acta
-	select('* ,tac_juramentados.id').
-  joins("INNER JOIN tac_actas ON tac_actas.id = tac_juramentados.tac_acta_id 
-       INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
-       LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
-       INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
-       ").
-  where('tac_actas.estatus = true')
+  	select('* ,tac_juramentados.id').
+    joins("INNER JOIN tac_actas ON tac_actas.id = tac_juramentados.tac_acta_id 
+         INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
+         LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
+         INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
+         ").
+    where('tac_actas.estatus = true')
+  end
+
+  def self.juramentados_detalles(id)
+    select('*,tac_juramentados.id AS juramentado_id').
+    joins("INNER JOIN tac_actas ON tac_actas.id = tac_juramentados.tac_acta_id 
+           INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
+           LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
+           INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
+           INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
+           INNER JOIN tac_juramentado_materias ON tac_juramentado_id = tac_juramentados.id
+           INNER JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.id
+         ").
+    where("tac_juramentados.id = #{id}")
   end
 
   def self.acta_abiertas

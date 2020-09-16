@@ -49,7 +49,10 @@ class TacJuramentadosController < ApplicationController
   end
 
   def show
-    @tacjuramentados = TacJuramentado.numero_acta
+    #@tacjuramentados = TacJuramentado.numero_acta
+    #@tacjuramentado = TacJuramentado.find(params[:id])
+    @tacjuramentado = TacJuramentado.juramentados_detalles(params[:id])
+    puts'1111111111111111111111111' + @tacjuramentado.inspect
   end
 
   def edit
@@ -65,7 +68,7 @@ class TacJuramentadosController < ApplicationController
 
   def update
     begin
-      @tacjuramentados = TacJuramentado.find(params[:id])
+      @tacjuramentados = TacJuramentado.find(juramentado)
       @tacjuramentados.update(juramentados_parametros_edit)
       #redirect_to action: 'show', id: @tacjuramentados.id
       flash[:info] = "Guardado" 
@@ -79,7 +82,7 @@ class TacJuramentadosController < ApplicationController
 
   def destroy
     begin
-      @tacjuramentados = TacJuramentado.find(params[:id])
+      @tacjuramentados = TacJuramentado.find(juramentado)
       puts '¡¡¡¡¡¡DESTROY!!!!!' + @tacjuramentados.inspect
       @tacjuramentados.destroy
       puts '¡¡¡¡¡¡DESTROY!!!!! 222' + @tacjuramentados.destroy.inspect
@@ -133,6 +136,10 @@ class TacJuramentadosController < ApplicationController
 
     def tac_unidade_id
       params.require(:unidad)
+    end
+
+    def juramentado
+      params.require(:id)
     end
 
 

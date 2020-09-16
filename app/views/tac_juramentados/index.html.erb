@@ -19,10 +19,8 @@
   <thead class="backroundColorPrincipal" >
     <tr>
       <th scope="col">Acta</th>
-      <th scope="col">Nombre</th>
       <th scope="col">Cedula</th>
-      <th scope="col">Unidad</th>
-      <th scope="col">Extensión o Sede</th>
+
       <th scope="col">Cargo</th>
       <th scope="col">Acciones</th>
     </tr>
@@ -31,14 +29,10 @@
      <% @tacjuramentados.each do |juramentados| %>
     <tr>
       <td><%= juramentados.numero_acta%></td>
-      <td><%= juramentados.primer_nombre%> <%= juramentados.primer_apellido%> </td>
       <td><%= juramentados.cedula%></td>
-      <td><%= juramentados.coordinaciones_regionales%></td>
-      <td><%= juramentados.coordinaciones_extensiones%></td>
       <td><%= juramentados.cargos%></td>
       <td>
-        <%= link_to '', edit_tac_juramentado_path(juramentados.id), :class => "button tiny warning rounded bordered shadow fi-page-edit", :title => "Editar"%>
-        <%= link_to '', tac_juramentado_path(juramentados.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "button tiny secondary rounded bordered shadow alert fi-trash", :title => "Eliminar"%> 
+        <%= link_to '', tac_juramentado_path(juramentados.id), :class => "button info rounded bordered shadow fi-magnifying-glass", :title => "Detalles"%>
       </td>
 
     </tr>

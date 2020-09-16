@@ -18,7 +18,7 @@
             <div class="row column">
               <br>
               <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
-              <h4> <%=current_usuario.email%></h4>
+              <p style="color: white; font-size: 13px;"> <b><%=current_usuario.email%></b></p>
               <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle>
                 <li> <%= link_to "Inicio", actas_path %></li>
                 <li>
@@ -31,12 +31,6 @@
                 <li><%= link_to "Juramentados", tac_juramentados_path %></li>
                 <li><%#= link_to "Usuarios", usuarios_sistema_path %></li>
                 <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
-                <li>
-                  <a><%=current_usuario.email%> </a>
-                  <ul class="menu subMenu">
-                    <li><%= link_to "Salir", destroy_usuario_session_path, method: :delete, data: { confirm: "¿Seguro que quiere Salir?" } %></li>
-                  </ul>   
-                </li>
               </ul>
             </div>
           </div>
@@ -76,7 +70,7 @@
               </div>
             </div>
 
-            <div class="grid-container contenedor">
+            <div class="grid-container contenedor margin-top-1">
               <div class="grid-x grid-padding-x">
                 <div class="large-12 cell">
                   <%= yield %>   
@@ -100,16 +94,16 @@
                   <div class="large-4 cell ">
                     <div class="text-left">
                       <h5><b>Utilidad</b></h5>
-                      <a href="https://correo.defensapublica.gob.ve/" class="button tiny secondary rounded bordered shadow " title="Correo" target="_blank">
+                      <a href="https://correo.defensapublica.gob.ve/" class="button secondary rounded bordered shadow " title="Correo" target="_blank">
                         <i class="fi-mail" ></i>
                       </a>
-                      <a href="https://mrrhh.defensapublica.gob.ve/login" class="button tiny secondary rounded bordered shadow " title="SISTRADP" target="_blank">
+                      <a href="https://mrrhh.defensapublica.gob.ve/login" class="button secondary rounded bordered shadow " title="SISTRADP" target="_blank">
                         <i class="fi-torso"></i>
                       </a>
-                      <a href="http://www.defensapublica.gob.ve/" class="button tiny secondary rounded bordered shadow " title="Pagina Web" target="_blank">
+                      <a href="http://www.defensapublica.gob.ve/" class="button secondary rounded bordered shadow " title="Pagina Web" target="_blank">
                         <i class="fi-web"></i>
                       </a>
-                      <a href="https://intranet.defensapublica.gob.ve/wp-login.php?redirect_to=https%3A%2F%2Fintranet.defensapublica.gob.ve%2F&reauth=1" class="button tiny secondary rounded bordered shadow " title="Intranet" target="_blank" >
+                      <a href="https://intranet.defensapublica.gob.ve/wp-login.php?redirect_to=https%3A%2F%2Fintranet.defensapublica.gob.ve%2F&reauth=1" class="button secondary rounded bordered shadow " title="Intranet" target="_blank" >
                         <i class="fi-rss"></i>
                       </a>
 
