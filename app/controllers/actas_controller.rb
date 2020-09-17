@@ -8,7 +8,7 @@ class ActasController < ApplicationController
   def new
     begin
       @tacactas = TacActa.last
-      @tacfirmantes = TacFirmante.all
+      @tacfirmantes = TacFirmante.order(:nombre_completo)
       #@tinsedes = TinSede.all Activar cuando este en la DP
       @TiempoHora = Time.now
       
@@ -53,7 +53,7 @@ class ActasController < ApplicationController
   def update		
     @tacactas = TacActa.find(params[:id])
 	if @tacactas.update(acta_edit)
-	  redirect_to action: 'show', id: @tacactas.id
+	  redirect_to action: 'show'
 	end
   end
 	
@@ -121,7 +121,7 @@ class ActasController < ApplicationController
 	end
 
 	def acta_edit
-	  params.require(:tac_acta).permit(:sede, :tac_firmante_id)
+	  params.require(:tac_acta).permit(:sede, :tac_firmante_id, :para)
 	end
 
   def generar_pdf

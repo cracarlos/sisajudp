@@ -1,8 +1,5 @@
 <div>
-  <h3>Editar</h3>
-
   <%= form_for @tacactas, url: {action: "update"}  do |acta| %>
-
     <% if @tacactas.errors.any? %>
       <div id="error_explanation">
         <h2>
@@ -15,23 +12,39 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="form-row"> 
-      <div class="form-group"> <!-- Activar cuando este en la DP -->
-        <%#= acta.select :sede, options_from_collection_for_select(@tinsedes,
+    <div class="callout border-none radius bordered shadow card">
+      <h3 class="margin-bottom-2">Editar</h3>
+      <div class="form-row"> 
+        <div class="form-group"> <!-- Activar cuando este en la DP -->
+          <%#= acta.select :sede, options_from_collection_for_select(@tacactas,
             :direccion, :descripcion), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+        </div>
       </div>
-    </div>
 
-    <%= acta.label :Firmante %><br>
-    <div class="form-row"> 
-      <div class="form-group">
-        <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
-            :id, :nombre_completo, acta.object.tac_firmante_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+      <div class="grid-x grid-padding-x" >  
+        <div class="large-12 cell">
+          <%= acta.label :Dirección %>
+          <%=acta.text_area :sede, :class => "", placeholder: "Dirección" ,size: "2x2", required: true %> 
+        </div>
       </div>
-    </div>
-    <div class="row" style="margin-top: 30px;">
-      <%= acta.submit "Guardar", :class => "btn btn-success col-md-2 offset-md-3" %>
+
+      <div class="grid-x grid-padding-x" >  
+        <div class="large-4 cell">
+          <%= acta.label :Firmante %>
+          <%= acta.select :tac_firmante_id, options_from_collection_for_select(@tacfirmantes,
+                :id, :nombre_completo, acta.object.tac_firmante_id), { prompt: 'Seleccione...' }, { required: true, class: 'form-control' } %>
+        </div>
+
+        <div class="large-4 cell">
+          <%= acta.label :Fecha %>
+          <input type="date" name="tac_acta[para]" value= <%=acta.object.para%>>
+        </div>
+      </div> 
+      <div class="grid-x grid-padding-x" >  
+        <div class="large-12 cell text-center margin-top-2">
+          <%= acta.submit "Guardar", :class => "button rounded bordered shadow buttonColor" %> 
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
