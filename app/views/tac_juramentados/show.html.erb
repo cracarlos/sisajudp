@@ -6,13 +6,20 @@
 	    <p><b>Apellidos:</b> <%= @tacjuramentado[0].primer_apellido%> <%= @tacjuramentado[0].segundo_apellido%></p>
 	    <p><b>Cédula:</b> <%= @tacjuramentado[0].cedula%></p>
 	    <p><b>Resolución:</b> <%= @tacjuramentado[0].resolucion%></p>
-	    <p><b>Competencia:</b> <%= @tacjuramentado[0].competencia%></p>
+	    <% if @tacjuramentado[0].tac_cargo_id != 3  %>
+	    	<p><b>Competencia:</b> <%= @tacjuramentado[0].competencia%></p>
+	    <% end %>
 	    <p><b>Fecha Resolución:</b> <%= @tacjuramentado[0].fecha_resolucion%></p>
 	    <p><b>Unidad:</b> <%= @tacjuramentado[0].coordinaciones_regionales%></p>
-	    <p><b>Extensión:</b> <%= @tacjuramentado[0].coordinaciones_extensiones%></p>
+	    <% if @tacjuramentado[0].coordinaciones_extensiones == ""  %> 
+	    	<p><b>Extensión:</b> <%= @tacjuramentado[0].coordinaciones_extensiones%></p>
+	    <% end %>
 	    <p><b>Cargo:</b> <%= @tacjuramentado[0].cargos%> <%= @tacjuramentado[0].cargo_letras%> 
 	    	             <%= @tacjuramentado[0].cargo_numero%>
-	    <p><b>Materias:</b> <%= @tacjuramentado[0].materia%></p>
+	    </p>
+	    <% if @tacjuramentado[0].tac_cargo_id != 3 %>
+				<p><b>Materias:</b> <%= @tacjuramentado[0].materia%></p>
+	    <% end %>
 	    </p> 
 	  </div>
 

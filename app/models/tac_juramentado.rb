@@ -22,9 +22,9 @@ class TacJuramentado  < ApplicationRecord
            INNER JOIN tac_unidades ON tac_unidades.id = tac_juramentados.tac_unidade_id
            LEFT JOIN tac_extensiones_sedes ON tac_extensiones_sedes.id = tac_juramentados.tac_extensiones_sedes_id
            INNER JOIN tac_cargos ON tac_cargos.id = tac_juramentados.tac_cargo_id
-           INNER JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
-           INNER JOIN tac_juramentado_materias ON tac_juramentado_id = tac_juramentados.id
-           INNER JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.id
+           LEFT JOIN tac_competencias ON tac_competencias.id = tac_juramentados.tac_competencia_id
+           LEFT JOIN tac_juramentado_materias ON tac_juramentado_id = tac_juramentados.id
+           LEFT JOIN tac_materias ON tac_materias.id = tac_juramentado_materias.id
          ").
     where("tac_juramentados.id = #{id}")
   end
