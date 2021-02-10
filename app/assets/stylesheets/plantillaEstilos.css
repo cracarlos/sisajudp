@@ -53,6 +53,8 @@ ul li:hover {
 	background-color: #181c20;
 	color: #f7f7f7;
 	padding: 20px;
+	font-size: 14px;
+	/*max-height: 230px;*/
 	
 }
 
