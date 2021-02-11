@@ -20,12 +20,12 @@
               <span src="logo.png" class="logo"> <%= image_tag("logo.png", size: "180x70")%> </span>
               <p style="color: white; font-size: 13px;"> <b><%=current_usuario.email%></b></p>
               <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle>
-                <li> <%= link_to "Inicio", actas_path %></li>
                 <li>
                   <a href="#">Actas</a>
                   <ul class="vertical menu nested subMenu">
-                    <li><%= link_to "Crear", new_acta_path %></li>
-                    <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
+                    <li><%= link_to "Crear", tac_actas_new_path %></li>
+                    <li><%= link_to "Actas Abiertas", tac_actas_abiertas_path %></li>
+                    <li><%= link_to "Actas Cerradas", tac_actas_path %></li>
                   </ul>
                 </li>
                 <li><%= link_to "Juramentados", tac_juramentados_path %></li>
@@ -38,15 +38,15 @@
           <div class="off-canvas-content" data-off-canvas-content>
             <div class="title-bar show-for-medium menuBackground">
               <div class="title-bar-left">
-                <%= link_to "SISAJUDP", actas_path, :class => "title-bar-title", :style => "color:white;" %>
+                <%= link_to "SISAJUDP", tac_actas_path, :class => "title-bar-title", :style => "color:white;" %>
               </div>
               <ul class="dropdown menu show-for-large icons" data-dropdown-menu >
                 <li>
                   <a href="#" class="" >Actas</a>
                   <ul class="menu subMenu">
-                    <li><%= link_to "Crear", new_acta_path %></li>
-                    <li><%= link_to "Actas Abiertas", actas_abiertas_path %></li>
-                    <li><%= link_to "Actas Cerradas", actas_path %></li>
+                    <li><%= link_to "Crear", tac_actas_new_path %></li>
+                    <li><%= link_to "Actas Abiertas", controller: "actas", action: "actas_abiertas" %></li>
+                    <li><%= link_to "Actas Cerradas", tac_actas_path %></li>
                   </ul>
                 </li>
                 <li><%= link_to "Juramentados", tac_juramentados_path, :class => "" %></li>

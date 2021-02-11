@@ -58,7 +58,8 @@ class ActasController < ApplicationController
   end
 	
   def show
-    @tacactasFirmantes = TacActa.acta_abiertas
+    @tac_actas = TacActa.find_by(id: params[:id])
+    puts'1111111111111111111111111' + @tac_actas.inspect
   end
 
   def destroy
@@ -113,6 +114,7 @@ class ActasController < ApplicationController
 
   def actas_abiertas
     @tacactasFirmantes = TacActa.acta_abiertas
+    puts '11111111111111111111111PASANDO'
   end
 
   private

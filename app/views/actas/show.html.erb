@@ -1,57 +1,19 @@
-<div class="subContenido">
-  <p>
-    <h2>Actas abiertas</h2>  
-  </p>
-      <%# flash.each do |type, msg| %>
-        <div > <%#= msg %> </div>
-      <%# end %>
-      <% if flash[:error]%>
-       <div id="alert" class="callout alert" data-closable>
-         
-          <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        
-      <%end%>
-      
-  <table class="radius bordered shadow" id="tacactasFirmantes">
-    <thead class="backroundColorPrincipal">
-      <tr>
-        <th scope="col">N° de Acta</th>
-        <th scope="col">Sede</th>
-        <th scope="col">Firmante</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-       <% @tacactasFirmantes.each do |acta| %>
-      <tr>
-        <td><%= acta.numero_acta%></td>
-        <td><%= acta.sede%></td>
-        <td><%= acta.nombre_completo%></td>
-        <td style="display: flex;" >
-          <%= link_to "", generate_pdf_path(:generar => acta.id, format: :pdf ), :class => "button primary rounded bordered shadow fi-page-pdf", :title => "Generar", :style => "margin-right:5px;"%> 
-          <%= link_to '', edit_acta_path(acta), :class => "button warning rounded bordered shadow  fi-page-edit ", :title => "Editar", :style => "margin-right:5px;"%>
-          <%#= link_to "", cerrar_acta_path(acta.id, :estatus => "FALSE"), :class => "btn btn-success fa fa-share-square-o", :title => "Cerrar Acta" %>
+<div class="callout border-none radius bordered shadow card">
+  <div class = "grid-x grid-padding-x">     
+    <div class="large-12 cell">
+      <h2 class="margin-bottom-2">Detalles</h2>
+      <p><b>N° de Acta:</b> <%= @tac_actas.numero_acta%></p>
+      <p><b>Fecha del acta creada en sistema</b> <%= @tac_actas.creado_el%></p>
+      <p><b>Sede:</b> <%= @tac_actas.sede%></p>
+      <p><b>Firmante:</b> <%= @tac_actas.tac_firmante_id%></p>
+      <p><b>Para:</b> <%= @tac_actas.para%></p>
+    </div>
 
-          <%#= link_to '', acta_path(acta), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "button tiny alert rounded bordered shadow fi-trash ", :title => "Eliminar",:style => "margin-right:5px;" %>
-          <%= link_to "", cerrar_acta_path(acta), :class => "button success rounded bordered shadow  fi-lock", :title => "Cerrar",:style => "margin-right:5px;" %>
-        </td>
-      </tr>
-       <% end %>
-    </tbody> 
-  </table>
-
-  <div class="text-center">    
-     <%= link_to 'Agregar Acta', new_acta_path, :class => "button rounded bordered shadow buttonColor" %> 
-  </div>
+    <div class="large-12 cell margin-top-2 text-center">
+      <%= link_to '', tac_actas_edit_path(@tac_actas.id), :class => "button large warning rounded bordered shadow  fi-page-edit ", :title => "Editar", :style => "margin-right:5px;"%>
+      <%= link_to '', tac_actas_destroy_path(@tac_actas.id), method: :delete, data:{confirm: '¿Esta seguro?'}, :class => "button large alert rounded bordered shadow fi-trash ", :title => "Eliminar",:style => "margin-right:5px;" %>
+      <%= link_to "", cerrar_acta_path(@tac_actas.id), :class => "button large success rounded bordered shadow  fi-lock", :title => "Cerrar",:style => "margin-right:5px;" %>
+    </div>
+  </div> 
 </div>
-<script>
-$('#tacactasFirmantes').dataTable({
-    language: traduceDataTable()
-  });
-//alertify.dialog('alert').set({transition:'pulse',message: 'Transition effect: slide'}).show();
-$('#alert').html("<%=flash[:error] %> ");
-//alertify.error(asd); 
-</script>
+ 
